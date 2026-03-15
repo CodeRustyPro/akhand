@@ -55,7 +55,7 @@ export default function ExplorePage() {
     let cancelled = false;
     async function loadData() {
       setLoading(true);
-      const places = await fetchLiteraryPlaces({ limit: 1000 });
+      const places = await fetchLiteraryPlaces({ limit: 2000 });
       if (!cancelled) {
         setAllPlaces(places);
         setFilteredPlaces(places);

@@ -97,7 +97,7 @@ export default function HomePage() {
   );
 
   useEffect(() => {
-    fetchLiteraryPlaces({ limit: 900 }).then((places) => {
+    fetchLiteraryPlaces({ limit: 2000 }).then((places) => {
       if (places.length > literaryPlaces.length) {
         setStats({
           places: places.length,
