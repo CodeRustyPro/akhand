@@ -13,16 +13,17 @@ import {
   Languages,
 } from 'lucide-react';
 import type { LiteraryPlace } from '@/lib/types';
-import { literaryPlaces } from '@/lib/data';
 import { useMemo } from 'react';
 
 interface PlaceDetailProps {
   place: LiteraryPlace;
+  allPlaces: LiteraryPlace[];
   onClose: () => void;
+  onSelectRelated?: (place: LiteraryPlace) => void;
 }
 
 function SentimentBar({ polarity }: { polarity: number }) {
-  const normalized = (polarity + 1) / 2; // 0 to 1
+  const normalized = (polarity + 1) / 2;
   const percentage = Math.round(normalized * 100);
 
   return (
@@ -60,16 +61,33 @@ function SentimentBar({ polarity }: { polarity: number }) {
   );
 }
 
-export default function PlaceDetail({ place, onClose }: PlaceDetailProps) {
+function hasPassage(place: LiteraryPlace): boolean {
+  return Boolean(place.passage && place.passage.trim().length > 5);
+}
+
+function hasEmotions(place: LiteraryPlace): boolean {
+  return place.sentiment.dominantEmotions.length > 0;
+}
+
+function hasThemes(place: LiteraryPlace): boolean {
+  return place.sentiment.themes.length > 0;
+}
+
+export default function PlaceDetail({
+  place,
+  allPlaces,
+  onClose,
+  onSelectRelated,
+}: PlaceDetailProps) {
   const relatedPlaces = useMemo(() => {
-    return literaryPlaces.filter(
+    return allPlaces.filter(
       (p) =>
         p.id !== place.id &&
         (p.placeName === place.placeName ||
           p.author === place.author ||
           p.bookTitle === place.bookTitle)
     );
-  }, [place]);
+  }, [place, allPlaces]);
 
   return (
     <motion.div
@@ -98,7 +116,7 @@ export default function PlaceDetail({ place, onClose }: PlaceDetailProps) {
       <div className="p-5 space-y-6">
         {/* Title section */}
         <div>
-          <h2 className="font-serif text-xl font-semibold text-akhand-text-primary leading-tight">
+          <h2 className="text-lg font-semibold text-akhand-text-primary leading-tight">
             {place.bookTitle}
           </h2>
           <p className="text-sm text-akhand-text-secondary mt-1">
@@ -118,7 +136,7 @@ export default function PlaceDetail({ place, onClose }: PlaceDetailProps) {
             <p className="text-sm font-medium text-akhand-text-primary">
               {place.placeName}
             </p>
-            {place.placeType === 'fictional_based_on_real' && (
+            {place.placeType === 'fictional_based_on_real' && place.realAnchor && (
               <p className="text-[10px] text-akhand-accent mt-0.5">
                 Based on: {place.realAnchor}
               </p>
@@ -129,15 +147,17 @@ export default function PlaceDetail({ place, onClose }: PlaceDetailProps) {
             <div className="flex items-center gap-1.5 mb-1">
               <Calendar className="w-3.5 h-3.5 text-akhand-accent" />
               <span className="text-[10px] text-akhand-text-muted uppercase tracking-wider">
-                Era
+                Published
               </span>
             </div>
             <p className="text-sm font-medium text-akhand-text-primary">
-              {place.narrativeEra}
+              {place.publishYear || 'Unknown'}
             </p>
-            <p className="text-[10px] text-akhand-text-muted mt-0.5">
-              Published {place.publishYear}
-            </p>
+            {place.narrativeEra && (
+              <p className="text-[10px] text-akhand-text-muted mt-0.5">
+                Era: {place.narrativeEra}
+              </p>
+            )}
           </div>
 
           <div className="bg-akhand-surface-2 rounded-lg p-3">
@@ -160,80 +180,90 @@ export default function PlaceDetail({ place, onClose }: PlaceDetailProps) {
               </span>
             </div>
             <p className="text-sm font-medium text-akhand-text-primary">
-              {place.language}
+              {place.language || 'Unknown'}
             </p>
           </div>
         </div>
 
-        {/* Passage */}
-        <div className="bg-akhand-surface rounded-xl p-5 border border-akhand-border/50">
-          <p className="font-serif italic text-sm text-akhand-literary leading-relaxed">
-            &ldquo;{place.passage}&rdquo;
-          </p>
-          <p className="text-[10px] text-akhand-text-muted mt-3 text-right">
-            — {place.bookTitle}
-          </p>
-        </div>
+        {/* Passage (only if non-empty) */}
+        {hasPassage(place) && (
+          <div className="bg-akhand-surface rounded-xl p-5 border border-akhand-border/50">
+            <p className="italic text-sm text-akhand-literary leading-relaxed">
+              &ldquo;{place.passage}&rdquo;
+            </p>
+            <p className="text-[10px] text-akhand-text-muted mt-3 text-right">
+              — {place.bookTitle}
+            </p>
+          </div>
+        )}
 
-        {/* Sentiment */}
-        <SentimentBar polarity={place.sentiment.polarity} />
+        {/* Sentiment (only if polarity is set to a meaningful value) */}
+        {place.sentiment.polarity !== 0 && (
+          <SentimentBar polarity={place.sentiment.polarity} />
+        )}
 
-        {/* Emotions */}
-        <div>
-          <div className="flex items-center gap-1.5 mb-2">
-            <Heart className="w-3.5 h-3.5 text-akhand-accent" />
+        {/* Emotions (only if non-empty) */}
+        {hasEmotions(place) && (
+          <div>
+            <div className="flex items-center gap-1.5 mb-2">
+              <Heart className="w-3.5 h-3.5 text-akhand-accent" />
+              <span className="text-xs font-medium text-akhand-text-secondary">
+                Emotions
+              </span>
+            </div>
+            <div className="flex flex-wrap gap-1.5">
+              {place.sentiment.dominantEmotions.map((emotion) => (
+                <span
+                  key={emotion}
+                  className="px-2.5 py-1 bg-akhand-accent-dim text-akhand-accent rounded-full text-[11px] font-medium"
+                >
+                  {emotion.replace(/_/g, ' ')}
+                </span>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Themes (only if non-empty) */}
+        {hasThemes(place) && (
+          <div>
+            <div className="flex items-center gap-1.5 mb-2">
+              <Tag className="w-3.5 h-3.5 text-akhand-accent" />
+              <span className="text-xs font-medium text-akhand-text-secondary">
+                Themes
+              </span>
+            </div>
+            <div className="flex flex-wrap gap-1.5">
+              {place.sentiment.themes.map((theme) => (
+                <span
+                  key={theme}
+                  className="px-2.5 py-1 bg-akhand-surface-2 text-akhand-text-secondary rounded-full text-[11px]"
+                >
+                  {theme.replace(/_/g, ' ')}
+                </span>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Genres (only if non-empty) */}
+        {place.genres.length > 0 && (
+          <div>
             <span className="text-xs font-medium text-akhand-text-secondary">
-              Emotions
+              Genres
             </span>
+            <div className="flex flex-wrap gap-1.5 mt-2">
+              {place.genres.map((genre) => (
+                <span
+                  key={genre}
+                  className="px-2.5 py-1 border border-akhand-border rounded-full text-[11px] text-akhand-text-muted"
+                >
+                  {genre}
+                </span>
+              ))}
+            </div>
           </div>
-          <div className="flex flex-wrap gap-1.5">
-            {place.sentiment.dominantEmotions.map((emotion) => (
-              <span
-                key={emotion}
-                className="px-2.5 py-1 bg-akhand-accent-dim text-akhand-accent rounded-full text-[11px] font-medium"
-              >
-                {emotion.replace(/_/g, ' ')}
-              </span>
-            ))}
-          </div>
-        </div>
-
-        {/* Themes */}
-        <div>
-          <div className="flex items-center gap-1.5 mb-2">
-            <Tag className="w-3.5 h-3.5 text-akhand-accent" />
-            <span className="text-xs font-medium text-akhand-text-secondary">
-              Themes
-            </span>
-          </div>
-          <div className="flex flex-wrap gap-1.5">
-            {place.sentiment.themes.map((theme) => (
-              <span
-                key={theme}
-                className="px-2.5 py-1 bg-akhand-surface-2 text-akhand-text-secondary rounded-full text-[11px]"
-              >
-                {theme.replace(/_/g, ' ')}
-              </span>
-            ))}
-          </div>
-        </div>
-
-        {/* Genres */}
-        <div>
-          <span className="text-xs font-medium text-akhand-text-secondary">
-            Genres
-          </span>
-          <div className="flex flex-wrap gap-1.5 mt-2">
-            {place.genres.map((genre) => (
-              <span
-                key={genre}
-                className="px-2.5 py-1 border border-akhand-border rounded-full text-[11px] text-akhand-text-muted"
-              >
-                {genre}
-              </span>
-            ))}
-          </div>
-        </div>
+        )}
 
         {/* Metadata */}
         <div className="space-y-2 pt-2 border-t border-akhand-border/50">
@@ -252,7 +282,8 @@ export default function PlaceDetail({ place, onClose }: PlaceDetailProps) {
           <div className="flex items-center justify-between text-xs">
             <span className="text-akhand-text-muted">Coordinates</span>
             <span className="text-akhand-text-secondary font-mono text-[10px]">
-              {place.coordinates[1].toFixed(4)}, {place.coordinates[0].toFixed(4)}
+              {place.coordinates[1].toFixed(4)},{' '}
+              {place.coordinates[0].toFixed(4)}
             </span>
           </div>
           {place.wikidataPlaceId && (
@@ -279,17 +310,18 @@ export default function PlaceDetail({ place, onClose }: PlaceDetailProps) {
             </h3>
             <div className="space-y-2">
               {relatedPlaces.slice(0, 5).map((rp) => (
-                <div
+                <button
                   key={rp.id}
-                  className="bg-akhand-surface-2 rounded-lg p-3 cursor-pointer hover:bg-akhand-surface-3 transition-colors"
+                  onClick={() => onSelectRelated?.(rp)}
+                  className="w-full text-left bg-akhand-surface-2 rounded-lg p-3 cursor-pointer hover:bg-akhand-surface-3 transition-colors"
                 >
-                  <p className="font-serif text-xs font-medium text-akhand-text-primary">
+                  <p className="text-xs font-medium text-akhand-text-primary">
                     {rp.bookTitle}
                   </p>
                   <p className="text-[10px] text-akhand-text-muted mt-0.5">
                     {rp.author} · {rp.placeName}
                   </p>
-                </div>
+                </button>
               ))}
             </div>
           </div>

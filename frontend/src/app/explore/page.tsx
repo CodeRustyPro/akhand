@@ -3,6 +3,7 @@
 import { useState, useCallback, useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import { AnimatePresence, motion } from 'framer-motion';
+import Link from 'next/link';
 import {
   PanelLeftClose,
   PanelLeftOpen,
@@ -11,7 +12,6 @@ import {
   Grid3X3,
   GitBranch,
   Sparkles,
-  Wifi,
   WifiOff,
   Database,
 } from 'lucide-react';
@@ -27,7 +27,7 @@ const LiteraryMap = dynamic(() => import('@/components/map/LiteraryMap'), {
     <div className="w-full h-full bg-akhand-bg flex items-center justify-center">
       <div className="text-center">
         <div className="w-8 h-8 border-2 border-akhand-accent/30 border-t-akhand-accent rounded-full animate-spin mx-auto" />
-        <p className="text-xs text-akhand-text-muted mt-3 font-serif italic">
+        <p className="text-xs text-akhand-text-muted mt-3 italic">
           Mapping the literary world...
         </p>
       </div>
@@ -55,7 +55,7 @@ export default function ExplorePage() {
     let cancelled = false;
     async function loadData() {
       setLoading(true);
-      const places = await fetchLiteraryPlaces({ limit: 500 });
+      const places = await fetchLiteraryPlaces({ limit: 1000 });
       if (!cancelled) {
         setAllPlaces(places);
         setFilteredPlaces(places);
@@ -89,12 +89,12 @@ export default function ExplorePage() {
           >
             {/* Sidebar header */}
             <div className="flex items-center justify-between p-4 border-b border-akhand-border">
-              <div className="flex items-center gap-2">
+              <Link href="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
                 <Sparkles className="w-4 h-4 text-akhand-accent" />
-                <h1 className="font-serif text-lg font-semibold text-akhand-text-primary">
+                <h1 className="text-lg font-semibold text-akhand-text-primary tracking-tight">
                   Akhand
                 </h1>
-              </div>
+              </Link>
               <button
                 onClick={() => setSidebarOpen(false)}
                 className="p-1.5 rounded-lg hover:bg-akhand-surface-2 transition-colors"
@@ -229,7 +229,9 @@ export default function ExplorePage() {
           {selectedPlace && (
             <PlaceDetail
               place={selectedPlace}
+              allPlaces={allPlaces}
               onClose={() => setSelectedPlace(null)}
+              onSelectRelated={handleSelectPlace}
             />
           )}
         </AnimatePresence>

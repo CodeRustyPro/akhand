@@ -6,13 +6,11 @@ import {
   SlidersHorizontal,
   X,
   MapPin,
-  BookOpen,
   ChevronDown,
   ChevronUp,
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import type { LiteraryPlace } from '@/lib/types';
-import { getUniqueRegions, getUniqueGenres, getEraRanges } from '@/lib/data';
 
 interface SearchPanelProps {
   places: LiteraryPlace[];
@@ -44,18 +42,19 @@ function FilterChip({
   );
 }
 
-function sentimentLabel(polarity: number): string {
-  if (polarity > 0.3) return 'Luminous';
-  if (polarity > 0) return 'Warm';
-  if (polarity > -0.3) return 'Shadowed';
-  return 'Dark';
-}
-
 function sentimentDot(polarity: number): string {
   if (polarity > 0.2) return 'bg-akhand-positive';
   if (polarity < -0.2) return 'bg-akhand-negative';
   return 'bg-akhand-accent';
 }
+
+const ERA_RANGES = [
+  'Pre-1900',
+  '1900\u20131950',
+  '1950\u20131980',
+  '1980\u20132000',
+  '2000\u2013present',
+];
 
 export default function SearchPanel({
   places,
@@ -68,15 +67,24 @@ export default function SearchPanel({
   const [selectedRegions, setSelectedRegions] = useState<string[]>([]);
   const [selectedGenres, setSelectedGenres] = useState<string[]>([]);
   const [selectedEras, setSelectedEras] = useState<string[]>([]);
-  const [expandedSections, setExpandedSections] = useState<Record<string, boolean>>({
+  const [expandedSections, setExpandedSections] = useState<
+    Record<string, boolean>
+  >({
     regions: true,
     genres: false,
     eras: false,
   });
 
-  const regions = useMemo(getUniqueRegions, []);
-  const genres = useMemo(getUniqueGenres, []);
-  const eras = useMemo(getEraRanges, []);
+  const regions = useMemo(
+    () => [...new Set(places.map((p) => p.region))].sort(),
+    [places]
+  );
+
+  const genres = useMemo(() => {
+    const g = new Set<string>();
+    places.forEach((p) => p.genres.forEach((genre) => g.add(genre)));
+    return [...g].sort();
+  }, [places]);
 
   const filteredPlaces = useMemo(() => {
     let result = places;
@@ -88,9 +96,13 @@ export default function SearchPanel({
           p.bookTitle.toLowerCase().includes(q) ||
           p.author.toLowerCase().includes(q) ||
           p.placeName.toLowerCase().includes(q) ||
-          p.passage.toLowerCase().includes(q) ||
-          p.sentiment.themes.some((t) => t.replace(/_/g, ' ').includes(q)) ||
-          p.sentiment.dominantEmotions.some((e) => e.replace(/_/g, ' ').includes(q))
+          (p.passage && p.passage.toLowerCase().includes(q)) ||
+          p.sentiment.themes.some((t) =>
+            t.replace(/_/g, ' ').includes(q)
+          ) ||
+          p.sentiment.dominantEmotions.some((e) =>
+            e.replace(/_/g, ' ').includes(q)
+          )
       );
     }
 
@@ -109,12 +121,18 @@ export default function SearchPanel({
         const year = p.publishYear;
         return selectedEras.some((era) => {
           switch (era) {
-            case 'Pre-1900': return year < 1900;
-            case '1900–1950': return year >= 1900 && year < 1950;
-            case '1950–1980': return year >= 1950 && year < 1980;
-            case '1980–2000': return year >= 1980 && year < 2000;
-            case '2000–present': return year >= 2000;
-            default: return true;
+            case 'Pre-1900':
+              return year < 1900;
+            case '1900\u20131950':
+              return year >= 1900 && year < 1950;
+            case '1950\u20131980':
+              return year >= 1950 && year < 1980;
+            case '1980\u20132000':
+              return year >= 1980 && year < 2000;
+            case '2000\u2013present':
+              return year >= 2000;
+            default:
+              return true;
           }
         });
       });
@@ -122,7 +140,7 @@ export default function SearchPanel({
 
     onFilteredPlacesChange(result);
     return result;
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [query, selectedRegions, selectedGenres, selectedEras, places]);
 
   const toggleFilter = (
@@ -234,7 +252,11 @@ export default function SearchPanel({
                         label={r}
                         active={selectedRegions.includes(r)}
                         onClick={() =>
-                          toggleFilter(selectedRegions, setSelectedRegions, r)
+                          toggleFilter(
+                            selectedRegions,
+                            setSelectedRegions,
+                            r
+                          )
                         }
                       />
                     ))}
@@ -263,7 +285,11 @@ export default function SearchPanel({
                         label={g}
                         active={selectedGenres.includes(g)}
                         onClick={() =>
-                          toggleFilter(selectedGenres, setSelectedGenres, g)
+                          toggleFilter(
+                            selectedGenres,
+                            setSelectedGenres,
+                            g
+                          )
                         }
                       />
                     ))}
@@ -286,7 +312,7 @@ export default function SearchPanel({
                 </button>
                 {expandedSections.eras && (
                   <div className="flex flex-wrap gap-1.5">
-                    {eras.map((e) => (
+                    {ERA_RANGES.map((e) => (
                       <FilterChip
                         key={e}
                         label={e}
@@ -306,47 +332,58 @@ export default function SearchPanel({
 
       {/* Results count */}
       <div className="px-4 py-2 text-xs text-akhand-text-muted border-b border-akhand-border/50">
-        {filteredPlaces.length} literary place{filteredPlaces.length !== 1 && 's'}
+        {filteredPlaces.length} literary place
+        {filteredPlaces.length !== 1 && 's'}
       </div>
 
       {/* Results list */}
       <div className="flex-1 overflow-y-auto">
-        {filteredPlaces.map((place) => (
-          <button
-            key={place.id}
-            onClick={() => onSelectPlace(place)}
-            className={`w-full text-left p-4 border-b border-akhand-border/30 transition-all duration-200 hover:bg-akhand-surface-2 ${
-              selectedPlace?.id === place.id
-                ? 'bg-akhand-accent-dim border-l-2 border-l-akhand-accent'
-                : ''
-            }`}
-          >
-            <div className="flex items-start gap-3">
-              <div
-                className={`w-2 h-2 rounded-full mt-1.5 flex-shrink-0 ${sentimentDot(
-                  place.sentiment.polarity
-                )}`}
-              />
-              <div className="flex-1 min-w-0">
-                <h4 className="font-serif text-sm font-medium text-akhand-text-primary truncate">
-                  {place.bookTitle}
-                </h4>
-                <p className="text-xs text-akhand-text-secondary mt-0.5">
-                  {place.author} · {place.publishYear}
-                </p>
-                <div className="flex items-center gap-1 mt-1">
-                  <MapPin className="w-3 h-3 text-akhand-accent" />
-                  <span className="text-xs text-akhand-accent">
-                    {place.placeName}
-                  </span>
+        {filteredPlaces.map((place) => {
+          const hasPassage =
+            place.passage && place.passage.trim().length > 10;
+
+          return (
+            <button
+              key={place.id}
+              onClick={() => onSelectPlace(place)}
+              className={`w-full text-left p-4 border-b border-akhand-border/30 transition-all duration-200 hover:bg-akhand-surface-2 ${
+                selectedPlace?.id === place.id
+                  ? 'bg-akhand-accent-dim border-l-2 border-l-akhand-accent'
+                  : ''
+              }`}
+            >
+              <div className="flex items-start gap-3">
+                <div
+                  className={`w-2 h-2 rounded-full mt-1.5 flex-shrink-0 ${sentimentDot(
+                    place.sentiment.polarity
+                  )}`}
+                />
+                <div className="flex-1 min-w-0">
+                  <h4 className="text-sm font-medium text-akhand-text-primary truncate">
+                    {place.bookTitle}
+                  </h4>
+                  <p className="text-xs text-akhand-text-secondary mt-0.5">
+                    {place.author}
+                    {place.publishYear ? ` · ${place.publishYear}` : ''}
+                  </p>
+                  <div className="flex items-center gap-1 mt-1">
+                    <MapPin className="w-3 h-3 text-akhand-accent" />
+                    <span className="text-xs text-akhand-accent">
+                      {place.placeName}
+                    </span>
+                  </div>
+                  {hasPassage && (
+                    <p className="text-[11px] text-akhand-text-muted mt-1.5 line-clamp-2 italic leading-relaxed">
+                      &ldquo;{place.passage.slice(0, 100)}
+                      {place.passage.length > 100 ? '...' : ''}
+                      &rdquo;
+                    </p>
+                  )}
                 </div>
-                <p className="text-[11px] text-akhand-text-muted mt-1.5 line-clamp-2 font-serif italic leading-relaxed">
-                  &ldquo;{place.passage.slice(0, 100)}...&rdquo;
-                </p>
               </div>
-            </div>
-          </button>
-        ))}
+            </button>
+          );
+        })}
       </div>
     </div>
   );

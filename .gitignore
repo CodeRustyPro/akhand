@@ -13,4 +13,4 @@ venv/
 *.sqlite3
 .DS_Store
 *.xlsx
-package-lock.json
+out/

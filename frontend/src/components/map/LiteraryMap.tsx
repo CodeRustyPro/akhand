@@ -18,7 +18,7 @@ import type {
   MapLayerMode,
   AuthorConnection,
 } from '@/lib/types';
-import { sentimentColor, generateAuthorConnections } from '@/lib/data';
+import { sentimentColor } from '@/lib/data';
 
 // Register PMTiles protocol for zero-cost self-hosted vector tiles.
 // To use PMTiles: host a .pmtiles file on Cloudflare R2 or S3 (free egress),
@@ -103,7 +103,38 @@ export default function LiteraryMap({
   const mapRef = useRef<MapRef>(null);
   const overlayRef = useRef<MapboxOverlay | null>(null);
 
-  const authorConnections = useMemo(() => generateAuthorConnections(), []);
+  const authorConnections = useMemo(() => {
+    const grouped: Record<string, LiteraryPlace[]> = {};
+    places.forEach((p) => {
+      if (!grouped[p.author]) grouped[p.author] = [];
+      grouped[p.author].push(p);
+    });
+
+    const connections: AuthorConnection[] = [];
+    Object.entries(grouped).forEach(([author, authorEntries]) => {
+      const unique = authorEntries.filter(
+        (p, i, arr) =>
+          arr.findIndex(
+            (q) =>
+              q.coordinates[0] === p.coordinates[0] &&
+              q.coordinates[1] === p.coordinates[1]
+          ) === i
+      );
+      for (let i = 0; i < unique.length; i++) {
+        for (let j = i + 1; j < unique.length; j++) {
+          connections.push({
+            source: unique[i].coordinates,
+            target: unique[j].coordinates,
+            sourceCity: unique[i].placeName,
+            targetCity: unique[j].placeName,
+            author,
+            bookCount: authorEntries.length,
+          });
+        }
+      }
+    });
+    return connections;
+  }, [places]);
 
   const handleMove = useCallback((e: ViewStateChangeEvent) => {
     setViewState(e.viewState as MapViewState);
@@ -349,7 +380,7 @@ export default function LiteraryMap({
           className="map-tooltip"
           style={{ left: hoverInfo.x, top: hoverInfo.y }}
         >
-          <p className="font-serif text-sm text-akhand-accent font-medium">
+          <p className="text-sm text-akhand-accent font-medium">
             {hoverInfo.place.bookTitle}
           </p>
           <p className="text-xs text-akhand-text-secondary mt-1">
