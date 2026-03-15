@@ -1,10 +1,10 @@
 # Akhand
 
-A literary geography platform that maps fiction to the physical world. 840 literary places across 98 cities in 19 languages, drawn from automated API ingestion and human-curated archives.
+A literary geography platform that maps fiction to the physical world. 1124 literary places across 174 cities in 23 languages, drawn from automated API ingestion, web archive parsing, and human-curated spreadsheets.
 
 The name means "undivided" in Sanskrit. The platform treats South Asia's literary geography as a continuous space, ignoring political boundaries in favor of narrative ones.
 
-This project builds on the work of [Cities in Fiction](https://citiesinfiction.com), an archival project by Apoorva Saini and Divya Ravindranath that documents real-world places in Indian literature. Their 156 curated entries are integrated here with full attribution. Akhand extends this with NLP extraction, multi-source data ingestion, and WebGL visualization.
+This project builds on the work of [Cities in Fiction](https://citiesinfiction.com), an archival project by Apoorva Saini and Divya Ravindranath that documents real-world places in Indian literature. Their curated entries (436 total across two sources) are integrated here with full attribution. Akhand extends this with NLP extraction, multi-source data ingestion, and WebGL visualization.
 
 ## Architecture
 
@@ -15,7 +15,7 @@ Frontend (Next.js 14, MapLibre GL, deck.gl)
     v
 Backend API (FastAPI, Pydantic)
     |
-    |-- /api/places        serves 840 ingested entries with search/filter
+    |-- /api/places        serves 1124 ingested entries with search/filter
     |-- /api/extract       spaCy + GLiNER + Gemini NLP pipeline
     |-- /api/wikidata/*    SPARQL proxy for Wikidata P840
     |
@@ -29,16 +29,15 @@ Data Ingestion (CLI scripts)
 
 ## Data
 
-**840 literary places** from two sources:
+**1124 literary places** from three sources:
 
 | Source | Entries | Method |
 |--------|---------|--------|
 | Open Library API | 688 | Automated search across 54 cities with historical name alias expansion (Bombay/Mumbai, Calcutta/Kolkata, Benaras/Varanasi/Kashi, Cochin/Kochi, etc.). Deduplication by work key. |
-| Cities in Fiction | 152 | Parsed from contributor spreadsheet. 89 unique places, 21 languages including Hindi, Bengali, Malayalam, Telugu, Odia, Kannada, Tamil, Urdu. Geocoded via pre-populated coordinate cache + Nominatim fallback. |
+| CIF Archive | 284 | Parsed from citiesinfiction.com/archive (tab-separated). 460+ raw entries deduplicated against existing dataset. Geocoded via pre-populated coordinate cache covering 200+ locations. |
+| CIF Spreadsheet | 152 | Parsed from contributor spreadsheet. 89 unique places, 21 languages including Hindi, Bengali, Malayalam, Telugu, Odia, Kannada, Tamil, Urdu. Geocoded via coordinate cache + Nominatim fallback. |
 
-Coverage: 98 cities, 705 unique authors, 823 unique books, publication years 1476-2026, 19 languages.
-
-The CIF spreadsheet we ingested is a snapshot of roughly 45% of their full archive. The remaining entries are on their Wix-rendered website, which does not expose structured data.
+Coverage: 174 unique places, 901 unique authors, 1105 unique titles, publication years 1476-2026, 23 languages, 7 regions.
 
 ## NLP pipeline
 
@@ -52,7 +51,7 @@ Four layers, designed so each failure degrades gracefully instead of crashing:
 
 **Layer 4: Gemini 3 Flash structured extraction** (`gemini-3-flash-preview`). Called only on passages containing NER-detected entities, not on full texts. A 100,000-word novel produces maybe 20 passages (6,000 characters) instead of 500,000 characters. At Gemini Flash pricing, that is $0.0006/book instead of $0.05, an 83x cost reduction. Extracts sentiment, themes, place classification.
 
-If Gemini fails, the pipeline falls back to rule-based sentiment. If GLiNER fails to load, spaCy runs alone. If the backend is down entirely, the frontend serves 40 curated entries from a static file.
+If Gemini fails, the pipeline falls back to rule-based sentiment. If GLiNER fails to load, spaCy runs alone. If the backend is down entirely, the frontend serves curated entries from a static file.
 
 ## Visualization
 
@@ -86,7 +85,7 @@ All commands run from the project root (`akhand/`), not from subdirectories.
 # Frontend only (40 curated entries, no backend needed)
 cd frontend && npm install && npm run dev
 
-# Backend (840 real entries from Open Library + CIF)
+# Backend (1124 entries from Open Library + CIF)
 pip install -r backend/requirements.txt
 python -m spacy download en_core_web_md
 uvicorn backend.main:app --port 8000
@@ -98,7 +97,7 @@ uvicorn backend.main:app --port 8000
 
 # Re-ingest data
 python -m backend.data.ingest              # Open Library (54 cities)
-python -m backend.data.cif_ingest --merge  # merge CIF spreadsheet
+python -m backend.data.cif_ingest --merge  # merge CIF spreadsheet + archive
 curl -X POST http://localhost:8000/api/places/refresh
 
 # Docker (full stack)
@@ -116,8 +115,8 @@ docker compose up
 ## Limitations
 
 - The API has no authentication or rate limiting. `/api/places/refresh` is unauthenticated. Fine for development, not deployable to a public URL without middleware.
-- CORS is locked to `localhost:3000`. Deploying frontend and backend to different domains requires a `CORS_ORIGINS` env var.
-- Sentiment analysis is empty for Open Library entries. The NLP pipeline can do it, but ingestion prioritizes breadth (840 entries) over depth (rich per-entry analysis).
+- CORS allows `localhost:3000` and `shahdev.me`. Additional origins require updating the middleware.
+- Sentiment analysis is empty for Open Library entries. The NLP pipeline can do it, but ingestion prioritizes breadth (1124 entries) over depth (rich per-entry analysis).
 - Neither source contains actual literary passages, only plot summaries (Open Library) and contributor descriptions (CIF). Copyrighted text requires publisher APIs or Project Gutenberg (public domain, pre-1928).
 - Geocoding approximates regions to centroids. "Marwar region in Western part of Rajasthan" maps to Jodhpur. State-level entries and fictional places are similarly approximate.
 - Open Library sorts by relevance, not recency. Recently published books are underrepresented.
