@@ -292,7 +292,7 @@ async def list_places(
     q: str | None = Query(None, description="Full-text search across title, author, city"),
     year_min: int | None = Query(None, description="Minimum publication year"),
     year_max: int | None = Query(None, description="Maximum publication year"),
-    limit: int = Query(100, ge=1, le=1000),
+    limit: int = Query(100, ge=1, le=5000),
     offset: int = Query(0, ge=0),
 ):
     """
