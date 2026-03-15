@@ -1,0 +1,199 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap');
+
+:root {
+  --color-bg: #050505;
+  --color-surface: #0f0f0f;
+  --color-accent: #c49a6c;
+  --color-accent-glow: rgba(196, 154, 108, 0.4);
+  --color-text: #f5f0eb;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background: var(--color-bg);
+  color: var(--color-text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Scrollbar ─────────────────────────────────────────────────── */
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #2a2a2a;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #3a3a3a;
+}
+
+/* ── MapLibre overrides ────────────────────────────────────────── */
+
+.maplibregl-ctrl-attrib {
+  background: rgba(5, 5, 5, 0.7) !important;
+  color: #6b6560 !important;
+  font-size: 10px !important;
+}
+
+.maplibregl-ctrl-attrib a {
+  color: #a39e97 !important;
+}
+
+.maplibregl-popup-content {
+  background: #1a1a1a !important;
+  border: 1px solid #2a2a2a !important;
+  border-radius: 12px !important;
+  padding: 0 !important;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6) !important;
+  color: #f5f0eb !important;
+  min-width: 240px;
+}
+
+.maplibregl-popup-tip {
+  border-top-color: #1a1a1a !important;
+}
+
+.maplibregl-popup-close-button {
+  color: #a39e97 !important;
+  font-size: 18px !important;
+  padding: 4px 8px !important;
+}
+
+.maplibregl-ctrl-group {
+  background: #1a1a1a !important;
+  border: 1px solid #2a2a2a !important;
+  border-radius: 8px !important;
+  overflow: hidden;
+}
+
+.maplibregl-ctrl-group button {
+  border-color: #2a2a2a !important;
+}
+
+.maplibregl-ctrl-group button + button {
+  border-top-color: #2a2a2a !important;
+}
+
+.maplibregl-ctrl-group button:hover {
+  background-color: #222 !important;
+}
+
+.maplibregl-ctrl-group button .maplibregl-ctrl-icon {
+  filter: invert(1);
+}
+
+/* ── Typography ────────────────────────────────────────────────── */
+
+@layer components {
+  .text-literary {
+    font-family: 'Playfair Display', Georgia, serif;
+    color: #e8d5c0;
+    font-style: italic;
+  }
+
+  .text-gradient {
+    background: linear-gradient(135deg, #f5f0eb 0%, #c49a6c 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .glow-accent {
+    box-shadow: 0 0 20px var(--color-accent-glow),
+      0 0 60px rgba(196, 154, 108, 0.15);
+  }
+
+  .glow-dot {
+    box-shadow: 0 0 8px var(--color-accent-glow),
+      0 0 24px rgba(196, 154, 108, 0.2);
+  }
+
+  .glass {
+    background: rgba(15, 15, 15, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(42, 42, 42, 0.6);
+  }
+
+  .glass-light {
+    background: rgba(26, 26, 26, 0.9);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(42, 42, 42, 0.5);
+  }
+}
+
+/* ── Animations ────────────────────────────────────────────────── */
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.shimmer {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(196, 154, 108, 0.08) 50%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.gradient-bg {
+  background: linear-gradient(
+    -45deg,
+    #050505,
+    #0f0a05,
+    #050505,
+    #0a0505
+  );
+  background-size: 400% 400%;
+  animation: gradient-shift 15s ease infinite;
+}
+
+/* ── Map tooltip ───────────────────────────────────────────────── */
+
+.map-tooltip {
+  pointer-events: none;
+  position: absolute;
+  z-index: 50;
+  padding: 12px 16px;
+  background: rgba(15, 15, 15, 0.95);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(196, 154, 108, 0.3);
+  border-radius: 10px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  max-width: 300px;
+  transform: translate(-50%, -100%);
+  margin-top: -12px;
+}

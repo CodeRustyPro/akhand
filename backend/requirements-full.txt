@@ -1,0 +1,9 @@
+# Everything in requirements.txt plus database and async processing.
+# Install when wiring PostgreSQL + Celery + vector search.
+-r requirements.txt
+sqlalchemy==2.0.36
+geoalchemy2==0.17.1
+psycopg2-binary==2.9.10
+pgvector==0.3.6
+celery[redis]==5.4.0
+sentence-transformers==3.3.1
