@@ -13,4 +13,5 @@ venv/
 *.sqlite3
 .DS_Store
 *.xlsx
+a.txt
 out/

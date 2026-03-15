@@ -1,10 +1,11 @@
 {
-  "version": "0.3.0",
+  "version": "0.5.0",
   "sources": [
     "openlibrary",
-    "citiesinfiction"
+    "citiesinfiction",
+    "CIF Archive (citiesinfiction.com/archive)"
   ],
-  "total": 840,
+  "total": 1124,
   "places": [
     {
       "id": "ol-OL2980902W-mumbai",
@@ -24289,6 +24290,8328 @@
       ],
       "region": "South Asia",
       "source": "citiesinfiction"
+    },
+    {
+      "id": "cif-fireproof",
+      "bookTitle": "Fireproof",
+      "author": "Raj Kamal Jha",
+      "publishYear": 2007,
+      "placeName": "Ahmedabad",
+      "coordinates": [
+        72.5714,
+        23.0225
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2007s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "2002_riots"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-spellcasters",
+      "bookTitle": "Spellcasters",
+      "author": "Rajat Chaudhuri",
+      "publishYear": 2024,
+      "placeName": "Anantanagar (Kolkata)",
+      "coordinates": [
+        88.3639,
+        22.5726
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2024s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "madness",
+          "climate_change",
+          "corporate_globalisation",
+          "psychedelic_drugs"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-no-bridge-over-the-troubled-waters",
+      "bookTitle": "No Bridge Over the Troubled Waters",
+      "author": "Mohammad Kamran",
+      "publishYear": 2019,
+      "placeName": "Andaman and Nicobar Islands",
+      "coordinates": [
+        92.7265,
+        11.7401
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2019s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "identity",
+          "historical_fiction",
+          "coming_of_age"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-latitudes-of-longing",
+      "bookTitle": "Latitudes of Longing",
+      "author": "Shubhangi Swarup",
+      "publishYear": 2018,
+      "placeName": "Andaman",
+      "coordinates": [
+        92.7265,
+        11.7401
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2018s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "anthropocene",
+          "natural_world",
+          "intimacy"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-skin-deep",
+      "bookTitle": "Skin Deep",
+      "author": "Nergis Dalal",
+      "publishYear": 2005,
+      "placeName": "Dehradun",
+      "coordinates": [
+        78.0322,
+        30.3165
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2005s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "identity",
+          "culture",
+          "beauty",
+          "family",
+          "relationships"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-baahudha-bathuku-kathalu",
+      "bookTitle": "Baahudha Bathuku Kathalu",
+      "author": "Booduri Sudarshan",
+      "publishYear": 2022,
+      "placeName": "Chittoor",
+      "coordinates": [
+        79.6480611,
+        13.325036
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2022s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "rural_life",
+          "cycle_of_life",
+          "dialects"
+        ]
+      },
+      "language": "Telugu",
+      "genres": [
+        "short stories"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-the-hussaini-alam-house",
+      "bookTitle": "The Hussaini Alam House",
+      "author": "Huma R. Kidwai",
+      "publishYear": 2012,
+      "placeName": "Hyderabad",
+      "coordinates": [
+        78.4867,
+        17.385
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2012s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "memory",
+          "nostalgia",
+          "loss"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-the-eighteenth-parallel",
+      "bookTitle": "The Eighteenth Parallel",
+      "author": "Ashokamitran",
+      "publishYear": 1993,
+      "placeName": "Hyderabad",
+      "coordinates": [
+        78.4867,
+        17.385
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "1993s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "pre-independence_india",
+          "nizam_state",
+          "family",
+          "education"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-emotional-pregnancy",
+      "bookTitle": "Emotional Pregnancy",
+      "author": "Purnima Tammireddy",
+      "publishYear": 2022,
+      "placeName": "Bangalore",
+      "coordinates": [
+        77.5946,
+        12.9716
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2022s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "urban_lives",
+          "mental_health",
+          "relationships"
+        ]
+      },
+      "language": "Telugu",
+      "genres": [
+        "short stories"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-18-vadhu-atchakkodu",
+      "bookTitle": "18-vadhu Atchakkodu",
+      "author": "Asokamitran",
+      "publishYear": 1977,
+      "placeName": "Secundrabad",
+      "coordinates": [
+        78.5047567,
+        17.4346769
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "1977s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "coming_of_age_in_secundrabad_in_the_1940s",
+          "political_and_social_turmoil"
+        ]
+      },
+      "language": "Tamil",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-the-marriage-bureau-of-rich-people",
+      "bookTitle": "The Marriage Bureau of Rich People",
+      "author": "Farahad Zama",
+      "publishYear": 2008,
+      "placeName": "Vishakhapatnam",
+      "coordinates": [
+        85.1376,
+        25.6093
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2008s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "old_age",
+          "match_making",
+          "humor"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-escaping-the-land",
+      "bookTitle": "Escaping the Land",
+      "author": "Mamang Dai",
+      "publishYear": 2021,
+      "placeName": "Itanagar",
+      "coordinates": [
+        93.6053,
+        27.0844
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2021s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "politics",
+          "family",
+          "migration",
+          "myth",
+          "history"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-beneath-the-simolu-tree",
+      "bookTitle": "Beneath the Simolu Tree",
+      "author": "Sarmistha Pritam",
+      "publishYear": 2024,
+      "placeName": "Assam",
+      "coordinates": [
+        92.9376,
+        26.2006
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2024s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "love",
+          "friendship",
+          "dreams",
+          "aspirations",
+          "abusive_childhood"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-what-will-people-say",
+      "bookTitle": "What will people say?",
+      "author": "Mitra Phukan",
+      "publishYear": 2023,
+      "placeName": "Guwahati",
+      "coordinates": [
+        91.7362,
+        26.1445
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2023s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "family",
+          "love",
+          "divorce",
+          "gossip",
+          "friendships"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-undertow",
+      "bookTitle": "Undertow",
+      "author": "Jahnavi Baruha",
+      "publishYear": 2020,
+      "placeName": "Bangalore",
+      "coordinates": [
+        77.5946,
+        12.9716
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2020s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "identity",
+          "gender",
+          "family",
+          "wildlife"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-the-bww-bangalore-anthology",
+      "bookTitle": "The BWW Bangalore Anthology",
+      "author": "Edited by Bhumika Anand",
+      "publishYear": 2022,
+      "placeName": "Bangalore",
+      "coordinates": [
+        77.5946,
+        12.9716
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2022s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "city_writing",
+          "food",
+          "family",
+          "love",
+          "nostalgia"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "anthology"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-lajja-shame",
+      "bookTitle": "Lajja/Shame",
+      "author": "Taslima Nasreen, Tutul Gupta",
+      "publishYear": 1993,
+      "placeName": "Bangladesh",
+      "coordinates": [
+        90.4227062,
+        23.7946985
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "1993s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "communal_violence",
+          "family",
+          "religion"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-samira-surfs",
+      "bookTitle": "Samira Surfs",
+      "author": "Rukhsanna Guidroz",
+      "publishYear": 2021,
+      "placeName": "Cox's Bazar",
+      "coordinates": [
+        91.9847,
+        21.4272
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2021s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "children",
+          "refugee_crisis",
+          "floods",
+          "violence",
+          "gender"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-babu-bangladesh",
+      "bookTitle": "Babu Bangladesh",
+      "author": "Numair Atif Choudhury",
+      "publishYear": 2019,
+      "placeName": "Dhaka",
+      "coordinates": [
+        90.4125,
+        23.8103
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2019s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "historical_fiction",
+          "politics",
+          "culture"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-cyber-mage",
+      "bookTitle": "Cyber Mage",
+      "author": "Saad Z Hossain",
+      "publishYear": 2021,
+      "placeName": "Dhaka",
+      "coordinates": [
+        90.4125,
+        23.8103
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2021s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "climate_change",
+          "social_inequality",
+          "crime"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-the-heart-of-the-buddha",
+      "bookTitle": "The Heart of the Buddha",
+      "author": "Elsie Sze",
+      "publishYear": 2005,
+      "placeName": "Bhutan",
+      "coordinates": [
+        90.4336,
+        27.5142
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2005s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "journey",
+          "trekking",
+          "family",
+          "love",
+          "nature"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-water",
+      "bookTitle": "Water",
+      "author": "Bapsi Sidhwa",
+      "publishYear": 2006,
+      "placeName": "Varanasi",
+      "coordinates": [
+        83.0007,
+        25.3176
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2006s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "brahmanical_conservatism",
+          "patriarchy",
+          "child_marriage",
+          "widowhood_&_ostracisation",
+          "prostitution"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-patna-blues",
+      "bookTitle": "Patna Blues",
+      "author": "Abudallah Khan",
+      "publishYear": 2018,
+      "placeName": "Patna",
+      "coordinates": [
+        85.1376,
+        25.6093
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2018s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "class",
+          "education",
+          "livelihood",
+          "marriage"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-data-peer",
+      "bookTitle": "Data Peer",
+      "author": "Hrishikesh Sulabh",
+      "publishYear": 2022,
+      "placeName": "Patna",
+      "coordinates": [
+        85.1376,
+        25.6093
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2022s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "family",
+          "social_issues"
+        ]
+      },
+      "language": "Hindi",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-islam-ul-nisa",
+      "bookTitle": "Islam Ul Nisa",
+      "author": "Rashidul Nisa",
+      "publishYear": 1881,
+      "placeName": "Patna (Azimabad in 18C)",
+      "coordinates": [
+        85.1376,
+        25.6093
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "1881s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "history",
+          "gender"
+        ]
+      },
+      "language": "Urdu",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-the-kidnapping-of-mark-twain",
+      "bookTitle": "The Kidnapping of Mark Twain",
+      "author": "Anuradha Kumar",
+      "publishYear": 2023,
+      "placeName": "Mumbai",
+      "coordinates": [
+        72.8777,
+        19.076
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2023s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "mystery_based_on_mark_twain's_travelogue_of_his_visit_to_bombay"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-the-death-of-common-sense",
+      "bookTitle": "The Death of Common Sense",
+      "author": "Vinish Garg",
+      "publishYear": 2006,
+      "placeName": "Chandigarh",
+      "coordinates": [
+        76.7794,
+        30.7333
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2006s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "gender",
+          "family",
+          "psychology"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-i-named-my-sister-silence",
+      "bookTitle": "I Named my Sister Silence",
+      "author": "Manoj Rupda",
+      "publishYear": 2023,
+      "placeName": "Bastar",
+      "coordinates": [
+        81.8291865,
+        19.1191283
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2023s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "ecology",
+          "livelihood",
+          "feudalism",
+          "rebellion"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-jump-cut",
+      "bookTitle": "Jump Cut",
+      "author": "Krishna Shastri Devulapalli",
+      "publishYear": 2013,
+      "placeName": "Chennai",
+      "coordinates": [
+        80.2707,
+        13.0827
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2013s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "movies",
+          "film_industry",
+          "intellectual_property",
+          "copyright_theft",
+          "betrayal"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-what-we-know-about-her",
+      "bookTitle": "What We Know About Her",
+      "author": "Krupa Ge",
+      "publishYear": 2021,
+      "placeName": "Chennai and Benares",
+      "coordinates": [
+        80.2707,
+        13.0827
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2021s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "carnatic_music",
+          "friendship",
+          "family",
+          "love",
+          "tradition"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-the-americans",
+      "bookTitle": "The Americans",
+      "author": "Chitra Viraraghavan",
+      "publishYear": 2014,
+      "placeName": "Chennai",
+      "coordinates": [
+        80.2707,
+        13.0827
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2014s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "nris",
+          "immigrant_lives",
+          "displacement",
+          "illegal_immigration",
+          "human_trafficking"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-all-quiet-in-vikaspuri",
+      "bookTitle": "All Quiet in Vikaspuri",
+      "author": "Sarnath Banerjee",
+      "publishYear": 2015,
+      "placeName": "Delhi",
+      "coordinates": [
+        77.209,
+        28.6139
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2015s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "water",
+          "dystopia",
+          "natural_resources",
+          "public_goods"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-a-city-happens-in-love-ishq-mein-shahar-hona",
+      "bookTitle": "A City Happens in Love/Ishq Mein Shahar Hona",
+      "author": "Ravish Kumar",
+      "publishYear": 2015,
+      "placeName": "Delhi",
+      "coordinates": [
+        77.209,
+        28.6139
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2015s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "micro_fiction",
+          "urbanisation",
+          "love"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-delhi-is-not-far",
+      "bookTitle": "Delhi Is Not Far",
+      "author": "Ruskin Bond",
+      "publishYear": 1994,
+      "placeName": "Delhi",
+      "coordinates": [
+        77.209,
+        28.6139
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "1994s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "identity",
+          "love",
+          "homelessness",
+          "livelihood"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-the-hidden-palace-adventure",
+      "bookTitle": "The Hidden Palace Adventure",
+      "author": "Ranjit Lal",
+      "publishYear": 2019,
+      "placeName": "Delhi",
+      "coordinates": [
+        77.209,
+        28.6139
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2019s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "adventure",
+          "children",
+          "history",
+          "identity",
+          "love"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-home",
+      "bookTitle": "Home",
+      "author": "Manju Kapur",
+      "publishYear": 2006,
+      "placeName": "Delhi",
+      "coordinates": [
+        77.209,
+        28.6139
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2006s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "family",
+          "business",
+          "gender"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-the-walls-of-delhi",
+      "bookTitle": "The Walls of Delhi",
+      "author": "Uday Prakash",
+      "publishYear": 2012,
+      "placeName": "Delhi",
+      "coordinates": [
+        77.209,
+        28.6139
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2012s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "dark_comedy",
+          "caste",
+          "globalised_india"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-the-blind-matriarch",
+      "bookTitle": "The Blind Matriarch",
+      "author": "Namita Gokhale",
+      "publishYear": 2021,
+      "placeName": "Delhi",
+      "coordinates": [
+        77.209,
+        28.6139
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2021s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "family",
+          "corona",
+          "memories"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-dead-meat",
+      "bookTitle": "Dead Meat",
+      "author": "Saikia Ankush",
+      "publishYear": 2015,
+      "placeName": "Delhi",
+      "coordinates": [
+        77.209,
+        28.6139
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2015s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "crime_thriller",
+          "lonliness",
+          "murder"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-age-of-vice",
+      "bookTitle": "Age of Vice",
+      "author": "Deepti Kapoor",
+      "publishYear": 2023,
+      "placeName": "Delhi",
+      "coordinates": [
+        77.209,
+        28.6139
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2023s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "money",
+          "politics_and_crime_in_delhi"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-a-situation-in-new-delhi",
+      "bookTitle": "A Situation in New Delhi",
+      "author": "Nayantara Sehgal",
+      "publishYear": 1977,
+      "placeName": "Delhi",
+      "coordinates": [
+        77.209,
+        28.6139
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "1977s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "politics",
+          "class",
+          "relationships"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-half-the-night-is-gone",
+      "bookTitle": "Half the Night is Gone",
+      "author": "Amitabha Bagchi",
+      "publishYear": 2018,
+      "placeName": "Delhi",
+      "coordinates": [
+        77.209,
+        28.6139
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2018s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "family",
+          "death",
+          "arts",
+          "language",
+          "trade"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-muthi-bhar-kankar",
+      "bookTitle": "Muthi Bhar Kankar",
+      "author": "Jagdish Chandra",
+      "publishYear": 2017,
+      "placeName": "Delhi",
+      "coordinates": [
+        77.209,
+        28.6139
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2017s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "city_writing",
+          "post_partition_delhi",
+          "urban_development"
+        ]
+      },
+      "language": "Hindi",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-the-ministry-of-utmost-happiness",
+      "bookTitle": "The Ministry of Utmost Happiness",
+      "author": "Arundhati Roy",
+      "publishYear": 2013,
+      "placeName": "Delhi",
+      "coordinates": [
+        77.209,
+        28.6139
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2013s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "lgbtq",
+          "belonging",
+          "conflict"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-pradip-acharaya",
+      "bookTitle": "Pradip Acharaya",
+      "author": "Delhi",
+      "publishYear": 0,
+      "placeName": "Novel",
+      "coordinates": [
+        77.5990936,
+        12.9905246
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "assamese"
+        ]
+      },
+      "language": "2002",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-rich-like-us",
+      "bookTitle": "Rich Like Us",
+      "author": "Nayantara Sahgal",
+      "publishYear": 1985,
+      "placeName": "Delhi",
+      "coordinates": [
+        77.209,
+        28.6139
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "1985s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "history",
+          "independence",
+          "filiation",
+          "magic"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-we-that-are-young",
+      "bookTitle": "We That Are Young",
+      "author": "Preti Taneja",
+      "publishYear": 2016,
+      "placeName": "Delhi",
+      "coordinates": [
+        77.209,
+        28.6139
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2016s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "business",
+          "family",
+          "2000s_delhi"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-the-music-of-solitude",
+      "bookTitle": "The Music of Solitude",
+      "author": "Krishna Sobti",
+      "publishYear": 2013,
+      "placeName": "Delhi",
+      "coordinates": [
+        77.209,
+        28.6139
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2013s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "neighbours"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-the-private-life-of-mrs-sharma",
+      "bookTitle": "The Private life of Mrs Sharma",
+      "author": "Ratika Kapur",
+      "publishYear": 2015,
+      "placeName": "Delhi",
+      "coordinates": [
+        77.209,
+        28.6139
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2015s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "middle_class",
+          "metro",
+          "affair"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-the-englishman-s-cameo",
+      "bookTitle": "The Englishman's Cameo",
+      "author": "Madhulika Liddle",
+      "publishYear": 2009,
+      "placeName": "Delhi",
+      "coordinates": [
+        77.209,
+        28.6139
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2009s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "historical_fiction",
+          "mughal_era",
+          "crime",
+          "murder",
+          "mystery"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-murder-at-the-mushaira",
+      "bookTitle": "Murder at the Mushaira",
+      "author": "Raza Mir",
+      "publishYear": 2021,
+      "placeName": "Delhi",
+      "coordinates": [
+        77.209,
+        28.6139
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2021s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "historical_fiction",
+          "mughal_era",
+          "british_india",
+          "crime",
+          "arts"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-the-1st-assasin-a-unit-22-thriller",
+      "bookTitle": "The 1st Assasin: A Unit 22 Thriller",
+      "author": "Mainak Dhar",
+      "publishYear": 2022,
+      "placeName": "Delhi",
+      "coordinates": [
+        77.209,
+        28.6139
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2022s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "crime",
+          "spy_thriller",
+          "frienship",
+          "love"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-the-city-and-the-sea",
+      "bookTitle": "The City and the Sea",
+      "author": "Raj Kamal Jha",
+      "publishYear": 2019,
+      "placeName": "Delhi and Berlin",
+      "coordinates": [
+        77.209,
+        28.6139
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2019s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": []
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-black-river",
+      "bookTitle": "Black River",
+      "author": "Nilanjana S. Roy",
+      "publishYear": 2022,
+      "placeName": "Titarpur",
+      "coordinates": [
+        77.1135406,
+        28.6440085
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2022s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "friendship",
+          "love",
+          "police"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-stupid-cupid",
+      "bookTitle": "Stupid Cupid",
+      "author": "Mamang Dai",
+      "publishYear": 2009,
+      "placeName": "Delhi",
+      "coordinates": [
+        77.209,
+        28.6139
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2009s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "love",
+          "romance",
+          "female_friendships",
+          "un/belonging"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-the-windfall",
+      "bookTitle": "The Windfall",
+      "author": "Diksha Basu",
+      "publishYear": 2017,
+      "placeName": "Delhi",
+      "coordinates": [
+        77.209,
+        28.6139
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2017s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "nouveaux_riches",
+          "family_life"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-roll-of-honour",
+      "bookTitle": "Roll of Honour",
+      "author": "Amandeep Sandhu",
+      "publishYear": 2012,
+      "placeName": "Delhi",
+      "coordinates": [
+        77.209,
+        28.6139
+      ],
+      "placeType": "fictional_based_on_real",
+      "settingType": "primary",
+      "narrativeEra": "2012s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "education/boarding_school",
+          "sexuality",
+          "sikhs",
+          "1984"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-ruffled-feathers",
+      "bookTitle": "Ruffled Feathers",
+      "author": "V Sanjay Kumar",
+      "publishYear": 2022,
+      "placeName": "Kolkata",
+      "coordinates": [
+        88.3639,
+        22.5726
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2022s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "family",
+          "art",
+          "sports/golf",
+          "death"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "short stories"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-the-association-of-small-bombs",
+      "bookTitle": "The Association of Small Bombs",
+      "author": "Karan Mahajan",
+      "publishYear": 2016,
+      "placeName": "Delhi",
+      "coordinates": [
+        77.209,
+        28.6139
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2016s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "terror-attack",
+          "communalism",
+          "family"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-dozakhnama",
+      "bookTitle": "Dozakhnama",
+      "author": "Rabisankar Bal",
+      "publishYear": 2010,
+      "placeName": "Mumbai",
+      "coordinates": [
+        72.8777,
+        19.076
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2010s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "historical_fiction",
+          "culture"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-angarey",
+      "bookTitle": "Angarey",
+      "author": "Sajjad Zaheer, Rashid Jahan, Mahmud-uz-Zafar and Ahmed Ali",
+      "publishYear": 1932,
+      "placeName": "Delhi",
+      "coordinates": [
+        77.209,
+        28.6139
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "1932s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "9_short_stories_and_a_play"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "short stories"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-the-selector-of-souls",
+      "bookTitle": "The Selector of Souls",
+      "author": "Shauna Singh Baldwin",
+      "publishYear": 2012,
+      "placeName": "Shimla",
+      "coordinates": [
+        77.1734,
+        31.1048
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2012s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "hindu-christian-sikh_cultural_differences",
+          "the_1990s_masculinization_of_india",
+          "nuclearization_of_india",
+          "caste."
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-she-will-build-him-a-city",
+      "bookTitle": "She will build him a city",
+      "author": "Raj Kamal Jha",
+      "publishYear": 2015,
+      "placeName": "fictional city based",
+      "coordinates": [
+        77.209,
+        28.6139
+      ],
+      "placeType": "fictional_based_on_real",
+      "settingType": "primary",
+      "narrativeEra": "2015s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "urbanization",
+          "segregation",
+          "crime",
+          "fantasy"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-satapur-moonstone",
+      "bookTitle": "Satapur Moonstone",
+      "author": "Sujata Massey",
+      "publishYear": 2019,
+      "placeName": "Fictional place",
+      "coordinates": [
+        74.0,
+        19.0
+      ],
+      "placeType": "fictional_based_on_real",
+      "settingType": "primary",
+      "narrativeEra": "2019s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "historical_fiction",
+          "crime",
+          "mystery"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-ibis-trilogy-sea-of-poppies-river-of-smoke-floods",
+      "bookTitle": "Ibis Trilogy: Sea of Poppies, River of Smoke, Floods of Fire",
+      "author": "Amitav Ghosh",
+      "publishYear": 2008,
+      "placeName": "Ghazipur",
+      "coordinates": [
+        83.5775,
+        25.5878
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2008s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "opium_trade",
+          "imperialism",
+          "colonialism",
+          "laissez_faire",
+          "creole"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-the-baptism-of-tony-calangute",
+      "bookTitle": "The Baptism of Tony Calangute",
+      "author": "Sudeep Chakravarti",
+      "publishYear": 2018,
+      "placeName": "Goa",
+      "coordinates": [
+        74.124,
+        15.2993
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2018s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "son_of_the_soil",
+          "struggle_against_mafia-state_nexus",
+          "paradise_lost"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-mumbai-brides",
+      "bookTitle": "Mumbai Brides",
+      "author": "Esther David",
+      "publishYear": 2018,
+      "placeName": "Ahmedabad",
+      "coordinates": [
+        72.5714,
+        23.0225
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2018s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "cultural_identity",
+          "matrimony",
+          "food"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-the-last-jet-engine-laugh",
+      "bookTitle": "The Last Jet-Engine Laugh",
+      "author": "Ruchir Joshi",
+      "publishYear": 2000,
+      "placeName": "Kolkata",
+      "coordinates": [
+        88.3639,
+        22.5726
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2000s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "family",
+          "politics",
+          "history"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-the-bells-are-ringing-in-haridwar-three-novellas",
+      "bookTitle": "The bells are ringing in Haridwar: Three novellas",
+      "author": "M Mukundan",
+      "publishYear": 0,
+      "placeName": "Haridwar",
+      "coordinates": [
+        78.1642,
+        29.9457
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "society"
+        ]
+      },
+      "language": "Malayalam",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-gurgaon-diaries-life-work-and-play-in-drona-s-vill",
+      "bookTitle": "Gurgaon Diaries: Life Work and Play in Drona's Village",
+      "author": "Debeshi Gooptu",
+      "publishYear": 2017,
+      "placeName": "Gurgaon",
+      "coordinates": [
+        77.0266,
+        28.4595
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2017s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "urbanisation",
+          "humor"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-women-who-forgot-to-invent-facebook-other-stories",
+      "bookTitle": "Women Who Forgot to Invent Facebook & Other Stories",
+      "author": "Nisha Susan",
+      "publishYear": 2020,
+      "placeName": "Chennai",
+      "coordinates": [
+        80.2707,
+        13.0827
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2020s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "arts",
+          "love",
+          "family",
+          "gender",
+          "relationships"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "short stories"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-yeh-dil-hai-ki-chor-darwaja",
+      "bookTitle": "Yeh Dil Hai Ki Chor Darwaja",
+      "author": "Kinshuk Gupta",
+      "publishYear": 2023,
+      "placeName": "Mumbai",
+      "coordinates": [
+        72.8777,
+        19.076
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2023s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "homosexuality",
+          "child_abuse",
+          "religious_fanaticism"
+        ]
+      },
+      "language": "Hindi",
+      "genres": [
+        "short stories"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-in-the-land-of-the-lovers-a-punjab-qissa",
+      "bookTitle": "In the Land of the Lovers: A Punjab Qissa",
+      "author": "Sakoon Singh",
+      "publishYear": 2020,
+      "placeName": "Kasauli",
+      "coordinates": [
+        76.9644,
+        30.8983
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2020s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "academics",
+          "arts",
+          "partition",
+          "gender"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-fire-area",
+      "bookTitle": "Fire Area",
+      "author": "Ilyas Ahmed Gaddi",
+      "publishYear": 1994,
+      "placeName": "Jharia",
+      "coordinates": [
+        86.4148,
+        23.7468
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "1994s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "coal_mining",
+          "labour_movement",
+          "historical_fiction"
+        ]
+      },
+      "language": "Urdu",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-my-father-s-garden",
+      "bookTitle": "My Father's Garden",
+      "author": "Hansda Sowvendra Shekhar",
+      "publishYear": 2018,
+      "placeName": "Jamshedpur",
+      "coordinates": [
+        86.1833,
+        22.8046
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2018s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "lgbtq",
+          "family",
+          "love",
+          "housing",
+          "adivasi_politics"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-teen-couple-have-fun-outdoors",
+      "bookTitle": "Teen Couple Have Fun Outdoors",
+      "author": "Aravind Jayan",
+      "publishYear": 2022,
+      "placeName": "Bangalore",
+      "coordinates": [
+        77.5946,
+        12.9716
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2022s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "family",
+          "friendship",
+          "sex_scandal",
+          "generation_gap",
+          "small_town"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-samskara",
+      "bookTitle": "Samskara",
+      "author": "U R Anantha Murthy",
+      "publishYear": 1965,
+      "placeName": "Karnataka",
+      "coordinates": [
+        75.7139,
+        15.3173
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "1965s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "caste"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-bangalore-blues",
+      "bookTitle": "Bangalore Blues",
+      "author": "Kirtana Kumar",
+      "publishYear": 2022,
+      "placeName": "Bangalore",
+      "coordinates": [
+        77.5946,
+        12.9716
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2022s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "bangalore_cantonment",
+          "pre-liberalisation",
+          "diversity",
+          "gentrification",
+          "love"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "short stories"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-karvalo",
+      "bookTitle": "Karvalo",
+      "author": "K P Poornachandra Tejaswi",
+      "publishYear": 1980,
+      "placeName": "Karnataka- Mudigere",
+      "coordinates": [
+        75.7139,
+        15.3173
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "1980s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "rural_life",
+          "everyday_life",
+          "environment",
+          "culture"
+        ]
+      },
+      "language": "Kannada",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-monkey-man",
+      "bookTitle": "Monkey Man",
+      "author": "K.R. Usha",
+      "publishYear": 2010,
+      "placeName": "Bangalore",
+      "coordinates": [
+        77.5946,
+        12.9716
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2010s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "urbanisation"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-indira-bai",
+      "bookTitle": "Indira Bai",
+      "author": "Gulavadi Venkata Rao",
+      "publishYear": 1899,
+      "placeName": "Bangalore",
+      "coordinates": [
+        77.5946,
+        12.9716
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "1899s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "social_reform_movment",
+          "widow_remarriage"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-to-let-social-novel",
+      "bookTitle": "To-Let: Social Novel",
+      "author": "MK Indira",
+      "publishYear": 0,
+      "placeName": "Bangalore",
+      "coordinates": [
+        77.5946,
+        12.9716
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": []
+      },
+      "language": "Kannada",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-gachar-gochar",
+      "bookTitle": "Gachar Gochar",
+      "author": "Vivek Shanbag",
+      "publishYear": 2015,
+      "placeName": "Bangalore",
+      "coordinates": [
+        77.5946,
+        12.9716
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2015s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "urbanisation",
+          "family",
+          "gender",
+          "domestic_violence",
+          "cafe_culture"
+        ]
+      },
+      "language": "Kannada",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-neti-neti",
+      "bookTitle": "Neti, Neti",
+      "author": "Anjum Hasan",
+      "publishYear": 2009,
+      "placeName": "Bangalore",
+      "coordinates": [
+        77.5946,
+        12.9716
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2009s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "urbanisation"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-mr-majestic-the-tout-of-bengaluru",
+      "bookTitle": "Mr. Majestic: The Tout Of Bengaluru",
+      "author": "Zac O'Yeah",
+      "publishYear": 2012,
+      "placeName": "Bangalore",
+      "coordinates": [
+        77.5946,
+        12.9716
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2012s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "thriller"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-the-house-of-kanooru",
+      "bookTitle": "The House of Kanooru",
+      "author": "Kuvempu",
+      "publishYear": 1936,
+      "placeName": "Bangalore",
+      "coordinates": [
+        77.5946,
+        12.9716
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "1936s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "caste",
+          "feudalism",
+          "modernity"
+        ]
+      },
+      "language": "Kannada",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-the-bangalore-detectives-club",
+      "bookTitle": "The Bangalore Detectives Club",
+      "author": "Harini Nagendra",
+      "publishYear": 2022,
+      "placeName": "Bangalore",
+      "coordinates": [
+        77.5946,
+        12.9716
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2022s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "crime_fiction",
+          "lady_detective"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-murder-under-a-red-moon",
+      "bookTitle": "Murder Under a Red Moon",
+      "author": "Harini Nagendra",
+      "publishYear": 2023,
+      "placeName": "Bangalore",
+      "coordinates": [
+        77.5946,
+        12.9716
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2023s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "crime_fiction",
+          "lady_detective"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-black-lentil-doughnuts",
+      "bookTitle": "Black Lentil Doughnuts",
+      "author": "C K Meena",
+      "publishYear": 2005,
+      "placeName": "Bangalore",
+      "coordinates": [
+        77.5946,
+        12.9716
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2005s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "urbanization",
+          "coming_of_age",
+          "nostalgia"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-sakina-s-kiss",
+      "bookTitle": "Sakina's Kiss",
+      "author": "Vivek Shanbhag",
+      "publishYear": 2021,
+      "placeName": "Bangalore",
+      "coordinates": [
+        77.5946,
+        12.9716
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2021s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "maculinity",
+          "changing_society",
+          "marriage",
+          "property_fued"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-mohanaswamy",
+      "bookTitle": "Mohanaswamy",
+      "author": "Vasudhendra",
+      "publishYear": 2013,
+      "placeName": "Bangalore",
+      "coordinates": [
+        77.5946,
+        12.9716
+      ],
+      "placeType": "fictional_based_on_real",
+      "settingType": "primary",
+      "narrativeEra": "2013s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "lgbtq",
+          "urbanisation"
+        ]
+      },
+      "language": "Kannada",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-difficult-pleasures",
+      "bookTitle": "Difficult Pleasures",
+      "author": "Anjum Hasan",
+      "publishYear": 2012,
+      "placeName": "Bangalore",
+      "coordinates": [
+        77.5946,
+        12.9716
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2012s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "everyday_life",
+          "multiple_themes"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "short stories"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-the-cosmopolitans",
+      "bookTitle": "The Cosmopolitans",
+      "author": "Anjum Hasan",
+      "publishYear": 2016,
+      "placeName": "Karnataka-Bangalore; Madhya Pradesh-unnamed",
+      "coordinates": [
+        77.5946,
+        12.9716
+      ],
+      "placeType": "fictional_based_on_real",
+      "settingType": "primary",
+      "narrativeEra": "2016s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "urbanisation",
+          "rural_india",
+          "arts_and_aesthetics",
+          "folk_traditions"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-a-day-in-the-life",
+      "bookTitle": "A Day in the Life",
+      "author": "Anjum Hasan",
+      "publishYear": 2018,
+      "placeName": "Bangalore",
+      "coordinates": [
+        77.5946,
+        12.9716
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2018s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "everyday_life",
+          "multiple_themes"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "short stories"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-avasthe",
+      "bookTitle": "Avasthe",
+      "author": "UR Anantamurthy",
+      "publishYear": 1978,
+      "placeName": "Warangal",
+      "coordinates": [
+        79.5941,
+        17.9784
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "1978s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "social_structures",
+          "politics",
+          "spirituality"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-tejo-tungabhadra-tributaries-of-time",
+      "bookTitle": "Tejo Tungabhadra: Tributaries Of Time",
+      "author": "Vasudhendra",
+      "publishYear": 2020,
+      "placeName": "Hampi",
+      "coordinates": [
+        76.46,
+        15.335
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2020s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "historical_fiction",
+          "vijaynagar_empire",
+          "politics",
+          "love",
+          "greed"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-the-far-field",
+      "bookTitle": "The Far Field",
+      "author": "Madhuri Vijay",
+      "publishYear": 2019,
+      "placeName": "Bangalore",
+      "coordinates": [
+        77.5946,
+        12.9716
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2019s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "gender",
+          "family",
+          "desire",
+          "politics"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-the-better-man",
+      "bookTitle": "The Better Man",
+      "author": "Anita Nair",
+      "publishYear": 2000,
+      "placeName": "Kerala",
+      "coordinates": [
+        76.2711,
+        10.8505
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2000s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "livelihood",
+          "outcast",
+          "gender"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-oru-desathinte-katha-the-story-of-a-locale",
+      "bookTitle": "Oru Desathinte Katha/The Story of a Locale",
+      "author": "S K Pottakkatt",
+      "publishYear": 1971,
+      "placeName": "area",
+      "coordinates": [
+        76.2711,
+        10.8505
+      ],
+      "placeType": "fictional_based_on_real",
+      "settingType": "primary",
+      "narrativeEra": "1971s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "it_portrays_the_people_of_athiranippadam",
+          "drawing_on_history_while_detailing_the_story_of_one_place"
+        ]
+      },
+      "language": "Malayalam",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-madhuratheruvu-sweet-street",
+      "bookTitle": "Madhuratheruvu (Sweet Street)",
+      "author": "Nadeem Noushad",
+      "publishYear": 2022,
+      "placeName": "Kozhikode",
+      "coordinates": [
+        75.7804,
+        11.2588
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2022s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "fictionalised_history_of_the_famous_sweet_street_(mittayitheruvu)_in_calicut_or_kozhikode_city_in_kerala",
+          "india."
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-litanies-of-dutch-battery",
+      "bookTitle": "Litanies of Dutch Battery",
+      "author": "N.S Madhavan",
+      "publishYear": 2010,
+      "placeName": "Kochi",
+      "coordinates": [
+        76.2673,
+        9.9312
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2010s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "art",
+          "livelihood",
+          "revolution",
+          "history"
+        ]
+      },
+      "language": "Malayalam",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-oru-deshathinte-kadha",
+      "bookTitle": "Oru Deshathinte Kadha",
+      "author": "S K Pottakkadu",
+      "publishYear": 0,
+      "placeName": "Kozhikode",
+      "coordinates": [
+        75.7804,
+        11.2588
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "village_life"
+        ]
+      },
+      "language": "Malayalam",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-moustache",
+      "bookTitle": "Moustache",
+      "author": "S Harish",
+      "publishYear": 2020,
+      "placeName": "Kerala-Kuttanad",
+      "coordinates": [
+        76.2711,
+        10.8505
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2020s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "ecology",
+          "caste",
+          "gender",
+          "arts"
+        ]
+      },
+      "language": "Malayalam",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-covenant-of-water",
+      "bookTitle": "Covenant of water",
+      "author": "Abraham Verghese",
+      "publishYear": 2023,
+      "placeName": "Chennai",
+      "coordinates": [
+        80.2707,
+        13.0827
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2023s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "family",
+          "intergeneration_medical_history",
+          "water"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-mistress",
+      "bookTitle": "Mistress",
+      "author": "Anitha Nair",
+      "publishYear": 2005,
+      "placeName": "Kerala-Shoranur",
+      "coordinates": [
+        76.2711,
+        10.8505
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2005s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "dance/kathakali",
+          "capitalism",
+          "culture",
+          "religion"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-the-cat-and-shakespeare",
+      "bookTitle": "The Cat and Shakespeare",
+      "author": "Raja Rao",
+      "publishYear": 1965,
+      "placeName": "Kerala-Tiruvananthapuram",
+      "coordinates": [
+        76.2711,
+        10.8505
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "1965s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "world_war_ii",
+          "friendship",
+          "philosophy"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-the-odd-book-of-baby-names",
+      "bookTitle": "The Odd Book of Baby Names",
+      "author": "Anees Salim",
+      "publishYear": 2021,
+      "placeName": "name",
+      "coordinates": [
+        76.2711,
+        10.8505
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2021s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "historiacal_fiction",
+          "family",
+          "inheritence",
+          "memory"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-valli",
+      "bookTitle": "Valli",
+      "author": "Sheela Tomy",
+      "publishYear": 2022,
+      "placeName": "Wayanad",
+      "coordinates": [
+        76.0838,
+        11.6854
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2022s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "ecology",
+          "gender",
+          "land_encroachment",
+          "tribal_rights",
+          "class_struggle"
+        ]
+      },
+      "language": "Malayalam",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-the-grande-matriarch-of-malabar",
+      "bookTitle": "The Grande Matriarch of Malabar",
+      "author": "Sajitha Nair",
+      "publishYear": 2023,
+      "placeName": "Kerala",
+      "coordinates": [
+        76.2711,
+        10.8505
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2023s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "heritage",
+          "matrilineal_family",
+          "joint_family"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-the-small-town-sea",
+      "bookTitle": "The Small-Town Sea",
+      "author": "Anees Salim",
+      "publishYear": 2017,
+      "placeName": "Kerala",
+      "coordinates": [
+        76.2711,
+        10.8505
+      ],
+      "placeType": "fictional_based_on_real",
+      "settingType": "primary",
+      "narrativeEra": "2017s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "childhood",
+          "family",
+          "gender",
+          "loneliness"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-combat-skirts",
+      "bookTitle": "Combat Skirts",
+      "author": "Sahana Ahmed",
+      "publishYear": 2018,
+      "placeName": "Kolkata",
+      "coordinates": [
+        88.3639,
+        22.5726
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2018s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "love",
+          "friendship",
+          "family_dynamics",
+          "failure",
+          "second_chances"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-hotel-calcutta",
+      "bookTitle": "Hotel Calcutta",
+      "author": "Rajat Chaudhuri",
+      "publishYear": 2013,
+      "placeName": "Kolkata",
+      "coordinates": [
+        88.3639,
+        22.5726
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2013s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "city",
+          "love",
+          "magic",
+          "crime",
+          "spirit-world"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-kalkatta",
+      "bookTitle": "Kalkatta",
+      "author": "Kunal Basu",
+      "publishYear": 0,
+      "placeName": "Kolkata",
+      "coordinates": [
+        88.3639,
+        22.5726
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "biharis_in_kolkata",
+          "communism",
+          "urban_segregation",
+          "sex_work"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-the-blue-bedpsread",
+      "bookTitle": "The Blue Bedpsread",
+      "author": "Raj Kamal Jha",
+      "publishYear": 1999,
+      "placeName": "Kolkata",
+      "coordinates": [
+        88.3639,
+        22.5726
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "1999s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": []
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-ladies-tailor",
+      "bookTitle": "Ladies' Tailor",
+      "author": "Priya Hajela",
+      "publishYear": 2022,
+      "placeName": "Lahore",
+      "coordinates": [
+        74.3587,
+        31.5204
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2022s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "partition",
+          "hardship",
+          "survival",
+          "romance",
+          "adventure"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-the-ice-candy-man-cracking-india",
+      "bookTitle": "The Ice-Candy Man/ Cracking India",
+      "author": "Bapsi Sidhwa",
+      "publishYear": 1998,
+      "placeName": "Lahore",
+      "coordinates": [
+        74.3587,
+        31.5204
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "1998s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "gender",
+          "riots_&_partition",
+          "geopolitics",
+          "parsi_community",
+          "homelessness_&_displacement"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-betty-s-butter-tea-stories-from-ladakh",
+      "bookTitle": "Betty's Butter Tea stories from Ladakh",
+      "author": "Lhundup Gyalpo",
+      "publishYear": 2019,
+      "placeName": "Leh & Laddakh",
+      "coordinates": [
+        77.5771,
+        34.1526
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2019s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "family",
+          "village_life",
+          "philosophy",
+          "art"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "short stories"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-river-of-fire-aaag-ka-dariya",
+      "bookTitle": "River of Fire (Aaag ka dariya)",
+      "author": "Qurratulain Hyder",
+      "publishYear": 1998,
+      "placeName": "Lucknow",
+      "coordinates": [
+        80.9462,
+        26.8467
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "1998s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "society",
+          "transformation",
+          "friendship"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-a-breath-of-fresh",
+      "bookTitle": "A Breath of Fresh",
+      "author": "Amulya Malladi",
+      "publishYear": 2002,
+      "placeName": "Bhopal",
+      "coordinates": [
+        77.4126,
+        23.2599
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2002s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "family",
+          "gender",
+          "health",
+          "industrial_disaster-_bhopal_gas_tragedy"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-that-long-silence",
+      "bookTitle": "That Long Silence",
+      "author": "Shashi Deshpande",
+      "publishYear": 1988,
+      "placeName": "Ambegoan",
+      "coordinates": [
+        74.124,
+        15.2993
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "1988s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "gender_studies",
+          "myths",
+          "womanhood",
+          "urbanization",
+          "middle_class"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-flowers-on-the-grave-of-caste",
+      "bookTitle": "Flowers on the Grave of Caste",
+      "author": "Yogesh Maitreya",
+      "publishYear": 2019,
+      "placeName": "Aurangabad",
+      "coordinates": [
+        75.3433,
+        19.8762
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2019s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "caste",
+          "politics",
+          "education",
+          "revolution",
+          "love"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "short stories"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-earthquake-boy",
+      "bookTitle": "Earthquake Boy",
+      "author": "Leela Gour Broome",
+      "publishYear": 2019,
+      "placeName": "Mumbai",
+      "coordinates": [
+        72.8777,
+        19.076
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2019s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "natural_disaster",
+          "homlessness",
+          "child_labour"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-a-cloud-called-bhura",
+      "bookTitle": "A Cloud Called Bhura",
+      "author": "Bijal Vachharajani",
+      "publishYear": 2019,
+      "placeName": "Mumbai",
+      "coordinates": [
+        72.8777,
+        19.076
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2019s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "climate_change"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-gods-and-ends",
+      "bookTitle": "Gods and Ends",
+      "author": "Lindsay Pereira",
+      "publishYear": 2021,
+      "placeName": "Mumbai",
+      "coordinates": [
+        72.8777,
+        19.076
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2021s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "religon",
+          "family",
+          "gender"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-mumbai-balchao",
+      "bookTitle": "Mumbai Balchao",
+      "author": "Jane Borges",
+      "publishYear": 2021,
+      "placeName": "Mumbai",
+      "coordinates": [
+        72.8777,
+        19.076
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2021s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "history",
+          "livelihood",
+          "memory",
+          "identity"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-small-remedies",
+      "bookTitle": "Small Remedies",
+      "author": "Shashi Deshpande",
+      "publishYear": 2000,
+      "placeName": "Mumbai",
+      "coordinates": [
+        72.8777,
+        19.076
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2000s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "classical_music",
+          "activism",
+          "family",
+          "gender",
+          "memory"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-nacropolis",
+      "bookTitle": "Nacropolis",
+      "author": "Jeet Thayil",
+      "publishYear": 2012,
+      "placeName": "Mumbai",
+      "coordinates": [
+        72.8777,
+        19.076
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2012s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "crime",
+          "health",
+          "addiction"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-em-and-the-big-hoom",
+      "bookTitle": "Em and the Big Hoom",
+      "author": "Jerry Pinto",
+      "publishYear": 2012,
+      "placeName": "Mumbai",
+      "coordinates": [
+        72.8777,
+        19.076
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2012s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "family",
+          "mental_health",
+          "gender"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-mixed-marriage-and-other-stories",
+      "bookTitle": "Mixed Marriage and Other Stories",
+      "author": "Meher Pestonji",
+      "publishYear": 2001,
+      "placeName": "Mumbai",
+      "coordinates": [
+        72.8777,
+        19.076
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2001s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "identity",
+          "communalism",
+          "urbanisation"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "short stories"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-no-presents-please",
+      "bookTitle": "No Presents Please",
+      "author": "Jayant Kaikini",
+      "publishYear": 2017,
+      "placeName": "Mumbai",
+      "coordinates": [
+        72.8777,
+        19.076
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2017s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "identity",
+          "urbanisation",
+          "migration",
+          "everyday_life"
+        ]
+      },
+      "language": "Kannada",
+      "genres": [
+        "short stories"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-inspector-ghote-series",
+      "bookTitle": "Inspector Ghote Series",
+      "author": "HR Keating",
+      "publishYear": 1964,
+      "placeName": "Mumbai",
+      "coordinates": [
+        72.8777,
+        19.076
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "1964s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "detective_novel_series"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-the-buccaneers-of-mumbai-feluda-series",
+      "bookTitle": "The Buccaneers of Mumbai (Feluda Series)",
+      "author": "Satyajit Ray",
+      "publishYear": 0,
+      "placeName": "Mumbai",
+      "coordinates": [
+        72.8777,
+        19.076
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "crime",
+          "mystery"
+        ]
+      },
+      "language": "Bengali",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-paper-moon",
+      "bookTitle": "Paper Moon",
+      "author": "Rehana Munir",
+      "publishYear": 2019,
+      "placeName": "Mumbai",
+      "coordinates": [
+        72.8777,
+        19.076
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2019s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "family",
+          "love",
+          "urban_life"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-purushotama",
+      "bookTitle": "Purushotama",
+      "author": "Yeshwant Chittal",
+      "publishYear": 1990,
+      "placeName": "Mumbai",
+      "coordinates": [
+        72.8777,
+        19.076
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "1990s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "life_in_a_metro",
+          "city_novel"
+        ]
+      },
+      "language": "Kannada",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-the-memoirs-of-valmiki-rao",
+      "bookTitle": "The Memoirs of Valmiki Rao",
+      "author": "Lindsay Pereira",
+      "publishYear": 2023,
+      "placeName": "Mumbai",
+      "coordinates": [
+        72.8777,
+        19.076
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2023s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "mumbai_riots_of_1992"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-murder-in-mahim",
+      "bookTitle": "Murder in Mahim",
+      "author": "Jerry Pinto",
+      "publishYear": 2017,
+      "placeName": "Mumbai",
+      "coordinates": [
+        72.8777,
+        19.076
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2017s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "crime",
+          "loneliness",
+          "ambition",
+          "greed",
+          "urban_life"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-mistress-of-bhatia-house",
+      "bookTitle": "Mistress of Bhatia House",
+      "author": "Sujata Massey",
+      "publishYear": 2023,
+      "placeName": "Mumbai",
+      "coordinates": [
+        72.8777,
+        19.076
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2023s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "historical_fiction",
+          "pre-independence_india",
+          "parsi_community",
+          "gender",
+          "crime"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-bombay-prince",
+      "bookTitle": "Bombay Prince",
+      "author": "Sujata Massey",
+      "publishYear": 2021,
+      "placeName": "Mumbai",
+      "coordinates": [
+        72.8777,
+        19.076
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2021s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "historical_fiction",
+          "pre-independence_india",
+          "parsi_community",
+          "gender",
+          "crime"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-murder-at-malabar-hill-widows-of-malabar-hill",
+      "bookTitle": "Murder at Malabar Hill / Widows of Malabar Hill",
+      "author": "Sujata Massey",
+      "publishYear": 2018,
+      "placeName": "Mumbai",
+      "coordinates": [
+        72.8777,
+        19.076
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2018s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "historical_fiction",
+          "crime",
+          "law",
+          "gender"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-love-and-longing-in-bombay",
+      "bookTitle": "Love and Longing in Bombay",
+      "author": "Vikram Chandra",
+      "publishYear": 1997,
+      "placeName": "Mumbai",
+      "coordinates": [
+        72.8777,
+        19.076
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "1997s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "cafe_culture",
+          "crime",
+          "corruption",
+          "passion",
+          "family"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "short stories"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-tales-of-firozshah-baug",
+      "bookTitle": "Tales of Firozshah Baug",
+      "author": "Rohinton Mistry",
+      "publishYear": 1987,
+      "placeName": "Mumbai",
+      "coordinates": [
+        72.8777,
+        19.076
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "1987s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "family",
+          "class",
+          "housing",
+          "parsi_community",
+          "everyday_life"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-the-third-squad",
+      "bookTitle": "The Third Squad",
+      "author": "V Sanjay Kumar",
+      "publishYear": 2017,
+      "placeName": "Mumbai",
+      "coordinates": [
+        72.8777,
+        19.076
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2017s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "aspergers_syndrome",
+          "health",
+          "crime",
+          "encounters"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-the-black-dwarves-of-the-good-little-bay",
+      "bookTitle": "The Black Dwarves of the Good Little Bay",
+      "author": "Varun Thomas Mathew",
+      "publishYear": 2019,
+      "placeName": "Mumbai",
+      "coordinates": [
+        72.8777,
+        19.076
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2019s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "natural_distater",
+          "social_inequality",
+          "technology"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-bombay-heights",
+      "bookTitle": "Bombay Heights",
+      "author": "Adite Banerjie",
+      "publishYear": 2018,
+      "placeName": "Mumbai",
+      "coordinates": [
+        72.8777,
+        19.076
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2018s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "love",
+          "urban_life",
+          "culture",
+          "livelihood"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-baluta",
+      "bookTitle": "Baluta",
+      "author": "Daya Pawar",
+      "publishYear": 1978,
+      "placeName": "Mumbai",
+      "coordinates": [
+        72.8777,
+        19.076
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "1978s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "casteism",
+          "urbanisation",
+          "poverty"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-clouds",
+      "bookTitle": "Clouds",
+      "author": "Chandrahas Chaudhary",
+      "publishYear": 2018,
+      "placeName": "Mumbai",
+      "coordinates": [
+        72.8777,
+        19.076
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2018s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "urbanisation",
+          "cultural_identities"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-shikari",
+      "bookTitle": "Shikari",
+      "author": "Yeshwant Chittal",
+      "publishYear": 1979,
+      "placeName": "Mumbai",
+      "coordinates": [
+        72.8777,
+        19.076
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "1979s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "corporate_life",
+          "life_in_a_metro"
+        ]
+      },
+      "language": "Kannada",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-family-matters",
+      "bookTitle": "Family Matters",
+      "author": "Rohinton Mistry",
+      "publishYear": 2002,
+      "placeName": "Mumbai",
+      "coordinates": [
+        72.8777,
+        19.076
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2002s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "health",
+          "family",
+          "relationships",
+          "parsi_community",
+          "love"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-prisoners-of-hate",
+      "bookTitle": "Prisoners of Hate",
+      "author": "C V Murali",
+      "publishYear": 2009,
+      "placeName": "Mumbai",
+      "coordinates": [
+        72.8777,
+        19.076
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2009s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "mumbai_riots_1993"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-serious-men",
+      "bookTitle": "Serious Men",
+      "author": "Manu Joseph",
+      "publishYear": 2010,
+      "placeName": "Mumbai",
+      "coordinates": [
+        72.8777,
+        19.076
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2010s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "casteism_&_gender_discrimination_in_science_&_academia",
+          "life_of_educated_dalits_in_urban_india"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-such-a-long-journey",
+      "bookTitle": "Such a Long Journey",
+      "author": "Rohinton Mistry",
+      "publishYear": 1991,
+      "placeName": "Mumbai (late 70s and 80s)",
+      "coordinates": [
+        72.8777,
+        19.076
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "1991s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "familial_ties",
+          "culture_and_community_amongst_parsis_in_bombay",
+          "political_backdrop_before_the_emergency"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-jasoda",
+      "bookTitle": "Jasoda",
+      "author": "Kiran Nagarkar",
+      "publishYear": 2017,
+      "placeName": "Mumbai",
+      "coordinates": [
+        72.8777,
+        19.076
+      ],
+      "placeType": "fictional_based_on_real",
+      "settingType": "primary",
+      "narrativeEra": "2017s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "family",
+          "gender",
+          "drought",
+          "employment",
+          "migration"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-artist-undone",
+      "bookTitle": "Artist, Undone",
+      "author": "V. Sanjay Kumar",
+      "publishYear": 2012,
+      "placeName": "Chennai",
+      "coordinates": [
+        80.2707,
+        13.0827
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2012s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "cretion",
+          "commerce",
+          "employment",
+          "arts"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-indian-nocturne",
+      "bookTitle": "Indian Nocturne",
+      "author": "Antonio Tabucchi",
+      "publishYear": 1984,
+      "placeName": "Mumbai",
+      "coordinates": [
+        72.8777,
+        19.076
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "1984s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "friendship",
+          "quest",
+          "travel"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-cobalt-blue",
+      "bookTitle": "Cobalt Blue",
+      "author": "Sachin Kundalkar",
+      "publishYear": 2013,
+      "placeName": "Pune",
+      "coordinates": [
+        73.8567,
+        18.5204
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2013s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "lgbtq",
+          "family",
+          "love",
+          "memory",
+          "mental_health"
+        ]
+      },
+      "language": "Marathi",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-clockwala-s-clues",
+      "bookTitle": "Clockwala's Clues",
+      "author": "Varsha Seshan",
+      "publishYear": 2020,
+      "placeName": "Pune",
+      "coordinates": [
+        73.8567,
+        18.5204
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2020s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "children's_literature"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-poona-company",
+      "bookTitle": "Poona Company",
+      "author": "Farrukh Dhondy",
+      "publishYear": 2008,
+      "placeName": "Pune",
+      "coordinates": [
+        73.8567,
+        18.5204
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2008s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "society"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "short stories"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-burnt-sugar-girl-in-white-cotton",
+      "bookTitle": "Burnt Sugar/Girl in White Cotton",
+      "author": "Avni Doshi",
+      "publishYear": 2020,
+      "placeName": "Pune",
+      "coordinates": [
+        73.8567,
+        18.5204
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2020s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "art",
+          "identity",
+          "marriage",
+          "memory",
+          "mother-daughter_relationship"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-principles-of-prediction",
+      "bookTitle": "Principles of Prediction",
+      "author": "Anushka Jasraj",
+      "publishYear": 2020,
+      "placeName": "Pune",
+      "coordinates": [
+        73.8567,
+        18.5204
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2020s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "love",
+          "gender",
+          "violence",
+          "everyday_life"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "short stories"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-the-last-song-of-dusk",
+      "bookTitle": "The Last Song of Dusk",
+      "author": "Siddhartha Dhanvant Shanghvi",
+      "publishYear": 2004,
+      "placeName": "Mumbai",
+      "coordinates": [
+        72.8777,
+        19.076
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2004s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "patriarchy",
+          "music",
+          "lgbtq",
+          "art",
+          "culture"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-mayyazhippuzhayude-theerangalil",
+      "bookTitle": "Mayyazhippuzhayude Theerangalil",
+      "author": "M. Mukundan",
+      "publishYear": 1974,
+      "placeName": "Mahe",
+      "coordinates": [
+        75.54,
+        11.701
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "1974s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "revolution",
+          "livelihood"
+        ]
+      },
+      "language": "Malayalam",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-kuda-nannakuna-choyi",
+      "bookTitle": "Kuda Nannakuna Choyi",
+      "author": "M Mukundan",
+      "publishYear": 2015,
+      "placeName": "Mahe",
+      "coordinates": [
+        75.54,
+        11.701
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2015s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "life_in_a_french_colony"
+        ]
+      },
+      "language": "Malayalam",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-mayyazhippuzhayude-theerangalil",
+      "bookTitle": "Mayyazhippuzhayude Theerangalil",
+      "author": "M Mukundan",
+      "publishYear": 1974,
+      "placeName": "Mahe(Mayyazhi)",
+      "coordinates": [
+        75.54,
+        11.701
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "1974s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "identity",
+          "patriotism"
+        ]
+      },
+      "language": "Malayalam",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-the-maldives-avenger",
+      "bookTitle": "The Maldives Avenger",
+      "author": "Royston Ellis",
+      "publishYear": 2014,
+      "placeName": "Maldives",
+      "coordinates": [
+        73.2207,
+        3.2028
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2014s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "oral_history",
+          "travel",
+          "colonisation",
+          "revolution"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-lunatic-in-my-head",
+      "bookTitle": "Lunatic in my Head",
+      "author": "Anjum Hasan",
+      "publishYear": 2007,
+      "placeName": "Shillong",
+      "coordinates": [
+        91.8933,
+        25.5788
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2007s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "urbanisation",
+          "ethenic_identity",
+          "mental_health",
+          "migration",
+          "academics"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-boats-on-land",
+      "bookTitle": "Boats on Land",
+      "author": "Janice Pariat",
+      "publishYear": 2012,
+      "placeName": "Shillong",
+      "coordinates": [
+        91.8933,
+        25.5788
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2012s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "folk_tales",
+          "cultural_identity",
+          "natural_world",
+          "multiple_themes"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "short stories"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-shesher-kobita",
+      "bookTitle": "Shesher Kobita",
+      "author": "Rabindranath Tagore",
+      "publishYear": 1929,
+      "placeName": "Kolkata",
+      "coordinates": [
+        88.3639,
+        22.5726
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "1929s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "education",
+          "arts_and_aesthetics",
+          "poetry",
+          "love"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-the-many-deaths-of-laila-starr",
+      "bookTitle": "The Many Deaths of Laila Starr",
+      "author": "Ram V",
+      "publishYear": 2021,
+      "placeName": "Mumbai",
+      "coordinates": [
+        72.8777,
+        19.076
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2021s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "magical_realism",
+          "death"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-rita-welinkar",
+      "bookTitle": "Rita Welinkar",
+      "author": "Shanta Ghokale",
+      "publishYear": 1990,
+      "placeName": "Mumbai",
+      "coordinates": [
+        72.8777,
+        19.076
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "1990s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "family",
+          "psychiatric_ward",
+          "freedom"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-no-god-in-sight",
+      "bookTitle": "No God in Sight",
+      "author": "Altaf Tyrewala",
+      "publishYear": 2005,
+      "placeName": "Mumbai",
+      "coordinates": [
+        72.8777,
+        19.076
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2005s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": []
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-the-low",
+      "bookTitle": "The Low",
+      "author": "Jeet Thayil",
+      "publishYear": 2020,
+      "placeName": "Mumbai",
+      "coordinates": [
+        72.8777,
+        19.076
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2020s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": []
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-last-man-in-tower",
+      "bookTitle": "Last Man in Tower",
+      "author": "Arvind Adiga",
+      "publishYear": 2011,
+      "placeName": "Mumbai",
+      "coordinates": [
+        72.8777,
+        19.076
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2011s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "real_estate",
+          "urbanisation",
+          "crime"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-dirty-love",
+      "bookTitle": "Dirty Love",
+      "author": "Sampurna Chattarji",
+      "publishYear": 2013,
+      "placeName": "Mumbai",
+      "coordinates": [
+        72.8777,
+        19.076
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2013s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "urban_life"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "short stories"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-the-ground-beneath-her-feet",
+      "bookTitle": "The Ground Beneath Her Feet",
+      "author": "Salman Rushdie",
+      "publishYear": 1999,
+      "placeName": "Mumbai",
+      "coordinates": [
+        72.8777,
+        19.076
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "1999s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "music",
+          "migration",
+          "media",
+          "celebrity",
+          "love"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-the-smoke-is-rising",
+      "bookTitle": "The Smoke is rising",
+      "author": "Mahesh Rao",
+      "publishYear": 2014,
+      "placeName": "Mysore",
+      "coordinates": [
+        76.6394,
+        12.2958
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2014s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "urban_transformation",
+          "old_age"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-aksharganj",
+      "bookTitle": "Aksharganj",
+      "author": "Kumar Nagarkoti",
+      "publishYear": 2015,
+      "placeName": "Nepal-Akshargunj",
+      "coordinates": [
+        84.124,
+        28.3949
+      ],
+      "placeType": "fictional_based_on_real",
+      "settingType": "primary",
+      "narrativeEra": "2015s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "diary",
+          "dreams",
+          "death"
+        ]
+      },
+      "language": "Nepali",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-karnali-blues",
+      "bookTitle": "Karnali Blues",
+      "author": "Buddhi Sagar",
+      "publishYear": 2010,
+      "placeName": "Jumla",
+      "coordinates": [
+        82.1838,
+        29.2741
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2010s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "family",
+          "journey",
+          "health",
+          "relationships",
+          "forest"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-palpasa-cafe",
+      "bookTitle": "Palpasa Cafe",
+      "author": "Narayan Wagle",
+      "publishYear": 2005,
+      "placeName": "Kathmandu",
+      "coordinates": [
+        85.324,
+        27.7172
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2005s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "historical_fiction",
+          "war",
+          "maoist_insurgency",
+          "war",
+          "love"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-ular",
+      "bookTitle": "Ular",
+      "author": "Nayan Raj Pandey",
+      "publishYear": 1998,
+      "placeName": "Nepalgunj",
+      "coordinates": [
+        81.6166,
+        28.05
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "1998s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "minority_politics",
+          "caste/class_struggles"
+        ]
+      },
+      "language": "Nepali",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-the-pakistani-bride",
+      "bookTitle": "The Pakistani Bride",
+      "author": "Bapsi Sidhwa",
+      "publishYear": 1983,
+      "placeName": "Lahore & Kohistan",
+      "coordinates": [
+        74.3587,
+        31.5204
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "1983s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "feminist_critique_on_culture_and_society",
+          "gender_&_partition"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-the-crow-eaters",
+      "bookTitle": "The Crow Eaters",
+      "author": "Bapsi Sidhwa",
+      "publishYear": 1978,
+      "placeName": "Mumbai",
+      "coordinates": [
+        72.8777,
+        19.076
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "1978s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "displacement",
+          "identity",
+          "migration",
+          "colonialism",
+          "hybridization"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-the-shadow-of-the-crescent-moon",
+      "bookTitle": "The Shadow of the Crescent Moon",
+      "author": "Fatima Bhutto",
+      "publishYear": 2013,
+      "placeName": "Waziristan",
+      "coordinates": [
+        69.8597,
+        32.3093
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2013s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "fundamentalism",
+          "oppression",
+          "betrayal",
+          "family"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-the-year-of-sound-and-heat",
+      "bookTitle": "The Year of Sound and Heat",
+      "author": "Zain Saeed",
+      "publishYear": 2022,
+      "placeName": "Karachi",
+      "coordinates": [
+        67.0011,
+        24.8607
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2022s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "memory",
+          "politics",
+          "violence",
+          "individual_vs_society"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-the-scatter-here-is-too-great",
+      "bookTitle": "The Scatter Here Is Too Great",
+      "author": "Bilal Tanweer",
+      "publishYear": 2013,
+      "placeName": "Karachi",
+      "coordinates": [
+        67.0011,
+        24.8607
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2013s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "loss",
+          "violence"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-broken-verses",
+      "bookTitle": "Broken Verses",
+      "author": "Kamila Shamsie",
+      "publishYear": 2017,
+      "placeName": "Karachi",
+      "coordinates": [
+        67.0011,
+        24.8607
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2017s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "death",
+          "love",
+          "gender",
+          "activism"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-are-you-enjoying",
+      "bookTitle": "Are You Enjoying?",
+      "author": "Mira Sethi",
+      "publishYear": 2021,
+      "placeName": "Karachi",
+      "coordinates": [
+        67.0011,
+        24.8607
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2021s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "identity",
+          "desire",
+          "employment",
+          "class",
+          "relationships"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "short stories"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-the-empty-room",
+      "bookTitle": "The Empty Room",
+      "author": "Sadia Abbas",
+      "publishYear": 2018,
+      "placeName": "Karachi",
+      "coordinates": [
+        67.0011,
+        24.8607
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2018s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "historical_fiction",
+          "feminism",
+          "marriage"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-the-book-of-everlasting-things",
+      "bookTitle": "The Book of Everlasting Things",
+      "author": "Aanchal Malhotra",
+      "publishYear": 2022,
+      "placeName": "Lahore",
+      "coordinates": [
+        74.3587,
+        31.5204
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2022s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "partition",
+          "memory",
+          "materiality",
+          "calligraphy",
+          "perfumery"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-moth-smoke",
+      "bookTitle": "Moth Smoke",
+      "author": "Mohsin Hamid",
+      "publishYear": 2000,
+      "placeName": "Lahore",
+      "coordinates": [
+        74.3587,
+        31.5204
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2000s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "class",
+          "power",
+          "love",
+          "corruption"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-model-town",
+      "bookTitle": "Model Town",
+      "author": "Bilal Minto",
+      "publishYear": 2017,
+      "placeName": "Lahore",
+      "coordinates": [
+        74.3587,
+        31.5204
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2017s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "coming_of_age",
+          "sexuality",
+          "class",
+          "urban_life"
+        ]
+      },
+      "language": "Urdu",
+      "genres": [
+        "short stories"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-life-of-pi",
+      "bookTitle": "Life of Pi",
+      "author": "Yann Martel",
+      "publishYear": 2001,
+      "placeName": "Pondicherry",
+      "coordinates": [
+        79.8083,
+        11.9416
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2001s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "fantasy",
+          "natural_world"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-kutti-vehra",
+      "bookTitle": "Kutti Vehra",
+      "author": "Maninder Kang",
+      "publishYear": 2021,
+      "placeName": "Amritsar",
+      "coordinates": [
+        74.8723,
+        31.634
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2021s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "city_writing",
+          "caste",
+          "sikh_exteremist_movement"
+        ]
+      },
+      "language": "Punjabi",
+      "genres": [
+        "short stories"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-difficult-daughters",
+      "bookTitle": "Difficult Daughters",
+      "author": "Manju Kapur",
+      "publishYear": 1998,
+      "placeName": "Amritsar",
+      "coordinates": [
+        74.8723,
+        31.634
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "1998s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "family",
+          "education",
+          "partition",
+          "love"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-sepia-leaves",
+      "bookTitle": "Sepia Leaves",
+      "author": "Amandeep Sandhu",
+      "publishYear": 2007,
+      "placeName": "Dehradun",
+      "coordinates": [
+        78.0322,
+        30.3165
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2007s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "mental_health",
+          "family",
+          "sikh",
+          "emergency"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-house-next-to-the-factory",
+      "bookTitle": "House Next to the Factory",
+      "author": "Sonal Kohli",
+      "publishYear": 2021,
+      "placeName": "Punjab; Delhi",
+      "coordinates": [
+        77.209,
+        28.6139
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2021s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "partition",
+          "emergency",
+          "family",
+          "gender",
+          "relationships"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "short stories"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-the-tyrant-and-other-fiction-nuggets",
+      "bookTitle": "The Tyrant and Other Fiction Nuggets",
+      "author": "Jameel Shaik",
+      "publishYear": 2019,
+      "placeName": "Nadu",
+      "coordinates": [
+        78.6569,
+        11.1271
+      ],
+      "placeType": "fictional_based_on_real",
+      "settingType": "primary",
+      "narrativeEra": "2019s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "asian_musings"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-kintsugi",
+      "bookTitle": "Kintsugi",
+      "author": "Anukrti Upadhyay",
+      "publishYear": 2020,
+      "placeName": "Jaipur",
+      "coordinates": [
+        75.7873,
+        26.9124
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2020s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "livelihood",
+          "art",
+          "gender",
+          "marriage",
+          "travel"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-harilal-sons",
+      "bookTitle": "Harilal & Sons",
+      "author": "Sujit Saraf",
+      "publishYear": 2017,
+      "placeName": "Kolkata",
+      "coordinates": [
+        88.3639,
+        22.5726
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2017s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "family_and_legacy",
+          "identity_and_cultural_shifts",
+          "generational_change",
+          "geographical_and_cultural_diversity",
+          "human_resilience_and_adaptation"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-inside-haveli",
+      "bookTitle": "Inside Haveli",
+      "author": "Rama Mehta",
+      "publishYear": 1977,
+      "placeName": "Udaipur",
+      "coordinates": [
+        73.7125,
+        24.5854
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "1977s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "marriage",
+          "gender"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-the-witch-in-the-peepul-tree",
+      "bookTitle": "The Witch in the Peepul Tree",
+      "author": "Arefa Tehsin",
+      "publishYear": 2023,
+      "placeName": "Udaipur",
+      "coordinates": [
+        73.7125,
+        24.5854
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2023s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "murder_mystery",
+          "festivals/makar_sankranti",
+          "tribal",
+          "zamindari",
+          "women"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-savi-and-the-memory-keeper",
+      "bookTitle": "Savi and the Memory Keeper",
+      "author": "Bijal Vachharajani",
+      "publishYear": 2021,
+      "placeName": "Shajarpur based on Bangalore and Mumbai",
+      "coordinates": [
+        72.8777,
+        19.076
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2021s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "friendship",
+          "climate_change",
+          "grief"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-land-where-i-flee",
+      "bookTitle": "Land Where I Flee",
+      "author": "Prajwal Prajuly",
+      "publishYear": 2013,
+      "placeName": "Gangtok",
+      "coordinates": [
+        88.6138,
+        27.3389
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2013s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "family",
+          "travel",
+          "gender",
+          "memory"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-trouble-in-gangtok-feluda-series",
+      "bookTitle": "Trouble in Gangtok (Feluda Series)",
+      "author": "Satyajit Ray",
+      "publishYear": 1970,
+      "placeName": "Gangtok",
+      "coordinates": [
+        88.6138,
+        27.3389
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "1970s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "crime",
+          "murder_mystery"
+        ]
+      },
+      "language": "Bengali",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-the-teacher-s-wife-and-other-fiction-nuggets",
+      "bookTitle": "The Teacher's Wife and Other Fiction Nuggets",
+      "author": "Jameel Shaik",
+      "publishYear": 2022,
+      "placeName": "Karnataka",
+      "coordinates": [
+        75.7139,
+        15.3173
+      ],
+      "placeType": "fictional_based_on_real",
+      "settingType": "primary",
+      "narrativeEra": "2022s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "asian_musings"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-incantations-over-water",
+      "bookTitle": "Incantations Over Water",
+      "author": "Sharanya Manivannan",
+      "publishYear": 2021,
+      "placeName": "Srilanka- Mattakalappu",
+      "coordinates": [
+        81.6938,
+        7.731
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2021s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "culture",
+          "history",
+          "longing",
+          "love",
+          "magic"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-the-gypsy-goddess",
+      "bookTitle": "The Gypsy Goddess",
+      "author": "Meena Kandasamy",
+      "publishYear": 2014,
+      "placeName": "Tamil Nadu",
+      "coordinates": [
+        78.6569,
+        11.1271
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2014s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "caste",
+          "feudalism",
+          "gender"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-the-queen-of-jasmine-country",
+      "bookTitle": "The Queen of Jasmine Country",
+      "author": "Sharanya Manivannan",
+      "publishYear": 2018,
+      "placeName": "Tamil Nadu",
+      "coordinates": [
+        78.6569,
+        11.1271
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2018s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "historical_fiction",
+          "gender",
+          "desire",
+          "myth"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-the-pleasure-seekers",
+      "bookTitle": "The Pleasure Seekers",
+      "author": "Tishani Doshi",
+      "publishYear": 2010,
+      "placeName": "Chennai",
+      "coordinates": [
+        80.2707,
+        13.0827
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2010s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "dual-heritage_identity",
+          "migration",
+          "inter-generational_histories"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-the-high-priestess-never-marries",
+      "bookTitle": "The High Priestess Never Marries",
+      "author": "Sharanya Manivannan",
+      "publishYear": 2016,
+      "placeName": "Chennai",
+      "coordinates": [
+        80.2707,
+        13.0827
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2016s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "journey",
+          "desire",
+          "relationships",
+          "love",
+          "marriage"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "short stories"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-the-stomach-that-chewed-hunger-other-stories",
+      "bookTitle": "The Stomach that Chewed Hunger & other stories",
+      "author": "Bama",
+      "publishYear": 2022,
+      "placeName": "Tamil Nadu- unnamed villages",
+      "coordinates": [
+        78.6569,
+        11.1271
+      ],
+      "placeType": "fictional_based_on_real",
+      "settingType": "primary",
+      "narrativeEra": "2022s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "caste",
+          "gender",
+          "livelihood",
+          "relationships",
+          "nature"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "short stories"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-ice-boys-in-bell-bottoms",
+      "bookTitle": "Ice Boys in Bell Bottoms",
+      "author": "Krishna Shastri Devulapalli",
+      "publishYear": 2011,
+      "placeName": "Chennai",
+      "coordinates": [
+        80.2707,
+        13.0827
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2011s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "arts",
+          "love",
+          "family",
+          "childhood",
+          "boyhood"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-the-madras-mangler",
+      "bookTitle": "The Madras Mangler",
+      "author": "Usha Narayanan",
+      "publishYear": 2013,
+      "placeName": "Chennai",
+      "coordinates": [
+        80.2707,
+        13.0827
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2013s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "thriller",
+          "mystery"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-loki-takes-guard",
+      "bookTitle": "Loki Takes Guard",
+      "author": "Menaka Raman",
+      "publishYear": 2020,
+      "placeName": "Chennai",
+      "coordinates": [
+        80.2707,
+        13.0827
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2020s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "children",
+          "sports",
+          "social_media"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-a-tamil-month",
+      "bookTitle": "A Tamil Month",
+      "author": "V Sanjay Kumar",
+      "publishYear": 2020,
+      "placeName": "Chennai",
+      "coordinates": [
+        80.2707,
+        13.0827
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2020s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "caste",
+          "politics"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-virgin-gingelly",
+      "bookTitle": "Virgin Gingelly",
+      "author": "V Sanjay Kumar",
+      "publishYear": 2013,
+      "placeName": "Chennai",
+      "coordinates": [
+        80.2707,
+        13.0827
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2013s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "social_issues",
+          "identity",
+          "housing",
+          "marriage"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-small-days-and-nights",
+      "bookTitle": "Small Days and Nights",
+      "author": "Tishani Doshi",
+      "publishYear": 2019,
+      "placeName": "Chennai",
+      "coordinates": [
+        80.2707,
+        13.0827
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2019s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "family",
+          "gender",
+          "natural_world"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-kalpakkam",
+      "bookTitle": "Kalpakkam",
+      "author": "K Savitri Ammal",
+      "publishYear": 0,
+      "placeName": "Kalpakkam",
+      "coordinates": [
+        80.166,
+        12.5086
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "caste",
+          "gender"
+        ]
+      },
+      "language": "Tamil",
+      "genres": [
+        "short stories"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-thousand-faces-of-the-night",
+      "bookTitle": "Thousand Faces of the Night",
+      "author": "Gita Hariharan",
+      "publishYear": 1992,
+      "placeName": "Chennai",
+      "coordinates": [
+        80.2707,
+        13.0827
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "1992s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "gender",
+          "feminism",
+          "myth_making",
+          "identity"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-the-daughters-of-madurai",
+      "bookTitle": "The Daughters of Madurai",
+      "author": "Rajasree Variyar",
+      "publishYear": 2023,
+      "placeName": "Madurai",
+      "coordinates": [
+        78.1198,
+        9.9252
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2023s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "historical_fiction",
+          "family",
+          "identity"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-empire",
+      "bookTitle": "Empire",
+      "author": "Devi Yasodharan",
+      "publishYear": 2017,
+      "placeName": "Nagapattinam",
+      "coordinates": [
+        79.8449,
+        10.7672
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2017s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "historical_fiction",
+          "chola_empire",
+          "migration",
+          "identity"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-the-tamarind-tree",
+      "bookTitle": "The Tamarind Tree",
+      "author": "Sundara Ramaswamy",
+      "publishYear": 2022,
+      "placeName": "Nagercoil",
+      "coordinates": [
+        77.4119,
+        8.1833
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2022s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "urbanisation;_modernism;_cultural_memory_and_folklore;_environmental_changes;_communalism"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-a-will-to-kill",
+      "bookTitle": "A Will To Kill",
+      "author": "R.V. Raman",
+      "publishYear": 2019,
+      "placeName": "Nilgiris",
+      "coordinates": [
+        76.6548,
+        11.4102
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2019s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "crime_fiction",
+          "property_dispute",
+          "family",
+          "suspense"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-a-hundred-little-flames",
+      "bookTitle": "A Hundred Little Flames",
+      "author": "Preeti Shenoy",
+      "publishYear": 2017,
+      "placeName": "Pondicherry",
+      "coordinates": [
+        79.8083,
+        11.9416
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2017s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "rural_india",
+          "family",
+          "generation_gap"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-one-part-woman",
+      "bookTitle": "One Part Woman",
+      "author": "Perumal Murugan, Anirudhan Vasudevan",
+      "publishYear": 2010,
+      "placeName": "Thiruchengode",
+      "coordinates": [
+        78.0892,
+        11.376
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2010s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "love",
+          "marriage",
+          "community",
+          "rituals",
+          "untouchability"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-junglenama-a-story-of-the-sunderban",
+      "bookTitle": "Junglenama: A Story of the Sunderban",
+      "author": "Amitav Ghosh, Salman Toor (Illustrator)",
+      "publishYear": 2021,
+      "placeName": "The Sunderbans",
+      "coordinates": [
+        88.93,
+        21.95
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2021s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "bengali_folklore_about_bon_bibi;_balance_between_nature",
+          "wildlife_&_humans;_greed;_climate_crisis"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-the-butterfly-effect",
+      "bookTitle": "The Butterfly Effect",
+      "author": "Rajat Chaudhuri",
+      "publishYear": 2018,
+      "placeName": "Unnamed city (Kolkata)",
+      "coordinates": [
+        88.3639,
+        22.5726
+      ],
+      "placeType": "fictional_based_on_real",
+      "settingType": "primary",
+      "narrativeEra": "2018s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "dystopian_future",
+          "climate_change",
+          "environemntal_disaster"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-city-of-incident",
+      "bookTitle": "City of incident",
+      "author": "Annie Zaidi",
+      "publishYear": 2022,
+      "placeName": "unnamed city based on Mumbai",
+      "coordinates": [
+        72.8777,
+        19.076
+      ],
+      "placeType": "fictional_based_on_real",
+      "settingType": "primary",
+      "narrativeEra": "2022s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "transportation",
+          "social_class"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "short stories"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-an-atlas-of-impossible-longing",
+      "bookTitle": "An Atlas Of Impossible Longing",
+      "author": "Anuradha Roy",
+      "publishYear": 2012,
+      "placeName": "Unnamed town in West Bengal",
+      "coordinates": [
+        87.855,
+        22.9868
+      ],
+      "placeType": "fictional_based_on_real",
+      "settingType": "primary",
+      "narrativeEra": "2012s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "family",
+          "loneliness",
+          "archeology"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-inhin-hathiyaron-se",
+      "bookTitle": "Inhin Hathiyaron Se",
+      "author": "Amarkant",
+      "publishYear": 2003,
+      "placeName": "Ballia",
+      "coordinates": [
+        84.1487,
+        25.7584
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2003s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "indian_freedom_struggle"
+        ]
+      },
+      "language": "Hindi",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-a-flight-of-pigeons",
+      "bookTitle": "A Flight of Pigeons",
+      "author": "Ruskin Bond",
+      "publishYear": 1980,
+      "placeName": "Shahjahanpur",
+      "coordinates": [
+        79.9105,
+        27.8804
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "1980s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "sepoy_mutiny_of_1857",
+          "family",
+          "friendship"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-sevasadan",
+      "bookTitle": "Sevasadan",
+      "author": "Premchand",
+      "publishYear": 1960,
+      "placeName": "Varanasi",
+      "coordinates": [
+        83.0007,
+        25.3176
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "1960s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "municipal_politics",
+          "history_of_inner_city",
+          "family"
+        ]
+      },
+      "language": "Hindi",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-the-road-to-agra",
+      "bookTitle": "The Road to Agra",
+      "author": "Amiee Sommerfelt",
+      "publishYear": 1951,
+      "placeName": "Agra",
+      "coordinates": [
+        78.0081,
+        27.1767
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "1951s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "children's_literature",
+          "rural_india",
+          "journey",
+          "forest",
+          "healthcare"
+        ]
+      },
+      "language": "Norwegian",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-parijat",
+      "bookTitle": "Parijat",
+      "author": "Nasira Sharma",
+      "publishYear": 2011,
+      "placeName": "Allahabad",
+      "coordinates": [
+        81.8463,
+        25.4358
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2011s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "family",
+          "gender"
+        ]
+      },
+      "language": "Hindi",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-katra-bi-arzoo",
+      "bookTitle": "Katra bi arzoo",
+      "author": "Rahi Masoom Raza",
+      "publishYear": 1978,
+      "placeName": "Allahabad",
+      "coordinates": [
+        81.8463,
+        25.4358
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "1978s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "municipal_politics",
+          "minority_politics",
+          "family",
+          "emergency_period"
+        ]
+      },
+      "language": "Hindi",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-requiem-in-raga-janki",
+      "bookTitle": "Requiem in Raga Janki",
+      "author": "Neelum Saran Gour",
+      "publishYear": 2018,
+      "placeName": "Allahabad",
+      "coordinates": [
+        81.8463,
+        25.4358
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2018s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "history",
+          "courtesan_life",
+          "performing_arts"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-legal-fiction",
+      "bookTitle": "Legal Fiction",
+      "author": "Chandan Pandey",
+      "publishYear": 2021,
+      "placeName": "Deoria",
+      "coordinates": [
+        83.7848,
+        26.5024
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2021s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "local_politics",
+          "communalism",
+          "mob_lynching"
+        ]
+      },
+      "language": "Hindi",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-adha-gaon",
+      "bookTitle": "Adha Gaon",
+      "author": "Rahi Masoom Raza",
+      "publishYear": 1966,
+      "placeName": "Ghazipur",
+      "coordinates": [
+        83.5775,
+        25.5878
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "1966s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "partiton",
+          "identity",
+          "religon",
+          "communalism"
+        ]
+      },
+      "language": "Hindi",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-sunlight-in-a-broken-column",
+      "bookTitle": "Sunlight in a Broken Column",
+      "author": "Attia Hossain",
+      "publishYear": 1961,
+      "placeName": "Lucknow",
+      "coordinates": [
+        80.9462,
+        26.8467
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "1961s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "pre_independent_india",
+          "identity",
+          "revolution",
+          "education",
+          "love"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-fida-e-lucknow-tales-of-the-city-and-its-people",
+      "bookTitle": "Fida-E-Lucknow: Tales of the City and Its People",
+      "author": "Parveen Talha",
+      "publishYear": 2013,
+      "placeName": "Lucknow",
+      "coordinates": [
+        80.9462,
+        26.8467
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2013s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "identitiy",
+          "culture",
+          "memory"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-the-trotter-nama",
+      "bookTitle": "The Trotter-nama",
+      "author": "Irwin Allan Sealy",
+      "publishYear": 1988,
+      "placeName": "Lucknow",
+      "coordinates": [
+        80.9462,
+        26.8467
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "1988s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "anglo-indian_experience",
+          "generational_drama",
+          "linguistic_smorgasbord"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-the-trotter-nama",
+      "bookTitle": "The Trotter-nama",
+      "author": "Irwin Allan Sealy",
+      "publishYear": 2019,
+      "placeName": "Lucknow",
+      "coordinates": [
+        80.9462,
+        26.8467
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2019s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "anglo-indian_experience",
+          "generational_drama",
+          "linguistic_smorgasbord"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-umrao-jaan-ada",
+      "bookTitle": "Umrao Jaan Ada",
+      "author": "Mirza Hadi Ruswa",
+      "publishYear": 1899,
+      "placeName": "Lucknow",
+      "coordinates": [
+        80.9462,
+        26.8467
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "1899s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "cultural_and_poilitical_landscape",
+          "mid-19th_century_lucknow"
+        ]
+      },
+      "language": "Urdu",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-lucknow-ki-paanch-raate",
+      "bookTitle": "Lucknow Ki Paanch Raate",
+      "author": "Ali Sardar Jafri",
+      "publishYear": 1987,
+      "placeName": "Lucknow",
+      "coordinates": [
+        80.9462,
+        26.8467
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "1987s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "politics",
+          "writing",
+          "history"
+        ]
+      },
+      "language": "Urdu",
+      "genres": [
+        "short stories"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-diwali-in-muzaffarnagar",
+      "bookTitle": "Diwali in Muzaffarnagar",
+      "author": "Tanuj Solanki",
+      "publishYear": 2018,
+      "placeName": "Muzaffarnagar",
+      "coordinates": [
+        77.7068,
+        29.4727
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2018s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "communalism",
+          "family",
+          "friendship",
+          "family",
+          "education"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "short stories"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-the-mystery-of-the-elephant-god-feluda-series",
+      "bookTitle": "The Mystery of the Elephant God (Feluda Series)",
+      "author": "Satyajit Ray",
+      "publishYear": 0,
+      "placeName": "Varanasi",
+      "coordinates": [
+        83.0007,
+        25.3176
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "crime",
+          "mystery"
+        ]
+      },
+      "language": "Bengali",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-a-beautiful-decay",
+      "bookTitle": "A Beautiful Decay",
+      "author": "Karan Madhok",
+      "publishYear": 2022,
+      "placeName": "Varanasi",
+      "coordinates": [
+        83.0007,
+        25.3176
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2022s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "death",
+          "social_divisions",
+          "family"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-the-emperor-s-ring-feluda-series",
+      "bookTitle": "The Emperor's Ring (Feluda Series)",
+      "author": "Satyajit Ray",
+      "publishYear": 1966,
+      "placeName": "Haridwar",
+      "coordinates": [
+        78.1642,
+        29.9457
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "1966s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "crime",
+          "murder_mystery"
+        ]
+      },
+      "language": "Bengali",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-maitri",
+      "bookTitle": "Maitri",
+      "author": "Ajithan",
+      "publishYear": 2022,
+      "placeName": "Kedarnath and villages",
+      "coordinates": [
+        79.0669,
+        30.7346
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2022s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "love",
+          "nature",
+          "travel"
+        ]
+      },
+      "language": "Tamil",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-a-town-called-dehra",
+      "bookTitle": "A Town Called Dehra",
+      "author": "Ruskin Bond",
+      "publishYear": 2008,
+      "placeName": "Dehradun",
+      "coordinates": [
+        78.0322,
+        30.3165
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2008s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "journal_entries_and_others"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "short stories"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-the-room-on-the-roof",
+      "bookTitle": "The Room On The Roof",
+      "author": "Ruskin Bond",
+      "publishYear": 1956,
+      "placeName": "Dehradun & Mussoorie",
+      "coordinates": [
+        78.0644,
+        30.4598
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "1956s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "children",
+          "identity"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-gunahon-ke-devta",
+      "bookTitle": "Gunahon ke Devta",
+      "author": "Dharamvir Bharati",
+      "publishYear": 1949,
+      "placeName": "Prayagraj",
+      "coordinates": [
+        81.8463,
+        25.4358
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "1949s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "upper_middle_class",
+          "pre_-_independence_india",
+          "caste",
+          "religion",
+          "love"
+        ]
+      },
+      "language": "Hindi",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-lapoojhanna",
+      "bookTitle": "Lapoojhanna",
+      "author": "Ashok Pande",
+      "publishYear": 2022,
+      "placeName": "Ramnagar",
+      "coordinates": [
+        79.1272,
+        29.3975
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2022s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "rural_life",
+          "childhood",
+          "nostalgia"
+        ]
+      },
+      "language": "Hindi",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-there-s-a-carnival-today",
+      "bookTitle": "There's A Carnival Today",
+      "author": "Indrabhadur Rai",
+      "publishYear": 2017,
+      "placeName": "Darjeeling",
+      "coordinates": [
+        88.2631,
+        27.036
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2017s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "identity",
+          "labour",
+          "caste"
+        ]
+      },
+      "language": "Nepali",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-long-night-of-storm",
+      "bookTitle": "Long Night of Storm",
+      "author": "Indrabhadur Rai",
+      "publishYear": 2018,
+      "placeName": "Darjeeling",
+      "coordinates": [
+        88.2631,
+        27.036
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2018s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "natural_calamity",
+          "world_war_ii",
+          "labour",
+          "marriage",
+          "identity"
+        ]
+      },
+      "language": "Nepali",
+      "genres": [
+        "short stories"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-shadow-lines",
+      "bookTitle": "Shadow Lines",
+      "author": "Amitav Ghosh",
+      "publishYear": 1988,
+      "placeName": "Kolkata",
+      "coordinates": [
+        88.3639,
+        22.5726
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "1988s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "identitiy",
+          "history",
+          "memory",
+          "partition"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-calcutta-chromosome",
+      "bookTitle": "Calcutta Chromosome",
+      "author": "Amitav Ghosh",
+      "publishYear": 1995,
+      "placeName": "Kolkata",
+      "coordinates": [
+        88.3639,
+        22.5726
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "1995s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "speculative_fiction",
+          "thriller",
+          "healthcare",
+          "data/research"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-maccher-jhol",
+      "bookTitle": "Maccher Jhol",
+      "author": "Richa Jha",
+      "publishYear": 2018,
+      "placeName": "Kolkata",
+      "coordinates": [
+        88.3639,
+        22.5726
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2018s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "children",
+          "family",
+          "livelihood",
+          "food"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-trouble-in-the-graveyard-feluda-series",
+      "bookTitle": "Trouble in the Graveyard (Feluda Series)",
+      "author": "Satyajit Ray",
+      "publishYear": 1966,
+      "placeName": "Kolkata",
+      "coordinates": [
+        88.3639,
+        22.5726
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "1966s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "crime",
+          "mystery"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-lowland",
+      "bookTitle": "Lowland",
+      "author": "Jhumpa Lahiri",
+      "publishYear": 2013,
+      "placeName": "Kolkata",
+      "coordinates": [
+        88.3639,
+        22.5726
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2013s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "history_of_west_bengal",
+          "siblings",
+          "family"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-hangwoman",
+      "bookTitle": "Hangwoman",
+      "author": "KR Meera",
+      "publishYear": 2012,
+      "placeName": "Kolkata",
+      "coordinates": [
+        88.3639,
+        22.5726
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2012s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "history",
+          "public_execution",
+          "society",
+          "media"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-voices-in-the-city",
+      "bookTitle": "Voices in the City",
+      "author": "Anita Desai",
+      "publishYear": 1965,
+      "placeName": "Kolkata",
+      "coordinates": [
+        88.3639,
+        22.5726
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "1965s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "family",
+          "class",
+          "modernity",
+          "traditions"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-those-days",
+      "bookTitle": "Those Days",
+      "author": "Sunil Gangopadhyay",
+      "publishYear": 2000,
+      "placeName": "Kolkata",
+      "coordinates": [
+        88.3639,
+        22.5726
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2000s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "historical_fiction",
+          "bengal_rennissance",
+          "feudalism",
+          "revolution",
+          "family"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-a-burning",
+      "bookTitle": "A Burning",
+      "author": "Megha Majumdar",
+      "publishYear": 2020,
+      "placeName": "Kolkata",
+      "coordinates": [
+        88.3639,
+        22.5726
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2020s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "class",
+          "fate",
+          "corruption",
+          "justice",
+          "social_media"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-the-shadows-of-men",
+      "bookTitle": "The Shadows of Men",
+      "author": "Abir Mukherjee",
+      "publishYear": 2022,
+      "placeName": "Kolkata",
+      "coordinates": [
+        88.3639,
+        22.5726
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2022s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "historical_fiction",
+          "pre-independence_india",
+          "religon",
+          "social_unrest",
+          "crime"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-a-rising-man",
+      "bookTitle": "A Rising Man",
+      "author": "Abir Mukherjee",
+      "publishYear": 2016,
+      "placeName": "Kolkata",
+      "coordinates": [
+        88.3639,
+        22.5726
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2016s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "pre-independence_india",
+          "crime"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-first-light",
+      "bookTitle": "First Light",
+      "author": "Sunil Gangopadhyay",
+      "publishYear": 2000,
+      "placeName": "Kolkata",
+      "coordinates": [
+        88.3639,
+        22.5726
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2000s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "nationalism",
+          "theatre_movement_of_bengal",
+          "freedom_struggle",
+          "modernity"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-song-of-kali",
+      "bookTitle": "Song of Kali",
+      "author": "Dan Simmons",
+      "publishYear": 1985,
+      "placeName": "Kolkata",
+      "coordinates": [
+        88.3639,
+        22.5726
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "1985s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "horror",
+          "fantasy",
+          "cult_of_kapalikas"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-dreams-die-young",
+      "bookTitle": "Dreams Die Young",
+      "author": "C V Murali",
+      "publishYear": 2007,
+      "placeName": "Kolkata",
+      "coordinates": [
+        88.3639,
+        22.5726
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2007s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "naxalite_movement",
+          "college_politics",
+          "60s_&_70s_bengal"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-the-scent-of-god",
+      "bookTitle": "The Scent of God",
+      "author": "Saikat Majumdar",
+      "publishYear": 2018,
+      "placeName": "Kolkata and Suburbs",
+      "coordinates": [
+        88.3639,
+        22.5726
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2018s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "gender",
+          "sexuality",
+          "lgbtq",
+          "monastic_life",
+          "school"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-the-firebird",
+      "bookTitle": "The Firebird",
+      "author": "Saikat Majumdar",
+      "publishYear": 2015,
+      "placeName": "Kolkata and Suburbs",
+      "coordinates": [
+        88.3639,
+        22.5726
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2015s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "theatre",
+          "politics",
+          "family_feuds",
+          "childhood_trauma",
+          "teenage_woes"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-the-hungry-tide",
+      "bookTitle": "The Hungry Tide",
+      "author": "Amitav Ghosh",
+      "publishYear": 2004,
+      "placeName": "Kolkata",
+      "coordinates": [
+        88.3639,
+        22.5726
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2004s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "culture",
+          "environment",
+          "love"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-there-s-gunpowder-in-the-air",
+      "bookTitle": "There's Gunpowder in the Air",
+      "author": "Manoranjan Byapari",
+      "publishYear": 2018,
+      "placeName": "West Bengal-Kolkatta",
+      "coordinates": [
+        87.855,
+        22.9868
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2018s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "auto-fiction",
+          "naxalite_movement",
+          "caste",
+          "judicial_system"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-mrityukshudha-love-and-death-in-krishnanagar",
+      "bookTitle": "Mrityukshudha: Love and Death in Krishnanagar",
+      "author": "Kazi Nazrul Islam",
+      "publishYear": 2015,
+      "placeName": "West Bengal-Krishnanagar",
+      "coordinates": [
+        87.855,
+        22.9868
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2015s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "revolution",
+          "loneliness",
+          "rural_life",
+          "family",
+          "secularism"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-english-august",
+      "bookTitle": "English, August",
+      "author": "Upamanyu Chatterjee",
+      "publishYear": 1988,
+      "placeName": "West Bengal-Madna",
+      "coordinates": [
+        87.855,
+        22.9868
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "1988s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "indian_bureaucracy",
+          "urban_elite",
+          "rural_india"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-mumbai",
+      "bookTitle": "Mumbai",
+      "author": "Novel",
+      "publishYear": 0,
+      "placeName": "queer",
+      "coordinates": [
+        72.8777,
+        19.076
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "2025"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-the-guru-who-came-down-from-the-mountain",
+      "bookTitle": "The Guru Who Came Down from the Mountain",
+      "author": "Roshen Dalal",
+      "publishYear": 2018,
+      "placeName": "Dehradun",
+      "coordinates": [
+        78.0322,
+        30.3165
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2018s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "fake_guru",
+          "spirituality",
+          "deception"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-the-saga-of-muziris",
+      "bookTitle": "The Saga of Muziris",
+      "author": "Sethu",
+      "publishYear": 2017,
+      "placeName": "Kochi",
+      "coordinates": [
+        76.2673,
+        9.9312
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2017s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "historical_fiction",
+          "trade"
+        ]
+      },
+      "language": "Malayalam",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-khasakkinte-ithihasam",
+      "bookTitle": "Khasakkinte ithihasam",
+      "author": "O V Vijayan",
+      "publishYear": 1969,
+      "placeName": "Palakkad",
+      "coordinates": [
+        76.6548,
+        10.7867
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "1969s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "self_discovery",
+          "contemplation",
+          "human_relations"
+        ]
+      },
+      "language": "Malayalam",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-the-machine-is-learning",
+      "bookTitle": "The Machine is Learning",
+      "author": "Tanuj Solanki",
+      "publishYear": 2020,
+      "placeName": "Mumbai",
+      "coordinates": [
+        72.8777,
+        19.076
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2020s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "technology",
+          "livelihood",
+          "work_culture",
+          "mental_health"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-rupture",
+      "bookTitle": "Rupture",
+      "author": "Sampurna Chattarji",
+      "publishYear": 2009,
+      "placeName": "Mumbai",
+      "coordinates": [
+        72.8777,
+        19.076
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2009s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "urban_life"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-jasmine-days",
+      "bookTitle": "Jasmine Days",
+      "author": "Benyamin",
+      "publishYear": 2018,
+      "placeName": "Lahore",
+      "coordinates": [
+        74.3587,
+        31.5204
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2018s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "diaspora",
+          "press_freedom",
+          "arab_spring_aggitation",
+          "crime",
+          "punishmnet"
+        ]
+      },
+      "language": "Malayalam",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-neem-ka-ped",
+      "bookTitle": "Neem ka Ped",
+      "author": "Rahi Masoom Raza",
+      "publishYear": 2003,
+      "placeName": "Lucknow",
+      "coordinates": [
+        80.9462,
+        26.8467
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "2003s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "rural_life",
+          "politics",
+          "post_independence_india",
+          "abolition_of_zamindari_system",
+          "casteism"
+        ]
+      },
+      "language": "Hindi",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-white-bungalow",
+      "bookTitle": "White Bungalow",
+      "author": "Amiee Sommerfelt",
+      "publishYear": 1964,
+      "placeName": "Agra",
+      "coordinates": [
+        78.0081,
+        27.1767
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "1964s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "children's_literature",
+          "rural_india",
+          "drought",
+          "healthcare",
+          "education"
+        ]
+      },
+      "language": "Norwegian",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
+    },
+    {
+      "id": "cif-the-bride",
+      "bookTitle": "The Bride",
+      "author": "Harimohan Jha",
+      "publishYear": 1933,
+      "placeName": "Varanasi",
+      "coordinates": [
+        83.0007,
+        25.3176
+      ],
+      "placeType": "real",
+      "settingType": "primary",
+      "narrativeEra": "1933s",
+      "passage": "",
+      "sentiment": {
+        "polarity": 0,
+        "dominantEmotions": [],
+        "themes": [
+          "colonial_india",
+          "child_marriage",
+          "caste",
+          "gender"
+        ]
+      },
+      "language": "English",
+      "genres": [
+        "literary fiction"
+      ],
+      "region": "South Asia"
     }
   ]
 }
