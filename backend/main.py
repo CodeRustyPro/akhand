@@ -25,7 +25,14 @@ from backend.models.schemas import (
     BatchExtractionRequest,
     PassageAnalysis,
 )
-from backend.nlp.pipeline import LiteraryGeographyPipeline, PipelineConfig
+
+try:
+    from backend.nlp.pipeline import LiteraryGeographyPipeline, PipelineConfig
+    NLP_AVAILABLE = True
+except ImportError:
+    NLP_AVAILABLE = False
+    LiteraryGeographyPipeline = None
+    PipelineConfig = None
 
 load_dotenv()
 logging.basicConfig(level=logging.INFO)
@@ -37,18 +44,22 @@ pipeline: LiteraryGeographyPipeline | None = None
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     global pipeline
-    logger.info("Initializing NLP pipeline...")
-    try:
-        pipeline = LiteraryGeographyPipeline(
-            PipelineConfig(
-                use_gliner=True,
-                use_gemini=True,
+    if NLP_AVAILABLE:
+        logger.info("Initializing NLP pipeline...")
+        try:
+            pipeline = LiteraryGeographyPipeline(
+                PipelineConfig(
+                    use_gliner=True,
+                    use_gemini=True,
+                )
             )
-        )
-        _ = pipeline.nlp  # warm up spaCy
-        logger.info("NLP pipeline ready (spaCy loaded, GLiNER + Gemini lazy-loaded)")
-    except Exception as e:
-        logger.error(f"Failed to initialize pipeline: {e}")
+            _ = pipeline.nlp
+            logger.info("NLP pipeline ready (spaCy loaded, GLiNER + Gemini lazy-loaded)")
+        except Exception as e:
+            logger.error(f"Failed to initialize pipeline: {e}")
+            pipeline = None
+    else:
+        logger.info("NLP dependencies not installed, running in data-serving mode")
         pipeline = None
     yield
     logger.info("Shutting down")
