@@ -5,7 +5,7 @@
     "citiesinfiction",
     "CIF Archive (citiesinfiction.com/archive)"
   ],
-  "total": 1124,
+  "total": 935,
   "places": [
     {
       "id": "ol-OL2980902W-mumbai",
@@ -865,7 +865,6 @@
       },
       "language": "English",
       "genres": [
-        "biography",
         "literary fiction"
       ],
       "region": "South Asia",
@@ -1106,9 +1105,7 @@
       },
       "language": "English",
       "genres": [
-        "biography",
         "literary fiction",
-        "memoir",
         "social realism"
       ],
       "region": "South Asia",
@@ -1926,35 +1923,6 @@
       "openLibraryUrl": "https://openlibrary.org/works/OL9740815W"
     },
     {
-      "id": "ol-OL15822410W-bangalore",
-      "bookTitle": "The White Tiger",
-      "author": "Aravind Adiga",
-      "publishYear": 2008,
-      "placeName": "Bangalore",
-      "coordinates": [
-        77.5946,
-        12.9716
-      ],
-      "placeType": "real",
-      "settingType": "primary",
-      "narrativeEra": "2008s",
-      "passage": "",
-      "sentiment": {
-        "polarity": 0.0,
-        "dominantEmotions": [],
-        "themes": []
-      },
-      "language": "English",
-      "genres": [
-        "literary fiction"
-      ],
-      "region": "South Asia",
-      "openLibraryKey": "/works/OL15822410W",
-      "coverUrl": "https://covers.openlibrary.org/b/id/6786848-M.jpg",
-      "source": "openlibrary",
-      "openLibraryUrl": "https://openlibrary.org/works/OL15822410W"
-    },
-    {
       "id": "ol-OL16152273W-bangalore",
       "bookTitle": "These Foolish Things",
       "author": "Deborah Moggach",
@@ -1984,35 +1952,6 @@
       "coverUrl": "https://covers.openlibrary.org/b/id/447578-M.jpg",
       "source": "openlibrary",
       "openLibraryUrl": "https://openlibrary.org/works/OL16152273W"
-    },
-    {
-      "id": "ol-OL15391590W-bangalore",
-      "bookTitle": "The White Tiger",
-      "author": "Aravind Adiga",
-      "publishYear": 2008,
-      "placeName": "Bangalore",
-      "coordinates": [
-        77.5946,
-        12.9716
-      ],
-      "placeType": "real",
-      "settingType": "primary",
-      "narrativeEra": "2008s",
-      "passage": "Balram Halwai is a complicated man. Servant. Philosopher. Entrepreneur. Murderer. Over the course of seven nights, by the scattered light of a preposterous chandelier, Balram tells the terrible and transfixing story of how he came to be a success in life--having nothing but his own wits to help him along.",
-      "sentiment": {
-        "polarity": 0.0,
-        "dominantEmotions": [],
-        "themes": []
-      },
-      "language": "English",
-      "genres": [
-        "literary fiction"
-      ],
-      "region": "South Asia",
-      "openLibraryKey": "/works/OL15391590W",
-      "coverUrl": "https://covers.openlibrary.org/b/id/6601430-M.jpg",
-      "source": "openlibrary",
-      "openLibraryUrl": "https://openlibrary.org/works/OL15391590W"
     },
     {
       "id": "ol-OL15192620W-bangalore",
@@ -2427,35 +2366,6 @@
       "coverUrl": "https://covers.openlibrary.org/b/id/8679155-M.jpg",
       "source": "openlibrary",
       "openLibraryUrl": "https://openlibrary.org/works/OL18685205W"
-    },
-    {
-      "id": "ol-OL22615724W-hyderabad",
-      "bookTitle": "Tragedy of Hyderabad",
-      "author": "Mir Laik Ali",
-      "publishYear": 1962,
-      "placeName": "Hyderabad",
-      "coordinates": [
-        78.4867,
-        17.385
-      ],
-      "placeType": "real",
-      "settingType": "primary",
-      "narrativeEra": "1962s",
-      "passage": "",
-      "sentiment": {
-        "polarity": 0.0,
-        "dominantEmotions": [],
-        "themes": []
-      },
-      "language": "English",
-      "genres": [
-        "literary fiction"
-      ],
-      "region": "South Asia",
-      "openLibraryKey": "/works/OL22615724W",
-      "coverUrl": null,
-      "source": "openlibrary",
-      "openLibraryUrl": "https://openlibrary.org/works/OL22615724W"
     },
     {
       "id": "ol-OL394282W-hyderabad",
@@ -2988,35 +2898,6 @@
       "openLibraryUrl": "https://openlibrary.org/works/OL15095680W"
     },
     {
-      "id": "ol-OL6314423W-lucknow",
-      "bookTitle": "An account of the mutinies in Oudh and of the siege of the Lucknow Residency",
-      "author": "Martin Richard Gubbins",
-      "publishYear": 1853,
-      "placeName": "Lucknow",
-      "coordinates": [
-        80.9462,
-        26.8467
-      ],
-      "placeType": "real",
-      "settingType": "primary",
-      "narrativeEra": "1853s",
-      "passage": "",
-      "sentiment": {
-        "polarity": 0.0,
-        "dominantEmotions": [],
-        "themes": []
-      },
-      "language": "English",
-      "genres": [
-        "literary fiction"
-      ],
-      "region": "South Asia",
-      "openLibraryKey": "/works/OL6314423W",
-      "coverUrl": "https://covers.openlibrary.org/b/id/1736820-M.jpg",
-      "source": "openlibrary",
-      "openLibraryUrl": "https://openlibrary.org/works/OL6314423W"
-    },
-    {
       "id": "ol-OL24292065W-lucknow",
       "bookTitle": "The Lucknow Cookbook",
       "author": "Chand Sur, Sunita Kohli",
@@ -3193,35 +3074,6 @@
       "openLibraryUrl": "https://openlibrary.org/works/OL13853011W"
     },
     {
-      "id": "ol-OL3220045W-varanasi",
-      "bookTitle": "Early history and growth of postal system in India",
-      "author": "Mohini Lal Majumdar",
-      "publishYear": 1995,
-      "placeName": "Varanasi",
-      "coordinates": [
-        83.0007,
-        25.3176
-      ],
-      "placeType": "real",
-      "settingType": "primary",
-      "narrativeEra": "1995s",
-      "passage": "",
-      "sentiment": {
-        "polarity": 0.0,
-        "dominantEmotions": [],
-        "themes": []
-      },
-      "language": "English",
-      "genres": [
-        "literary fiction"
-      ],
-      "region": "South Asia",
-      "openLibraryKey": "/works/OL3220045W",
-      "coverUrl": null,
-      "source": "openlibrary",
-      "openLibraryUrl": "https://openlibrary.org/works/OL3220045W"
-    },
-    {
       "id": "ol-OL27972003W-varanasi",
       "bookTitle": "Radhika Nath Saha",
       "author": "Unknown",
@@ -3365,35 +3217,6 @@
       "coverUrl": "https://covers.openlibrary.org/b/id/6725615-M.jpg",
       "source": "openlibrary",
       "openLibraryUrl": "https://openlibrary.org/works/OL15710145W"
-    },
-    {
-      "id": "ol-OL12271614W-varanasi",
-      "bookTitle": "Tristhalisetuh",
-      "author": "son of Rameśvara Narayana Bhatta",
-      "publishYear": 1915,
-      "placeName": "Varanasi",
-      "coordinates": [
-        83.0007,
-        25.3176
-      ],
-      "placeType": "real",
-      "settingType": "primary",
-      "narrativeEra": "1915s",
-      "passage": "",
-      "sentiment": {
-        "polarity": 0.0,
-        "dominantEmotions": [],
-        "themes": []
-      },
-      "language": "English",
-      "genres": [
-        "literary fiction"
-      ],
-      "region": "South Asia",
-      "openLibraryKey": "/works/OL12271614W",
-      "coverUrl": null,
-      "source": "openlibrary",
-      "openLibraryUrl": "https://openlibrary.org/works/OL12271614W"
     },
     {
       "id": "ol-OL7131924W-varanasi",
@@ -3551,38 +3374,6 @@
       "coverUrl": "https://covers.openlibrary.org/b/id/8183344-M.jpg",
       "source": "openlibrary",
       "openLibraryUrl": "https://openlibrary.org/works/OL17874829W"
-    },
-    {
-      "id": "ol-OL16654883W-varanasi",
-      "bookTitle": "A lady cyclist's guide to Kashgar",
-      "author": "Suzanne Joinson",
-      "publishYear": 2012,
-      "placeName": "Varanasi",
-      "coordinates": [
-        83.0007,
-        25.3176
-      ],
-      "placeType": "real",
-      "settingType": "primary",
-      "narrativeEra": "2012s",
-      "passage": "",
-      "sentiment": {
-        "polarity": 0.0,
-        "dominantEmotions": [],
-        "themes": [
-          "gender"
-        ]
-      },
-      "language": "English",
-      "genres": [
-        "literary fiction",
-        "social realism"
-      ],
-      "region": "South Asia",
-      "openLibraryKey": "/works/OL16654883W",
-      "coverUrl": "https://covers.openlibrary.org/b/id/10350534-M.jpg",
-      "source": "openlibrary",
-      "openLibraryUrl": "https://openlibrary.org/works/OL16654883W"
     },
     {
       "id": "ol-OL661646W-varanasi",
@@ -3757,35 +3548,6 @@
       "coverUrl": null,
       "source": "openlibrary",
       "openLibraryUrl": "https://openlibrary.org/works/OL16114784W"
-    },
-    {
-      "id": "ol-OL18487674W-varanasi",
-      "bookTitle": "Reports from the Northwest",
-      "author": "Nicola Di Cosmo",
-      "publishYear": 1993,
-      "placeName": "Varanasi",
-      "coordinates": [
-        83.0007,
-        25.3176
-      ],
-      "placeType": "real",
-      "settingType": "primary",
-      "narrativeEra": "1993s",
-      "passage": "",
-      "sentiment": {
-        "polarity": 0.0,
-        "dominantEmotions": [],
-        "themes": []
-      },
-      "language": "English",
-      "genres": [
-        "literary fiction"
-      ],
-      "region": "South Asia",
-      "openLibraryKey": "/works/OL18487674W",
-      "coverUrl": null,
-      "source": "openlibrary",
-      "openLibraryUrl": "https://openlibrary.org/works/OL18487674W"
     },
     {
       "id": "ol-OL22349821W-varanasi",
@@ -4051,35 +3813,6 @@
       "coverUrl": "https://covers.openlibrary.org/b/id/9308285-M.jpg",
       "source": "openlibrary",
       "openLibraryUrl": "https://openlibrary.org/works/OL354105W"
-    },
-    {
-      "id": "ol-OL2606084W-goa",
-      "bookTitle": "Studies in Indian history",
-      "author": "Sen, Surendra Nath, Nath S. Surendra, Surendra Nath Sen, Surendranath Sen",
-      "publishYear": 1930,
-      "placeName": "Goa",
-      "coordinates": [
-        74.124,
-        15.2993
-      ],
-      "placeType": "real",
-      "settingType": "primary",
-      "narrativeEra": "1930s",
-      "passage": "",
-      "sentiment": {
-        "polarity": 0.0,
-        "dominantEmotions": [],
-        "themes": []
-      },
-      "language": "English",
-      "genres": [
-        "literary fiction"
-      ],
-      "region": "South Asia",
-      "openLibraryKey": "/works/OL2606084W",
-      "coverUrl": "https://covers.openlibrary.org/b/id/5249582-M.jpg",
-      "source": "openlibrary",
-      "openLibraryUrl": "https://openlibrary.org/works/OL2606084W"
     },
     {
       "id": "ol-OL10920081W-kochi",
@@ -4700,35 +4433,6 @@
       "openLibraryUrl": "https://openlibrary.org/works/OL1627514W"
     },
     {
-      "id": "ol-OL5466552W-pune",
-      "bookTitle": "Pune city, its history, growth, and development (758 to 1998 A.D.)",
-      "author": "S. G. Mahajan",
-      "publishYear": 2000,
-      "placeName": "Pune",
-      "coordinates": [
-        73.8567,
-        18.5204
-      ],
-      "placeType": "real",
-      "settingType": "primary",
-      "narrativeEra": "2000s",
-      "passage": "",
-      "sentiment": {
-        "polarity": 0.0,
-        "dominantEmotions": [],
-        "themes": []
-      },
-      "language": "English",
-      "genres": [
-        "literary fiction"
-      ],
-      "region": "South Asia",
-      "openLibraryKey": "/works/OL5466552W",
-      "coverUrl": null,
-      "source": "openlibrary",
-      "openLibraryUrl": "https://openlibrary.org/works/OL5466552W"
-    },
-    {
       "id": "ol-OL15361235W-pune",
       "bookTitle": "Sukham Ayu",
       "author": "Jigyasa Giri & Pratibha Jain",
@@ -4843,35 +4547,6 @@
       "coverUrl": "https://covers.openlibrary.org/b/id/13241921-M.jpg",
       "source": "openlibrary",
       "openLibraryUrl": "https://openlibrary.org/works/OL1049552W"
-    },
-    {
-      "id": "ol-OL325710W-pune",
-      "bookTitle": "Political behaviour in India",
-      "author": "V        M Sirsikar",
-      "publishYear": 1965,
-      "placeName": "Pune",
-      "coordinates": [
-        73.8567,
-        18.5204
-      ],
-      "placeType": "real",
-      "settingType": "primary",
-      "narrativeEra": "1965s",
-      "passage": "",
-      "sentiment": {
-        "polarity": 0.0,
-        "dominantEmotions": [],
-        "themes": []
-      },
-      "language": "English",
-      "genres": [
-        "literary fiction"
-      ],
-      "region": "South Asia",
-      "openLibraryKey": "/works/OL325710W",
-      "coverUrl": null,
-      "source": "openlibrary",
-      "openLibraryUrl": "https://openlibrary.org/works/OL325710W"
     },
     {
       "id": "ol-OL3437990W-pune",
@@ -4992,93 +4667,6 @@
       "coverUrl": null,
       "source": "openlibrary",
       "openLibraryUrl": "https://openlibrary.org/works/OL11956051W"
-    },
-    {
-      "id": "ol-OL4596871W-pune",
-      "bookTitle": "Birds and animals in Indian art and crafts",
-      "author": "Raja Dinkar Kelkar Museum.",
-      "publishYear": 1988,
-      "placeName": "Pune",
-      "coordinates": [
-        73.8567,
-        18.5204
-      ],
-      "placeType": "real",
-      "settingType": "primary",
-      "narrativeEra": "1988s",
-      "passage": "",
-      "sentiment": {
-        "polarity": 0.0,
-        "dominantEmotions": [],
-        "themes": []
-      },
-      "language": "English",
-      "genres": [
-        "literary fiction"
-      ],
-      "region": "South Asia",
-      "openLibraryKey": "/works/OL4596871W",
-      "coverUrl": null,
-      "source": "openlibrary",
-      "openLibraryUrl": "https://openlibrary.org/works/OL4596871W"
-    },
-    {
-      "id": "ol-OL4596872W-pune",
-      "bookTitle": "Dipping into the glorious past",
-      "author": "Raja Dinkar Kelkar Museum.",
-      "publishYear": 1988,
-      "placeName": "Pune",
-      "coordinates": [
-        73.8567,
-        18.5204
-      ],
-      "placeType": "real",
-      "settingType": "primary",
-      "narrativeEra": "1988s",
-      "passage": "",
-      "sentiment": {
-        "polarity": 0.0,
-        "dominantEmotions": [],
-        "themes": []
-      },
-      "language": "English",
-      "genres": [
-        "literary fiction"
-      ],
-      "region": "South Asia",
-      "openLibraryKey": "/works/OL4596872W",
-      "coverUrl": null,
-      "source": "openlibrary",
-      "openLibraryUrl": "https://openlibrary.org/works/OL4596872W"
-    },
-    {
-      "id": "ol-OL4596873W-pune",
-      "bookTitle": "A focus on Raja Dinkar Kelkar Museum",
-      "author": "Raja Dinkar Kelkar Museum.",
-      "publishYear": 1988,
-      "placeName": "Pune",
-      "coordinates": [
-        73.8567,
-        18.5204
-      ],
-      "placeType": "real",
-      "settingType": "primary",
-      "narrativeEra": "1988s",
-      "passage": "",
-      "sentiment": {
-        "polarity": 0.0,
-        "dominantEmotions": [],
-        "themes": []
-      },
-      "language": "English",
-      "genres": [
-        "literary fiction"
-      ],
-      "region": "South Asia",
-      "openLibraryKey": "/works/OL4596873W",
-      "coverUrl": null,
-      "source": "openlibrary",
-      "openLibraryUrl": "https://openlibrary.org/works/OL4596873W"
     },
     {
       "id": "ol-OL5762086W-ahmedabad",
@@ -5226,35 +4814,6 @@
       "coverUrl": null,
       "source": "openlibrary",
       "openLibraryUrl": "https://openlibrary.org/works/OL6997496W"
-    },
-    {
-      "id": "ol-OL1626739W-ahmedabad",
-      "bookTitle": "A study of the hourly wind speeds at Ahmadabad from the point of view of wind power utilisation",
-      "author": "Viswanathan, R.",
-      "publishYear": 1962,
-      "placeName": "Ahmedabad",
-      "coordinates": [
-        72.5714,
-        23.0225
-      ],
-      "placeType": "real",
-      "settingType": "primary",
-      "narrativeEra": "1962s",
-      "passage": "",
-      "sentiment": {
-        "polarity": 0.0,
-        "dominantEmotions": [],
-        "themes": []
-      },
-      "language": "English",
-      "genres": [
-        "literary fiction"
-      ],
-      "region": "South Asia",
-      "openLibraryKey": "/works/OL1626739W",
-      "coverUrl": null,
-      "source": "openlibrary",
-      "openLibraryUrl": "https://openlibrary.org/works/OL1626739W"
     },
     {
       "id": "ol-OL1050685W-ahmedabad",
@@ -5494,35 +5053,6 @@
       "coverUrl": "https://covers.openlibrary.org/b/id/9278437-M.jpg",
       "source": "openlibrary",
       "openLibraryUrl": "https://openlibrary.org/works/OL6455485W"
-    },
-    {
-      "id": "ol-OL314980W-amritsar",
-      "bookTitle": "The Heritage of Amritsar",
-      "author": "Surinder Singh Johar",
-      "publishYear": 1977,
-      "placeName": "Amritsar",
-      "coordinates": [
-        74.8723,
-        31.634
-      ],
-      "placeType": "real",
-      "settingType": "primary",
-      "narrativeEra": "1977s",
-      "passage": "",
-      "sentiment": {
-        "polarity": 0.0,
-        "dominantEmotions": [],
-        "themes": []
-      },
-      "language": "English",
-      "genres": [
-        "literary fiction"
-      ],
-      "region": "South Asia",
-      "openLibraryKey": "/works/OL314980W",
-      "coverUrl": null,
-      "source": "openlibrary",
-      "openLibraryUrl": "https://openlibrary.org/works/OL314980W"
     },
     {
       "id": "ol-OL29031W-amritsar",
@@ -5879,35 +5409,6 @@
       "openLibraryUrl": "https://openlibrary.org/works/OL13848625W"
     },
     {
-      "id": "ol-OL338952W-mysore",
-      "bookTitle": "Coins",
-      "author": "Government Museum (Madras, India)",
-      "publishYear": 1888,
-      "placeName": "Mysore",
-      "coordinates": [
-        76.6394,
-        12.2958
-      ],
-      "placeType": "real",
-      "settingType": "primary",
-      "narrativeEra": "1888s",
-      "passage": "",
-      "sentiment": {
-        "polarity": 0.0,
-        "dominantEmotions": [],
-        "themes": []
-      },
-      "language": "English",
-      "genres": [
-        "literary fiction"
-      ],
-      "region": "South Asia",
-      "openLibraryKey": "/works/OL338952W",
-      "coverUrl": "https://covers.openlibrary.org/b/id/5638571-M.jpg",
-      "source": "openlibrary",
-      "openLibraryUrl": "https://openlibrary.org/works/OL338952W"
-    },
-    {
       "id": "ol-OL15707835W-mysore",
       "bookTitle": "Historical sketches of the south of India",
       "author": "Mark Wilks",
@@ -6182,35 +5683,6 @@
       "openLibraryUrl": "https://openlibrary.org/works/OL14987710W"
     },
     {
-      "id": "ol-OL10617950W-lahore",
-      "bookTitle": "Fazail-e-Amal",
-      "author": "Muḥammad Zakariyyā",
-      "publishYear": 0,
-      "placeName": "Lahore",
-      "coordinates": [
-        74.3587,
-        31.5204
-      ],
-      "placeType": "real",
-      "settingType": "primary",
-      "narrativeEra": "",
-      "passage": "The Fazail-e-Amal  is an Islamic religious text, a compilation of selected chapters from various books, written by the Indian Islamic scholar Muhammad Zakariya Kandhlawi. The main purpose of compiling the book is to mention the virtues of good deeds in Islam.\r\n\r\nso the book is sub-divided into following sections,\r\n\r\n* Hikayatus Sahabah (stories of the Sahabah )\r\n* Fazail-e-Namaz (Namaz ke fazail)\r...",
-      "sentiment": {
-        "polarity": 0.0,
-        "dominantEmotions": [],
-        "themes": []
-      },
-      "language": "Urdu",
-      "genres": [
-        "literary fiction"
-      ],
-      "region": "South Asia",
-      "openLibraryKey": "/works/OL10617950W",
-      "coverUrl": "https://covers.openlibrary.org/b/id/6594058-M.jpg",
-      "source": "openlibrary",
-      "openLibraryUrl": "https://openlibrary.org/works/OL10617950W"
-    },
-    {
       "id": "ol-OL2323539W-lahore",
       "bookTitle": "THE CODE OF CIVIL PROCEDURE, 1908",
       "author": "Mahmood, M.",
@@ -6327,7 +5799,6 @@
       },
       "language": "English",
       "genres": [
-        "biography",
         "political fiction",
         "social realism"
       ],
@@ -6490,39 +5961,6 @@
       "coverUrl": "https://covers.openlibrary.org/b/id/181851-M.jpg",
       "source": "openlibrary",
       "openLibraryUrl": "https://openlibrary.org/works/OL5726048W"
-    },
-    {
-      "id": "ol-OL15158236W-karachi",
-      "bookTitle": "Reader's Digest Condensed Books--Volume 1 1988",
-      "author": "Barbara J. Morgan, Dorothy Gilman, Betty Mahmoody, William Hoffer, Ridley Pearson, Niall Williams, Christine Breen",
-      "publishYear": 1987,
-      "placeName": "Karachi",
-      "coordinates": [
-        67.0011,
-        24.8607
-      ],
-      "placeType": "real",
-      "settingType": "primary",
-      "narrativeEra": "1987s",
-      "passage": "Mrs. Pollifax and the Golden Triangle / by Dorothy Gilman\t\r\n[Not without my daughter](https://openlibrary.org/works/OL4064350W/Not_Without_My_Daughter) / by Betty Mahmoody with William Hoffer\t\r\nThe seizing of Yankee Green Mall / by Ridley Pearson\t\r\nO come ye back to Ireland / by Niall Williams and Christine Breen.",
-      "sentiment": {
-        "polarity": 0.0,
-        "dominantEmotions": [],
-        "themes": [
-          "gender"
-        ]
-      },
-      "language": "English",
-      "genres": [
-        "biography",
-        "political fiction",
-        "social realism"
-      ],
-      "region": "South Asia",
-      "openLibraryKey": "/works/OL15158236W",
-      "coverUrl": "https://covers.openlibrary.org/b/id/9275690-M.jpg",
-      "source": "openlibrary",
-      "openLibraryUrl": "https://openlibrary.org/works/OL15158236W"
     },
     {
       "id": "ol-OL1041830W-karachi",
@@ -6703,35 +6141,6 @@
       "openLibraryUrl": "https://openlibrary.org/works/OL12435472W"
     },
     {
-      "id": "ol-OL4426414W-islamabad",
-      "bookTitle": "Functional and economical houses for Islamabad",
-      "author": "M. Munir Bhutta",
-      "publishYear": 1989,
-      "placeName": "Islamabad",
-      "coordinates": [
-        73.0479,
-        33.6844
-      ],
-      "placeType": "real",
-      "settingType": "primary",
-      "narrativeEra": "1989s",
-      "passage": "",
-      "sentiment": {
-        "polarity": 0.0,
-        "dominantEmotions": [],
-        "themes": []
-      },
-      "language": "English",
-      "genres": [
-        "literary fiction"
-      ],
-      "region": "South Asia",
-      "openLibraryKey": "/works/OL4426414W",
-      "coverUrl": null,
-      "source": "openlibrary",
-      "openLibraryUrl": "https://openlibrary.org/works/OL4426414W"
-    },
-    {
       "id": "ol-OL23237503W-islamabad",
       "bookTitle": "Muslim worldview and family planning",
       "author": "Sajid Mahmood Awan",
@@ -6761,64 +6170,6 @@
       "coverUrl": null,
       "source": "openlibrary",
       "openLibraryUrl": "https://openlibrary.org/works/OL23237503W"
-    },
-    {
-      "id": "ol-OL6897345W-islamabad",
-      "bookTitle": "Accession list of Quaid-i-Azam papers",
-      "author": "Pakistan. Education Division. Quaid-i-Azam Papers Cell.",
-      "publishYear": 1971,
-      "placeName": "Islamabad",
-      "coordinates": [
-        73.0479,
-        33.6844
-      ],
-      "placeType": "real",
-      "settingType": "primary",
-      "narrativeEra": "1971s",
-      "passage": "",
-      "sentiment": {
-        "polarity": 0.0,
-        "dominantEmotions": [],
-        "themes": []
-      },
-      "language": "English",
-      "genres": [
-        "literary fiction"
-      ],
-      "region": "South Asia",
-      "openLibraryKey": "/works/OL6897345W",
-      "coverUrl": null,
-      "source": "openlibrary",
-      "openLibraryUrl": "https://openlibrary.org/works/OL6897345W"
-    },
-    {
-      "id": "ol-OL6897346W-islamabad",
-      "bookTitle": "Descriptive catalogue of Quaid-i-Azam papers",
-      "author": "Pakistan. Education Division. Quaid-i-Azam Papers Cell.",
-      "publishYear": 1971,
-      "placeName": "Islamabad",
-      "coordinates": [
-        73.0479,
-        33.6844
-      ],
-      "placeType": "real",
-      "settingType": "primary",
-      "narrativeEra": "1971s",
-      "passage": "Documents of and about Quaid-i-Azam Mahomed Ali Jinnah 1876-1948, founder of Pakistan.",
-      "sentiment": {
-        "polarity": 0.0,
-        "dominantEmotions": [],
-        "themes": []
-      },
-      "language": "English",
-      "genres": [
-        "literary fiction"
-      ],
-      "region": "South Asia",
-      "openLibraryKey": "/works/OL6897346W",
-      "coverUrl": null,
-      "source": "openlibrary",
-      "openLibraryUrl": "https://openlibrary.org/works/OL6897346W"
     },
     {
       "id": "ol-OL23397535W-islamabad",
@@ -7143,35 +6494,6 @@
       "openLibraryUrl": "https://openlibrary.org/works/OL16813561W"
     },
     {
-      "id": "ol-OL19571096W-dhaka",
-      "bookTitle": "Regionalism in architecture",
-      "author": "Aga Khan Award for Architecture (Organization)",
-      "publishYear": 1985,
-      "placeName": "Dhaka",
-      "coordinates": [
-        90.4125,
-        23.8103
-      ],
-      "placeType": "real",
-      "settingType": "primary",
-      "narrativeEra": "1985s",
-      "passage": "",
-      "sentiment": {
-        "polarity": 0.0,
-        "dominantEmotions": [],
-        "themes": []
-      },
-      "language": "English",
-      "genres": [
-        "literary fiction"
-      ],
-      "region": "South Asia",
-      "openLibraryKey": "/works/OL19571096W",
-      "coverUrl": "https://covers.openlibrary.org/b/id/8528492-M.jpg",
-      "source": "openlibrary",
-      "openLibraryUrl": "https://openlibrary.org/works/OL19571096W"
-    },
-    {
       "id": "ol-OL1048386W-dhaka",
       "bookTitle": "Ḍhākā samagra",
       "author": "Muntassir Mamoon",
@@ -7263,64 +6585,6 @@
       "openLibraryUrl": "https://openlibrary.org/works/OL9482477W"
     },
     {
-      "id": "ol-OL96539W-colombo",
-      "bookTitle": "Catalogue of the Colombo museum library ..",
-      "author": "Colombo Museum. Library.",
-      "publishYear": 1894,
-      "placeName": "Colombo",
-      "coordinates": [
-        79.8612,
-        6.9271
-      ],
-      "placeType": "real",
-      "settingType": "primary",
-      "narrativeEra": "1894s",
-      "passage": "",
-      "sentiment": {
-        "polarity": 0.0,
-        "dominantEmotions": [],
-        "themes": []
-      },
-      "language": "English",
-      "genres": [
-        "literary fiction"
-      ],
-      "region": "South Asia",
-      "openLibraryKey": "/works/OL96539W",
-      "coverUrl": "https://covers.openlibrary.org/b/id/9291339-M.jpg",
-      "source": "openlibrary",
-      "openLibraryUrl": "https://openlibrary.org/works/OL96539W"
-    },
-    {
-      "id": "ol-OL1043735W-colombo",
-      "bookTitle": "Bronzes from Ceylon, chiefly in the Colombo Museum",
-      "author": "Ananda Coomaraswamy",
-      "publishYear": 1914,
-      "placeName": "Colombo",
-      "coordinates": [
-        79.8612,
-        6.9271
-      ],
-      "placeType": "real",
-      "settingType": "primary",
-      "narrativeEra": "1914s",
-      "passage": "",
-      "sentiment": {
-        "polarity": 0.0,
-        "dominantEmotions": [],
-        "themes": []
-      },
-      "language": "English",
-      "genres": [
-        "literary fiction"
-      ],
-      "region": "South Asia",
-      "openLibraryKey": "/works/OL1043735W",
-      "coverUrl": null,
-      "source": "openlibrary",
-      "openLibraryUrl": "https://openlibrary.org/works/OL1043735W"
-    },
-    {
       "id": "ol-OL3725691W-colombo",
       "bookTitle": "To hang or not to hang?",
       "author": "Tyronne Fernando",
@@ -7348,35 +6612,6 @@
       "coverUrl": null,
       "source": "openlibrary",
       "openLibraryUrl": "https://openlibrary.org/works/OL3725691W"
-    },
-    {
-      "id": "ol-OL8886663W-colombo",
-      "bookTitle": "Colombo heritage",
-      "author": "Jan Baldwin",
-      "publishYear": 1984,
-      "placeName": "Colombo",
-      "coordinates": [
-        79.8612,
-        6.9271
-      ],
-      "placeType": "real",
-      "settingType": "primary",
-      "narrativeEra": "1984s",
-      "passage": "",
-      "sentiment": {
-        "polarity": 0.0,
-        "dominantEmotions": [],
-        "themes": []
-      },
-      "language": "English",
-      "genres": [
-        "literary fiction"
-      ],
-      "region": "South Asia",
-      "openLibraryKey": "/works/OL8886663W",
-      "coverUrl": null,
-      "source": "openlibrary",
-      "openLibraryUrl": "https://openlibrary.org/works/OL8886663W"
     },
     {
       "id": "ol-OL3725690W-colombo",
@@ -7707,35 +6942,6 @@
       "openLibraryUrl": "https://openlibrary.org/works/OL351516W"
     },
     {
-      "id": "ol-OL6733308W-kathmandu",
-      "bookTitle": "The traditional architecture of the Kathmandu Valley",
-      "author": "Wolfgang Korn",
-      "publishYear": 1976,
-      "placeName": "Kathmandu",
-      "coordinates": [
-        85.324,
-        27.7172
-      ],
-      "placeType": "real",
-      "settingType": "primary",
-      "narrativeEra": "1976s",
-      "passage": "",
-      "sentiment": {
-        "polarity": 0.0,
-        "dominantEmotions": [],
-        "themes": []
-      },
-      "language": "English",
-      "genres": [
-        "literary fiction"
-      ],
-      "region": "South Asia",
-      "openLibraryKey": "/works/OL6733308W",
-      "coverUrl": null,
-      "source": "openlibrary",
-      "openLibraryUrl": "https://openlibrary.org/works/OL6733308W"
-    },
-    {
       "id": "ol-OL16442066W-kathmandu",
       "bookTitle": "Reigning the river",
       "author": "Anne Rademacher",
@@ -7886,35 +7092,6 @@
       "openLibraryUrl": "https://openlibrary.org/works/OL1770410W"
     },
     {
-      "id": "ol-OL5976939W-patna",
-      "bookTitle": "Patna Museum catalogue",
-      "author": "Patna Museum.",
-      "publishYear": 2001,
-      "placeName": "Patna",
-      "coordinates": [
-        85.1376,
-        25.6093
-      ],
-      "placeType": "real",
-      "settingType": "primary",
-      "narrativeEra": "2001s",
-      "passage": "",
-      "sentiment": {
-        "polarity": 0.0,
-        "dominantEmotions": [],
-        "themes": []
-      },
-      "language": "English",
-      "genres": [
-        "literary fiction"
-      ],
-      "region": "South Asia",
-      "openLibraryKey": "/works/OL5976939W",
-      "coverUrl": null,
-      "source": "openlibrary",
-      "openLibraryUrl": "https://openlibrary.org/works/OL5976939W"
-    },
-    {
       "id": "ol-OL1074339W-patna",
       "bookTitle": "Consumer behaviour in urban India",
       "author": "Abdus Sami, A. Sami, J. Ashgar",
@@ -7942,35 +7119,6 @@
       "coverUrl": null,
       "source": "openlibrary",
       "openLibraryUrl": "https://openlibrary.org/works/OL1074339W"
-    },
-    {
-      "id": "ol-OL340891W-patna",
-      "bookTitle": "Terra-cotta figurines in Patna Museum",
-      "author": "Patna Museum, Patna, India.",
-      "publishYear": 1961,
-      "placeName": "Patna",
-      "coordinates": [
-        85.1376,
-        25.6093
-      ],
-      "placeType": "real",
-      "settingType": "primary",
-      "narrativeEra": "1961s",
-      "passage": "",
-      "sentiment": {
-        "polarity": 0.0,
-        "dominantEmotions": [],
-        "themes": []
-      },
-      "language": "English",
-      "genres": [
-        "literary fiction"
-      ],
-      "region": "South Asia",
-      "openLibraryKey": "/works/OL340891W",
-      "coverUrl": null,
-      "source": "openlibrary",
-      "openLibraryUrl": "https://openlibrary.org/works/OL340891W"
     },
     {
       "id": "ol-OL96627W-patna",
@@ -8588,35 +7736,6 @@
       "openLibraryUrl": "https://openlibrary.org/works/OL1969777W"
     },
     {
-      "id": "ol-OL18912839W-darjeeling",
-      "bookTitle": "Dorjeeling guide, 1845",
-      "author": "Unknown",
-      "publishYear": 0,
-      "placeName": "Darjeeling",
-      "coordinates": [
-        88.2631,
-        27.036
-      ],
-      "placeType": "real",
-      "settingType": "primary",
-      "narrativeEra": "",
-      "passage": "",
-      "sentiment": {
-        "polarity": 0.0,
-        "dominantEmotions": [],
-        "themes": []
-      },
-      "language": "English",
-      "genres": [
-        "literary fiction"
-      ],
-      "region": "South Asia",
-      "openLibraryKey": "/works/OL18912839W",
-      "coverUrl": null,
-      "source": "openlibrary",
-      "openLibraryUrl": "https://openlibrary.org/works/OL18912839W"
-    },
-    {
       "id": "ol-OL2096875W-darjeeling",
       "bookTitle": "The road of destiny",
       "author": "F. M. J. Pinn",
@@ -8731,35 +7850,6 @@
       "coverUrl": "https://covers.openlibrary.org/b/id/7151998-M.jpg",
       "source": "openlibrary",
       "openLibraryUrl": "https://openlibrary.org/works/OL384634W"
-    },
-    {
-      "id": "ol-OL23956287W-mussoorie",
-      "bookTitle": "Roads to Mussoorie",
-      "author": "Ruskin Bond",
-      "publishYear": 2005,
-      "placeName": "Mussoorie",
-      "coordinates": [
-        78.0644,
-        30.4598
-      ],
-      "placeType": "real",
-      "settingType": "primary",
-      "narrativeEra": "2005s",
-      "passage": "Anecdotes of the English author about his travels to Mussoorie, India.",
-      "sentiment": {
-        "polarity": 0.0,
-        "dominantEmotions": [],
-        "themes": []
-      },
-      "language": "English",
-      "genres": [
-        "literary fiction"
-      ],
-      "region": "South Asia",
-      "openLibraryKey": "/works/OL23956287W",
-      "coverUrl": "https://covers.openlibrary.org/b/id/10797249-M.jpg",
-      "source": "openlibrary",
-      "openLibraryUrl": "https://openlibrary.org/works/OL23956287W"
     },
     {
       "id": "ol-OL15458381W-mussoorie",
@@ -9229,35 +8319,6 @@
       "openLibraryUrl": "https://openlibrary.org/works/OL1035524W"
     },
     {
-      "id": "ol-OL2598290W-aligarh",
-      "bookTitle": "D.S.MATHUR,MECHANICS Catalogue of manuscripts in the Maulana Azad Library, Aligarh Muslim University, Aligarh",
-      "author": "Maulana Azad Library.",
-      "publishYear": 1981,
-      "placeName": "Aligarh",
-      "coordinates": [
-        78.088,
-        27.8974
-      ],
-      "placeType": "real",
-      "settingType": "primary",
-      "narrativeEra": "1981s",
-      "passage": "",
-      "sentiment": {
-        "polarity": 0.0,
-        "dominantEmotions": [],
-        "themes": []
-      },
-      "language": "English",
-      "genres": [
-        "literary fiction"
-      ],
-      "region": "South Asia",
-      "openLibraryKey": "/works/OL2598290W",
-      "coverUrl": "https://covers.openlibrary.org/b/id/6295338-M.jpg",
-      "source": "openlibrary",
-      "openLibraryUrl": "https://openlibrary.org/works/OL2598290W"
-    },
-    {
       "id": "ol-OL16596176W-aligarh",
       "bookTitle": "Aligarh in My Days",
       "author": "Syed Ziaur Rahman",
@@ -9285,35 +8346,6 @@
       "coverUrl": "https://covers.openlibrary.org/b/id/7130088-M.jpg",
       "source": "openlibrary",
       "openLibraryUrl": "https://openlibrary.org/works/OL16596176W"
-    },
-    {
-      "id": "ol-OL96657W-aligarh",
-      "bookTitle": "A comparative study of well irrigation in Aligarh District, India",
-      "author": "T. V. Moorti",
-      "publishYear": 1970,
-      "placeName": "Aligarh",
-      "coordinates": [
-        78.088,
-        27.8974
-      ],
-      "placeType": "real",
-      "settingType": "primary",
-      "narrativeEra": "1970s",
-      "passage": "",
-      "sentiment": {
-        "polarity": 0.0,
-        "dominantEmotions": [],
-        "themes": []
-      },
-      "language": "English",
-      "genres": [
-        "literary fiction"
-      ],
-      "region": "South Asia",
-      "openLibraryKey": "/works/OL96657W",
-      "coverUrl": null,
-      "source": "openlibrary",
-      "openLibraryUrl": "https://openlibrary.org/works/OL96657W"
     },
     {
       "id": "ol-OL15437386W-aligarh",
@@ -9911,35 +8943,6 @@
       "openLibraryUrl": "https://openlibrary.org/works/OL13699820W"
     },
     {
-      "id": "ol-OL23385162W-shillong",
-      "bookTitle": "Heritage Shillong",
-      "author": "Dipankar Banerjee",
-      "publishYear": 2012,
-      "placeName": "Shillong",
-      "coordinates": [
-        91.8933,
-        25.5788
-      ],
-      "placeType": "real",
-      "settingType": "primary",
-      "narrativeEra": "2012s",
-      "passage": "",
-      "sentiment": {
-        "polarity": 0.0,
-        "dominantEmotions": [],
-        "themes": []
-      },
-      "language": "English",
-      "genres": [
-        "literary fiction"
-      ],
-      "region": "South Asia",
-      "openLibraryKey": "/works/OL23385162W",
-      "coverUrl": null,
-      "source": "openlibrary",
-      "openLibraryUrl": "https://openlibrary.org/works/OL23385162W"
-    },
-    {
       "id": "ol-OL32584315W-shillong",
       "bookTitle": "Kā meikhāra ghara",
       "author": "Tilottoma Misra",
@@ -10089,35 +9092,6 @@
       "openLibraryUrl": "https://openlibrary.org/works/OL3436949W"
     },
     {
-      "id": "ol-OL4598621W-jaisalmer",
-      "bookTitle": "Art & architecture of Jaisalmer",
-      "author": "Sureshwara Nand",
-      "publishYear": 1990,
-      "placeName": "Jaisalmer",
-      "coordinates": [
-        70.9083,
-        26.9157
-      ],
-      "placeType": "real",
-      "settingType": "primary",
-      "narrativeEra": "1990s",
-      "passage": "",
-      "sentiment": {
-        "polarity": 0.0,
-        "dominantEmotions": [],
-        "themes": []
-      },
-      "language": "English",
-      "genres": [
-        "literary fiction"
-      ],
-      "region": "South Asia",
-      "openLibraryKey": "/works/OL4598621W",
-      "coverUrl": null,
-      "source": "openlibrary",
-      "openLibraryUrl": "https://openlibrary.org/works/OL4598621W"
-    },
-    {
       "id": "ol-OL3436950W-jaisalmer",
       "bookTitle": "Yugayugīna Vallapradeśa",
       "author": "Nanda Kiśora Śarmā",
@@ -10205,35 +9179,6 @@
       "openLibraryUrl": "https://openlibrary.org/works/OL5976924W"
     },
     {
-      "id": "ol-OL2598468W-jaisalmer",
-      "bookTitle": "History, art & architecture of Jaisalmer",
-      "author": "R. A. Agarawala",
-      "publishYear": 1979,
-      "placeName": "Jaisalmer",
-      "coordinates": [
-        70.9083,
-        26.9157
-      ],
-      "placeType": "real",
-      "settingType": "primary",
-      "narrativeEra": "1979s",
-      "passage": "",
-      "sentiment": {
-        "polarity": 0.0,
-        "dominantEmotions": [],
-        "themes": []
-      },
-      "language": "English",
-      "genres": [
-        "literary fiction"
-      ],
-      "region": "South Asia",
-      "openLibraryKey": "/works/OL2598468W",
-      "coverUrl": null,
-      "source": "openlibrary",
-      "openLibraryUrl": "https://openlibrary.org/works/OL2598468W"
-    },
-    {
       "id": "ol-OL32607197W-jaisalmer",
       "bookTitle": "Divāna Sālamasiṃha",
       "author": "Omaprakāśa Bhāṭiyā",
@@ -10290,35 +9235,6 @@
       "coverUrl": null,
       "source": "openlibrary",
       "openLibraryUrl": "https://openlibrary.org/works/OL325090W"
-    },
-    {
-      "id": "ol-OL11202608W-jaisalmer",
-      "bookTitle": "History, art & architecture of Jaisalmer",
-      "author": "Ram Avatar Agarawala",
-      "publishYear": 1979,
-      "placeName": "Jaisalmer",
-      "coordinates": [
-        70.9083,
-        26.9157
-      ],
-      "placeType": "real",
-      "settingType": "primary",
-      "narrativeEra": "1979s",
-      "passage": "",
-      "sentiment": {
-        "polarity": 0.0,
-        "dominantEmotions": [],
-        "themes": []
-      },
-      "language": "English",
-      "genres": [
-        "literary fiction"
-      ],
-      "region": "South Asia",
-      "openLibraryKey": "/works/OL11202608W",
-      "coverUrl": null,
-      "source": "openlibrary",
-      "openLibraryUrl": "https://openlibrary.org/works/OL11202608W"
     },
     {
       "id": "ol-OL12594321W-jodhpur",
@@ -11243,95 +10159,6 @@
       "openLibraryUrl": "https://openlibrary.org/works/OL28774620W"
     },
     {
-      "id": "ol-OL23283538W-udaipur",
-      "bookTitle": "Mewar & Maratha relations",
-      "author": "K. S. Gupta",
-      "publishYear": 2014,
-      "placeName": "Udaipur",
-      "coordinates": [
-        73.7125,
-        24.5854
-      ],
-      "placeType": "real",
-      "settingType": "primary",
-      "narrativeEra": "2014s",
-      "passage": "",
-      "sentiment": {
-        "polarity": 0.0,
-        "dominantEmotions": [],
-        "themes": []
-      },
-      "language": "English",
-      "genres": [
-        "literary fiction"
-      ],
-      "region": "South Asia",
-      "openLibraryKey": "/works/OL23283538W",
-      "coverUrl": "https://covers.openlibrary.org/b/id/13736897-M.jpg",
-      "source": "openlibrary",
-      "openLibraryUrl": "https://openlibrary.org/works/OL23283538W"
-    },
-    {
-      "id": "ol-OL3057112W-udaipur",
-      "bookTitle": "The City Palace Museum, Udaipur",
-      "author": "Andrew Topsfield",
-      "publishYear": 1990,
-      "placeName": "Udaipur",
-      "coordinates": [
-        73.7125,
-        24.5854
-      ],
-      "placeType": "real",
-      "settingType": "primary",
-      "narrativeEra": "1990s",
-      "passage": "",
-      "sentiment": {
-        "polarity": 0.0,
-        "dominantEmotions": [],
-        "themes": [
-          "war"
-        ]
-      },
-      "language": "English",
-      "genres": [
-        "literary fiction"
-      ],
-      "region": "South Asia",
-      "openLibraryKey": "/works/OL3057112W",
-      "coverUrl": "https://covers.openlibrary.org/b/id/11604677-M.jpg",
-      "source": "openlibrary",
-      "openLibraryUrl": "https://openlibrary.org/works/OL3057112W"
-    },
-    {
-      "id": "ol-OL6547192W-udaipur",
-      "bookTitle": "Mewar history",
-      "author": "Dev Nath Purohit",
-      "publishYear": 1938,
-      "placeName": "Udaipur",
-      "coordinates": [
-        73.7125,
-        24.5854
-      ],
-      "placeType": "real",
-      "settingType": "primary",
-      "narrativeEra": "1938s",
-      "passage": "",
-      "sentiment": {
-        "polarity": 0.0,
-        "dominantEmotions": [],
-        "themes": []
-      },
-      "language": "English",
-      "genres": [
-        "literary fiction"
-      ],
-      "region": "South Asia",
-      "openLibraryKey": "/works/OL6547192W",
-      "coverUrl": null,
-      "source": "openlibrary",
-      "openLibraryUrl": "https://openlibrary.org/works/OL6547192W"
-    },
-    {
       "id": "ol-OL299572W-udaipur",
       "bookTitle": "Mebāra-patana",
       "author": "Dwijendra Lal Roy",
@@ -11359,35 +10186,6 @@
       "coverUrl": null,
       "source": "openlibrary",
       "openLibraryUrl": "https://openlibrary.org/works/OL299572W"
-    },
-    {
-      "id": "ol-OL388684W-udaipur",
-      "bookTitle": "War strategy of Maharana Pratap",
-      "author": "L. P. Mathur",
-      "publishYear": 2004,
-      "placeName": "Udaipur",
-      "coordinates": [
-        73.7125,
-        24.5854
-      ],
-      "placeType": "real",
-      "settingType": "primary",
-      "narrativeEra": "2004s",
-      "passage": "",
-      "sentiment": {
-        "polarity": 0.0,
-        "dominantEmotions": [],
-        "themes": []
-      },
-      "language": "English",
-      "genres": [
-        "literary fiction"
-      ],
-      "region": "South Asia",
-      "openLibraryKey": "/works/OL388684W",
-      "coverUrl": null,
-      "source": "openlibrary",
-      "openLibraryUrl": "https://openlibrary.org/works/OL388684W"
     },
     {
       "id": "ol-OL15911198W-madurai",
@@ -11723,7 +10521,6 @@
       },
       "language": "English",
       "genres": [
-        "biography",
         "literary fiction",
         "social realism"
       ],
@@ -11789,7 +10586,6 @@
       },
       "language": "English",
       "genres": [
-        "biography",
         "literary fiction",
         "social realism"
       ],
@@ -12004,65 +10800,6 @@
       "openLibraryUrl": "https://openlibrary.org/works/OL36505253W"
     },
     {
-      "id": "ol-OL3727135W-kozhikode",
-      "bookTitle": "Evaluation study on the functioning of the G.R.B.T. schools of Wynad, Kerala",
-      "author": "P. R. G. Mathur",
-      "publishYear": 1977,
-      "placeName": "Kozhikode",
-      "coordinates": [
-        75.7804,
-        11.2588
-      ],
-      "placeType": "real",
-      "settingType": "primary",
-      "narrativeEra": "1977s",
-      "passage": "",
-      "sentiment": {
-        "polarity": 0.0,
-        "dominantEmotions": [],
-        "themes": []
-      },
-      "language": "English",
-      "genres": [
-        "children's",
-        "social realism"
-      ],
-      "region": "South Asia",
-      "openLibraryKey": "/works/OL3727135W",
-      "coverUrl": null,
-      "source": "openlibrary",
-      "openLibraryUrl": "https://openlibrary.org/works/OL3727135W"
-    },
-    {
-      "id": "ol-OL21885963W-london",
-      "bookTitle": "Study Guide",
-      "author": "SuperSummary",
-      "publishYear": 2019,
-      "placeName": "London",
-      "coordinates": [
-        -0.1276,
-        51.5074
-      ],
-      "placeType": "real",
-      "settingType": "primary",
-      "narrativeEra": "2019s",
-      "passage": "GOFFMAN'S, INTERACTION",
-      "sentiment": {
-        "polarity": 0.0,
-        "dominantEmotions": [],
-        "themes": []
-      },
-      "language": "English",
-      "genres": [
-        "literary fiction"
-      ],
-      "region": "Europe",
-      "openLibraryKey": "/works/OL21885963W",
-      "coverUrl": "https://covers.openlibrary.org/b/id/13175019-M.jpg",
-      "source": "openlibrary",
-      "openLibraryUrl": "https://openlibrary.org/works/OL21885963W"
-    },
-    {
       "id": "ol-OL472549W-london",
       "bookTitle": "The Man in the Brown Suit",
       "author": "Agatha Christie",
@@ -12121,9 +10858,7 @@
       },
       "language": "English",
       "genres": [
-        "biography",
         "literary fiction",
-        "memoir",
         "romance",
         "social realism"
       ],
@@ -12909,9 +11644,7 @@
       },
       "language": "French",
       "genres": [
-        "biography",
         "literary fiction",
-        "memoir",
         "short stories",
         "social realism"
       ],
@@ -13451,7 +12184,6 @@
       },
       "language": "French",
       "genres": [
-        "biography",
         "literary fiction",
         "romance"
       ],
@@ -13906,43 +12638,6 @@
       "coverUrl": "https://covers.openlibrary.org/b/id/7401260-M.jpg",
       "source": "openlibrary",
       "openLibraryUrl": "https://openlibrary.org/works/OL2113816W"
-    },
-    {
-      "id": "ol-OL91794W-istanbul",
-      "bookTitle": "World History for Dummies",
-      "author": "Peter Haugen",
-      "publishYear": 2001,
-      "placeName": "Istanbul",
-      "coordinates": [
-        28.9784,
-        41.0082
-      ],
-      "placeType": "real",
-      "settingType": "primary",
-      "narrativeEra": "2001s",
-      "passage": "The book that puts the \"story\" back in history!\r\n\r\nDon't know much about history? Don't worry! With this friendly reference, you can bone up on all those facts you missed in history class -- and have a good time in the bargain. From ancient Greece to contemporary America, from religious controversies to global wars, this is history the way it ought to be -- fresh, memorable, and fun.\r\n--back cover",
-      "sentiment": {
-        "polarity": 0.0,
-        "dominantEmotions": [],
-        "themes": [
-          "class",
-          "colonialism",
-          "gender",
-          "religion",
-          "revolution",
-          "war"
-        ]
-      },
-      "language": "English",
-      "genres": [
-        "literary fiction",
-        "social realism"
-      ],
-      "region": "Europe",
-      "openLibraryKey": "/works/OL91794W",
-      "coverUrl": "https://covers.openlibrary.org/b/id/8400625-M.jpg",
-      "source": "openlibrary",
-      "openLibraryUrl": "https://openlibrary.org/works/OL91794W"
     },
     {
       "id": "ol-OL6813422W-istanbul",
@@ -15760,9 +14455,7 @@
       },
       "language": "German",
       "genres": [
-        "biography",
         "literary fiction",
-        "memoir",
         "short stories",
         "social realism"
       ],
@@ -16617,7 +15310,6 @@
       },
       "language": "English",
       "genres": [
-        "biography",
         "political fiction",
         "romance",
         "social realism"
@@ -17292,7 +15984,7 @@
       "id": "cif-15-delhi",
       "bookTitle": "A Death in Delhi",
       "author": "Kamaleshwar",
-      "publishYear": 0,
+      "publishYear": 1985,
       "placeName": "Delhi",
       "coordinates": [
         77.209,
@@ -17319,7 +16011,7 @@
       "id": "cif-17-shimla",
       "bookTitle": "The Red Tin Roof",
       "author": "Nirmal Verma",
-      "publishYear": 0,
+      "publishYear": 1974,
       "placeName": "Shimla",
       "coordinates": [
         77.1734,
@@ -17346,7 +16038,7 @@
       "id": "cif-18-delhi",
       "bookTitle": "Signs",
       "author": "Nirmal Verma",
-      "publishYear": 0,
+      "publishYear": 1968,
       "placeName": "Delhi",
       "coordinates": [
         77.209,
@@ -17508,7 +16200,7 @@
       "id": "cif-27-poompuhar",
       "bookTitle": "Cilappatikaram/ Silappathikaram",
       "author": "Ilango Adigal",
-      "publishYear": 0,
+      "publishYear": 200,
       "placeName": "Poompuhar",
       "coordinates": [
         78.1198,
@@ -17535,7 +16227,7 @@
       "id": "cif-28-kalimpong",
       "bookTitle": "The Inheritance of Loss",
       "author": "Kiran Desai",
-      "publishYear": 0,
+      "publishYear": 2006,
       "placeName": "Kalimpong",
       "coordinates": [
         88.47,
@@ -17670,7 +16362,7 @@
       "id": "cif-33-mumbai",
       "bookTitle": "God's Little Soldier",
       "author": "Kiran Nagarkar",
-      "publishYear": 0,
+      "publishYear": 2006,
       "placeName": "Mumbai",
       "coordinates": [
         72.8777,
@@ -17778,7 +16470,7 @@
       "id": "cif-39-west-bengal-(rural-landscape)",
       "bookTitle": "Dui Bigha Jomi",
       "author": "Rabindranath Tagore",
-      "publishYear": 0,
+      "publishYear": 1894,
       "placeName": "West Bengal (rural landscape)",
       "coordinates": [
         87.855,
@@ -17805,7 +16497,7 @@
       "id": "cif-40-mahe",
       "bookTitle": "On the Banks of the River Mayyazhi",
       "author": "M.Mukundan",
-      "publishYear": 0,
+      "publishYear": 1974,
       "placeName": "Mahe",
       "coordinates": [
         75.5354,
@@ -17832,7 +16524,7 @@
       "id": "cif-41-karikkottakkari",
       "bookTitle": "Karikkottakkari",
       "author": "Vinoy Thomas",
-      "publishYear": 0,
+      "publishYear": 2012,
       "placeName": "Karikkottakkari",
       "coordinates": [
         75.37,
@@ -17940,7 +16632,7 @@
       "id": "cif-46-kattupatti-(village-in-tamil-nadu)",
       "bookTitle": "Pyre",
       "author": "Perumal Murugan",
-      "publishYear": 0,
+      "publishYear": 2013,
       "placeName": "Kattupatti (village in Tamil Nadu)",
       "coordinates": [
         77.57,
@@ -18507,7 +17199,7 @@
       "id": "cif-72-delhi",
       "bookTitle": "Once there was a city named delhi",
       "author": "Intazar Husain",
-      "publishYear": 0,
+      "publishYear": 1979,
       "placeName": "Delhi",
       "coordinates": [
         77.209,
@@ -18750,7 +17442,7 @@
       "id": "cif-87-delhi",
       "bookTitle": "Kai Chand the Sare aasman",
       "author": "Shamsur Rahman Faarouqi",
-      "publishYear": 0,
+      "publishYear": 2006,
       "placeName": "Delhi",
       "coordinates": [
         77.209,
@@ -18885,7 +17577,7 @@
       "id": "cif-92-assi-ghat(kashi",
       "bookTitle": "Kashi Ka Assi",
       "author": "Kashinath Singh",
-      "publishYear": 0,
+      "publishYear": 2003,
       "placeName": "Assi Ghat(Kashi",
       "coordinates": [
         83.0007,
@@ -19568,7 +18260,7 @@
       "id": "cif-125-gorakhpur",
       "bookTitle": "Jimmy the Terrorist",
       "author": "Omair Ahmad",
-      "publishYear": 0,
+      "publishYear": 2010,
       "placeName": "Gorakhpur",
       "coordinates": [
         83.3732,
@@ -19595,7 +18287,7 @@
       "id": "cif-126-gorakhpur",
       "bookTitle": "Tall Tales By a Small Dog",
       "author": "Omair Ahmad",
-      "publishYear": 0,
+      "publishYear": 2004,
       "placeName": "Gorakhpur",
       "coordinates": [
         83.3732,
@@ -20788,7 +19480,7 @@
       "id": "cif-171-belgavi",
       "bookTitle": "The Labyrinth of Silence",
       "author": "Dr. Aparna Salvi Nagda",
-      "publishYear": 0,
+      "publishYear": 2020,
       "placeName": "Belgavi",
       "coordinates": [
         74.4977,
@@ -22292,34 +20984,6 @@
       "goodreadsUrl": "https://books.google.com/books?q=The%20Ministry%20of%20Utmost%20Happiness%20Arundhati%20Roy"
     },
     {
-      "id": "cif-pradip-acharaya",
-      "bookTitle": "Pradip Acharaya",
-      "author": "Delhi",
-      "publishYear": 0,
-      "placeName": "Novel",
-      "coordinates": [
-        77.5990936,
-        12.9905246
-      ],
-      "placeType": "real",
-      "settingType": "primary",
-      "narrativeEra": "",
-      "passage": "",
-      "sentiment": {
-        "polarity": 0,
-        "dominantEmotions": [],
-        "themes": [
-          "assamese"
-        ]
-      },
-      "language": "2002",
-      "genres": [
-        "literary fiction"
-      ],
-      "region": "South Asia",
-      "goodreadsUrl": "https://books.google.com/books?q=Pradip%20Acharaya%20Delhi"
-    },
-    {
       "id": "cif-rich-like-us",
       "bookTitle": "Rich Like Us",
       "author": "Nayantara Sahgal",
@@ -23016,7 +21680,7 @@
       "id": "cif-the-bells-are-ringing-in-haridwar-three-novellas",
       "bookTitle": "The bells are ringing in Haridwar: Three novellas",
       "author": "M Mukundan",
-      "publishYear": 0,
+      "publishYear": 2008,
       "placeName": "Haridwar",
       "coordinates": [
         78.1642,
@@ -23408,7 +22072,7 @@
       "id": "cif-to-let-social-novel",
       "bookTitle": "To-Let: Social Novel",
       "author": "MK Indira",
-      "publishYear": 0,
+      "publishYear": 1979,
       "placeName": "Bangalore",
       "coordinates": [
         77.5946,
@@ -24001,7 +22665,7 @@
       "id": "cif-oru-deshathinte-kadha",
       "bookTitle": "Oru Deshathinte Kadha",
       "author": "S K Pottakkadu",
-      "publishYear": 0,
+      "publishYear": 1971,
       "placeName": "Kozhikode",
       "coordinates": [
         75.7804,
@@ -24339,7 +23003,7 @@
       "id": "cif-kalkatta",
       "bookTitle": "Kalkatta",
       "author": "Kunal Basu",
-      "publishYear": 0,
+      "publishYear": 2013,
       "placeName": "Kolkata",
       "coordinates": [
         88.3639,
@@ -24916,7 +23580,7 @@
       "id": "cif-the-buccaneers-of-mumbai-feluda-series",
       "bookTitle": "The Buccaneers of Mumbai (Feluda Series)",
       "author": "Satyajit Ray",
-      "publishYear": 0,
+      "publishYear": 1983,
       "placeName": "Mumbai",
       "coordinates": [
         72.8777,
@@ -25850,35 +24514,6 @@
       ],
       "region": "South Asia",
       "goodreadsUrl": "https://books.google.com/books?q=Kuda%20Nannakuna%20Choyi%20M%20Mukundan"
-    },
-    {
-      "id": "cif-mayyazhippuzhayude-theerangalil",
-      "bookTitle": "Mayyazhippuzhayude Theerangalil",
-      "author": "M Mukundan",
-      "publishYear": 1974,
-      "placeName": "Mahe(Mayyazhi)",
-      "coordinates": [
-        75.54,
-        11.701
-      ],
-      "placeType": "real",
-      "settingType": "primary",
-      "narrativeEra": "1974s",
-      "passage": "",
-      "sentiment": {
-        "polarity": 0,
-        "dominantEmotions": [],
-        "themes": [
-          "identity",
-          "patriotism"
-        ]
-      },
-      "language": "Malayalam",
-      "genres": [
-        "literary fiction"
-      ],
-      "region": "South Asia",
-      "goodreadsUrl": "https://books.google.com/books?q=Mayyazhippuzhayude%20Theerangalil%20M%20Mukundan"
     },
     {
       "id": "cif-the-maldives-avenger",
@@ -27493,7 +26128,7 @@
       "id": "cif-kalpakkam",
       "bookTitle": "Kalpakkam",
       "author": "K Savitri Ammal",
-      "publishYear": 0,
+      "publishYear": 1990,
       "placeName": "Kalpakkam",
       "coordinates": [
         80.166,
@@ -28213,36 +26848,6 @@
       "goodreadsUrl": "https://books.google.com/books?q=The%20Trotter-nama%20Irwin%20Allan%20Sealy"
     },
     {
-      "id": "cif-the-trotter-nama",
-      "bookTitle": "The Trotter-nama",
-      "author": "Irwin Allan Sealy",
-      "publishYear": 2019,
-      "placeName": "Lucknow",
-      "coordinates": [
-        80.9462,
-        26.8467
-      ],
-      "placeType": "real",
-      "settingType": "primary",
-      "narrativeEra": "2019s",
-      "passage": "",
-      "sentiment": {
-        "polarity": 0,
-        "dominantEmotions": [],
-        "themes": [
-          "anglo-indian_experience",
-          "generational_drama",
-          "linguistic_smorgasbord"
-        ]
-      },
-      "language": "English",
-      "genres": [
-        "literary fiction"
-      ],
-      "region": "South Asia",
-      "goodreadsUrl": "https://books.google.com/books?q=The%20Trotter-nama%20Irwin%20Allan%20Sealy"
-    },
-    {
       "id": "cif-umrao-jaan-ada",
       "bookTitle": "Umrao Jaan Ada",
       "author": "Mirza Hadi Ruswa",
@@ -28337,7 +26942,7 @@
       "id": "cif-the-mystery-of-the-elephant-god-feluda-series",
       "bookTitle": "The Mystery of the Elephant God (Feluda Series)",
       "author": "Satyajit Ray",
-      "publishYear": 0,
+      "publishYear": 1965,
       "placeName": "Varanasi",
       "coordinates": [
         83.0007,
@@ -29248,34 +27853,6 @@
       ],
       "region": "South Asia",
       "goodreadsUrl": "https://books.google.com/books?q=English%2C%20August%20Upamanyu%20Chatterjee"
-    },
-    {
-      "id": "cif-mumbai",
-      "bookTitle": "Mumbai",
-      "author": "Novel",
-      "publishYear": 0,
-      "placeName": "queer",
-      "coordinates": [
-        72.8777,
-        19.076
-      ],
-      "placeType": "real",
-      "settingType": "primary",
-      "narrativeEra": "",
-      "passage": "",
-      "sentiment": {
-        "polarity": 0,
-        "dominantEmotions": [],
-        "themes": [
-          "2025"
-        ]
-      },
-      "language": "English",
-      "genres": [
-        "literary fiction"
-      ],
-      "region": "South Asia",
-      "goodreadsUrl": "https://books.google.com/books?q=Mumbai%20Novel"
     },
     {
       "id": "cif-the-guru-who-came-down-from-the-mountain",
