@@ -111,7 +111,7 @@ const READING_LISTS: ReadingList[] = [
   {
     title: 'Mumbai Noir',
     description: 'Crime and the underbelly of the city that never sleeps',
-    query: 'mumbai crime',
+    query: '_list:mumbai-noir',
     icon: '🌃',
     filter: (p) =>
       p.placeName === 'Mumbai' &&

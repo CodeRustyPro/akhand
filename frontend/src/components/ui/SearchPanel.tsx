@@ -136,6 +136,15 @@ export default function SearchPanel({
         result = result.filter(
           (p) => p.language !== 'English' && p.language !== 'Unknown' && Boolean(p.language)
         );
+      } else if (specialFilter === '_list:mumbai-noir') {
+        result = result.filter(
+          (p) =>
+            p.placeName === 'Mumbai' &&
+            (p.genres.includes('crime') ||
+              p.genres.includes('mystery') ||
+              p.genres.includes('thriller') ||
+              p.sentiment.themes.includes('corruption'))
+        );
       } else if (specialFilter === '_list:small-towns') {
         result = result.filter(
           (p) => p.region === 'South Asia' && !METROS.has(p.placeName)
@@ -435,11 +444,13 @@ export default function SearchPanel({
             <span className="font-medium text-akhand-accent">
               {specialFilter === '_lang:non-english'
                 ? 'Fiction in Translation'
-                : specialFilter === '_list:small-towns'
-                  ? 'Small Town Stories'
-                  : specialFilter.startsWith('_genre:')
-                    ? specialFilter.slice(7)
-                    : specialFilter}
+                : specialFilter === '_list:mumbai-noir'
+                  ? 'Mumbai Noir'
+                  : specialFilter === '_list:small-towns'
+                    ? 'Small Town Stories'
+                    : specialFilter.startsWith('_genre:')
+                      ? specialFilter.slice(7)
+                      : specialFilter}
             </span>
           </div>
           <button
