@@ -15,6 +15,7 @@ import {
   GitBranch,
   Compass,
   Quote,
+  BookMarked,
 } from 'lucide-react';
 import { literaryPlaces } from '@/lib/data';
 import { fetchLiteraryPlaces } from '@/lib/api';
@@ -34,7 +35,7 @@ const features = [
     icon: Search,
     title: 'Full-Text Search',
     description:
-      'Search across 840+ literary places by title, author, city, theme, or passage. Filter by region, genre, and publication era.',
+      'Search across 980+ works of fiction by title, author, city, theme, or passage. Filter by region, genre, language, and era.',
   },
   {
     icon: Layers,
@@ -85,6 +86,66 @@ function pickFeatured(places: LiteraryPlace[]): LiteraryPlace[] {
   return places.filter((p) => p.passage && p.passage.length > 40).slice(0, 6);
 }
 
+interface ReadingList {
+  title: string;
+  description: string;
+  filter: (p: LiteraryPlace) => boolean;
+}
+
+const READING_LISTS: ReadingList[] = [
+  {
+    title: 'Partition Fiction',
+    description: 'Novels that reckon with the 1947 partition of India and Pakistan',
+    filter: (p) =>
+      p.sentiment.themes.includes('partition') ||
+      p.bookTitle.toLowerCase().includes('partition') ||
+      p.bookTitle.toLowerCase().includes('train to pakistan') ||
+      p.bookTitle.toLowerCase().includes('tamas') ||
+      p.bookTitle.toLowerCase().includes('ice-candy-man'),
+  },
+  {
+    title: 'Mumbai Noir',
+    description: 'Crime, mystery, and the underbelly of the city that never sleeps',
+    filter: (p) =>
+      p.placeName === 'Mumbai' &&
+      (p.genres.includes('crime') ||
+        p.genres.includes('mystery') ||
+        p.genres.includes('thriller') ||
+        p.sentiment.themes.includes('corruption')),
+  },
+  {
+    title: 'Fiction in Translation',
+    description: 'Works originally written in Hindi, Bengali, Tamil, Urdu, and other languages',
+    filter: (p) =>
+      p.language !== 'English' && p.language !== 'Unknown' && Boolean(p.language),
+  },
+  {
+    title: 'Small Town Stories',
+    description: 'Fiction set beyond the metros, in villages, hill stations, and coastal towns',
+    filter: (p) => {
+      const metros = new Set([
+        'Mumbai', 'Delhi', 'Kolkata', 'Chennai', 'Bangalore',
+        'Hyderabad', 'London', 'New York', 'Paris', 'Tokyo',
+        'Karachi', 'Lahore', 'Dhaka', 'Moscow',
+      ]);
+      return p.region === 'South Asia' && !metros.has(p.placeName);
+    },
+  },
+  {
+    title: 'Historical Fiction',
+    description: 'Novels set in or about a bygone era',
+    filter: (p) => p.genres.includes('historical fiction'),
+  },
+  {
+    title: 'Coming of Age',
+    description: 'Stories of childhood, adolescence, and growing up',
+    filter: (p) =>
+      p.sentiment.themes.includes('childhood') ||
+      p.genres.includes("children's") ||
+      p.genres.includes('young adult'),
+  },
+];
+
 export default function HomePage() {
   const [stats, setStats] = useState({
     places: literaryPlaces.length,
@@ -95,10 +156,12 @@ export default function HomePage() {
   const [featured, setFeatured] = useState<LiteraryPlace[]>(
     pickFeatured(literaryPlaces)
   );
+  const [allPlaces, setAllPlaces] = useState<LiteraryPlace[]>(literaryPlaces);
 
   useEffect(() => {
     fetchLiteraryPlaces({ limit: 2000 }).then((places) => {
       if (places.length > literaryPlaces.length) {
+        setAllPlaces(places);
         setStats({
           places: places.length,
           books: new Set(places.map((p) => p.bookTitle)).size,
@@ -329,6 +392,110 @@ export default function HomePage() {
                 </p>
               </motion.div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Reading Lists */}
+      <section className="py-32 px-6 border-t border-akhand-border/30">
+        <div className="max-w-6xl mx-auto">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: '-100px' }}
+            className="text-center mb-20"
+          >
+            <motion.p
+              variants={fadeUp}
+              custom={0}
+              className="text-sm font-medium text-akhand-accent tracking-[0.15em] uppercase"
+            >
+              Discover
+            </motion.p>
+            <motion.h2
+              variants={fadeUp}
+              custom={1}
+              className="font-serif text-3xl sm:text-4xl font-bold text-akhand-text-primary mt-4"
+            >
+              Curated reading lists
+            </motion.h2>
+            <motion.p
+              variants={fadeUp}
+              custom={2}
+              className="text-akhand-text-secondary mt-4 max-w-2xl mx-auto"
+            >
+              Thematic collections drawn from the corpus. Each list links
+              directly to the map, filtered to its entries.
+            </motion.p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {READING_LISTS.map((list, i) => {
+              const matches = allPlaces.filter(list.filter);
+              if (matches.length < 2) return null;
+              const sample = matches.slice(0, 3);
+              return (
+                <motion.div
+                  key={list.title}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, margin: '-50px' }}
+                  variants={fadeUp}
+                  custom={i}
+                  className="group bg-akhand-surface rounded-2xl border border-akhand-border/50 hover:border-akhand-accent/30 transition-all duration-300 overflow-hidden"
+                >
+                  <div className="p-6">
+                    <div className="flex items-center gap-2 mb-3">
+                      <BookMarked className="w-4 h-4 text-akhand-accent" />
+                      <h3 className="font-serif text-lg font-semibold text-akhand-text-primary">
+                        {list.title}
+                      </h3>
+                    </div>
+                    <p className="text-sm text-akhand-text-secondary leading-relaxed">
+                      {list.description}
+                    </p>
+                    <p className="text-xs text-akhand-accent mt-3 font-medium">
+                      {matches.length} books
+                    </p>
+                    <div className="mt-4 space-y-2">
+                      {sample.map((p) => (
+                        <div
+                          key={p.id}
+                          className="flex items-center gap-2.5"
+                        >
+                          {p.coverUrl ? (
+                            <img
+                              src={p.coverUrl}
+                              alt=""
+                              className="w-6 h-8 rounded object-cover flex-shrink-0"
+                              onError={(e) => {
+                                (e.target as HTMLImageElement).style.display = 'none';
+                              }}
+                            />
+                          ) : (
+                            <div className="w-6 h-8 rounded bg-akhand-surface-2 flex-shrink-0" />
+                          )}
+                          <div className="min-w-0">
+                            <p className="text-xs text-akhand-text-primary truncate">
+                              {p.bookTitle}
+                            </p>
+                            <p className="text-[10px] text-akhand-text-muted">
+                              {p.author}
+                            </p>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                  <Link
+                    href="/explore"
+                    className="block px-6 py-3 border-t border-akhand-border/30 text-xs font-medium text-akhand-accent hover:bg-akhand-surface-2 transition-colors text-center"
+                  >
+                    Explore on map
+                  </Link>
+                </motion.div>
+              );
+            })}
           </div>
         </div>
       </section>

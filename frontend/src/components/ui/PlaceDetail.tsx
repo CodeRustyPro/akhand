@@ -11,9 +11,18 @@ import {
   Tag,
   ExternalLink,
   Languages,
+  Star,
+  Info,
+  Sparkles,
 } from 'lucide-react';
 import type { LiteraryPlace } from '@/lib/types';
-import { useMemo } from 'react';
+import { useMemo, useState, useEffect } from 'react';
+import {
+  fetchGoogleBookInfo,
+  fetchWikipediaSummary,
+  type GoogleBookInfo,
+  type WikipediaSummary,
+} from '@/lib/external';
 
 interface PlaceDetailProps {
   place: LiteraryPlace;
@@ -81,15 +90,72 @@ export default function PlaceDetail({
   onSelectRelated,
   onViewAuthor,
 }: PlaceDetailProps) {
-  const relatedPlaces = useMemo(() => {
-    return allPlaces.filter(
-      (p) =>
-        p.id !== place.id &&
-        (p.placeName === place.placeName ||
-          p.author === place.author ||
-          p.bookTitle === place.bookTitle)
-    );
+  const [gbInfo, setGbInfo] = useState<GoogleBookInfo | null>(null);
+  const [wikiInfo, setWikiInfo] = useState<WikipediaSummary | null>(null);
+  const [gbLoading, setGbLoading] = useState(false);
+  const [wikiLoading, setWikiLoading] = useState(false);
+
+  useEffect(() => {
+    setGbInfo(null);
+    setWikiInfo(null);
+    setGbLoading(true);
+    setWikiLoading(true);
+    fetchGoogleBookInfo(place.bookTitle, place.author).then((info) => {
+      setGbInfo(info);
+      setGbLoading(false);
+    });
+    fetchWikipediaSummary(place.placeName).then((info) => {
+      setWikiInfo(info);
+      setWikiLoading(false);
+    });
+  }, [place.id, place.bookTitle, place.author, place.placeName]);
+
+  const similarBooks = useMemo(() => {
+    const placeGenres = new Set(place.genres);
+    const placeThemes = new Set(place.sentiment.themes);
+
+    return allPlaces
+      .filter((p) => p.id !== place.id)
+      .map((p) => {
+        let score = 0;
+        if (p.placeName === place.placeName) score += 3;
+        if (p.region === place.region) score += 1;
+        const sharedGenres = p.genres.filter((g) => placeGenres.has(g)).length;
+        score += sharedGenres * 2;
+        const sharedThemes = p.sentiment.themes.filter((t) => placeThemes.has(t)).length;
+        score += sharedThemes * 2;
+        const yearDiff = Math.abs((p.publishYear || 0) - (place.publishYear || 0));
+        if (yearDiff < 20) score += 1;
+        if (p.language === place.language && place.language !== 'English') score += 2;
+        return { place: p, score };
+      })
+      .filter((s) => s.score >= 3)
+      .sort((a, b) => b.score - a.score)
+      .slice(0, 5)
+      .map((s) => s.place);
   }, [place, allPlaces]);
+
+  const cityStats = useMemo(() => {
+    const cityPlaces = allPlaces.filter((p) => p.placeName === place.placeName);
+    const authors = new Set(cityPlaces.map((p) => p.author));
+    const langs = new Set(cityPlaces.map((p) => p.language).filter(Boolean));
+    const decades = new Map<string, number>();
+    cityPlaces.forEach((p) => {
+      if (p.publishYear) {
+        const decade = `${Math.floor(p.publishYear / 10) * 10}s`;
+        decades.set(decade, (decades.get(decade) || 0) + 1);
+      }
+    });
+    return {
+      total: cityPlaces.length,
+      authors: authors.size,
+      languages: langs.size,
+      topDecades: [...decades.entries()]
+        .sort((a, b) => b[1] - a[1])
+        .slice(0, 3)
+        .map(([d]) => d),
+    };
+  }, [place.placeName, allPlaces]);
 
   const readUrl = place.openLibraryUrl || place.goodreadsUrl;
   const readLabel = place.openLibraryUrl ? 'Open Library' : 'Google Books';
@@ -143,16 +209,49 @@ export default function PlaceDetail({
             >
               by {place.author}
             </button>
-            {readUrl && (
-              <a
-                href={readUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-2 inline-flex items-center gap-1.5 text-xs font-medium text-akhand-accent hover:text-akhand-accent-hover transition-colors"
-              >
-                {readLabel}
-                <ExternalLink className="w-3 h-3" />
-              </a>
+            <div className="flex items-center gap-3 mt-2">
+              {readUrl && (
+                <a
+                  href={readUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 text-xs font-medium text-akhand-accent hover:text-akhand-accent-hover transition-colors"
+                >
+                  {readLabel}
+                  <ExternalLink className="w-3 h-3" />
+                </a>
+              )}
+              {gbInfo?.previewLink && (
+                <a
+                  href={gbInfo.previewLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 text-xs font-medium text-akhand-text-secondary hover:text-akhand-accent transition-colors"
+                >
+                  Preview
+                  <ExternalLink className="w-3 h-3" />
+                </a>
+              )}
+            </div>
+            {gbInfo?.rating && (
+              <div className="flex items-center gap-1.5 mt-2">
+                <div className="flex items-center gap-0.5">
+                  {[1, 2, 3, 4, 5].map((s) => (
+                    <Star
+                      key={s}
+                      className={`w-3 h-3 ${
+                        s <= Math.round(gbInfo.rating!)
+                          ? 'text-yellow-500 fill-yellow-500'
+                          : 'text-akhand-border'
+                      }`}
+                    />
+                  ))}
+                </div>
+                <span className="text-[11px] text-akhand-text-muted">
+                  {gbInfo.rating.toFixed(1)}
+                  {gbInfo.ratingsCount ? ` (${gbInfo.ratingsCount})` : ''}
+                </span>
+              </div>
             )}
           </div>
         </div>
@@ -298,62 +397,96 @@ export default function PlaceDetail({
           </div>
         )}
 
-        {/* Metadata */}
-        <div className="space-y-2 pt-2 border-t border-akhand-border/50">
-          <div className="flex items-center justify-between text-xs">
-            <span className="text-akhand-text-muted">Setting type</span>
-            <span className="text-akhand-text-secondary capitalize">
-              {place.settingType}
-            </span>
-          </div>
-          <div className="flex items-center justify-between text-xs">
-            <span className="text-akhand-text-muted">Place type</span>
-            <span className="text-akhand-text-secondary">
-              {place.placeType.replace(/_/g, ' ')}
-            </span>
-          </div>
-          <div className="flex items-center justify-between text-xs">
-            <span className="text-akhand-text-muted">Coordinates</span>
-            <span className="text-akhand-text-secondary font-mono text-[10px]">
-              {place.coordinates[1].toFixed(4)},{' '}
-              {place.coordinates[0].toFixed(4)}
-            </span>
-          </div>
-          {place.wikidataPlaceId && (
-            <div className="flex items-center justify-between text-xs">
-              <span className="text-akhand-text-muted">Wikidata</span>
-              <a
-                href={`https://www.wikidata.org/wiki/${place.wikidataPlaceId}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-akhand-accent hover:text-akhand-accent-hover flex items-center gap-1"
-              >
-                {place.wikidataPlaceId}
-                <ExternalLink className="w-3 h-3" />
-              </a>
+        {/* City profile */}
+        {cityStats.total > 1 && (
+          <div className="bg-akhand-surface-2 rounded-xl p-4">
+            <div className="flex items-center gap-1.5 mb-3">
+              <MapPin className="w-3.5 h-3.5 text-akhand-accent" />
+              <span className="text-xs font-medium text-akhand-text-secondary">
+                {place.placeName} in fiction
+              </span>
             </div>
-          )}
-        </div>
+            <div className="grid grid-cols-3 gap-3">
+              <div className="text-center">
+                <p className="text-lg font-semibold text-akhand-accent">{cityStats.total}</p>
+                <p className="text-[10px] text-akhand-text-muted">books</p>
+              </div>
+              <div className="text-center">
+                <p className="text-lg font-semibold text-akhand-text-primary">{cityStats.authors}</p>
+                <p className="text-[10px] text-akhand-text-muted">authors</p>
+              </div>
+              <div className="text-center">
+                <p className="text-lg font-semibold text-akhand-text-primary">{cityStats.languages}</p>
+                <p className="text-[10px] text-akhand-text-muted">languages</p>
+              </div>
+            </div>
+            {cityStats.topDecades.length > 0 && (
+              <p className="text-[10px] text-akhand-text-muted mt-3 text-center">
+                Most active: {cityStats.topDecades.join(', ')}
+              </p>
+            )}
+          </div>
+        )}
 
-        {/* Related */}
-        {relatedPlaces.length > 0 && (
+        {/* Wikipedia context */}
+        {wikiInfo && (
+          <div className="bg-akhand-surface rounded-xl p-4 border border-akhand-border/50">
+            <div className="flex items-center gap-1.5 mb-2">
+              <Info className="w-3.5 h-3.5 text-akhand-accent" />
+              <span className="text-xs font-medium text-akhand-text-secondary">
+                About {place.placeName}
+              </span>
+            </div>
+            <p className="text-xs text-akhand-text-secondary leading-relaxed">
+              {wikiInfo.extract.length > 250
+                ? wikiInfo.extract.slice(0, 250) + '...'
+                : wikiInfo.extract}
+            </p>
+            <a
+              href={wikiInfo.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 text-[10px] text-akhand-accent mt-2 hover:text-akhand-accent-hover"
+            >
+              Wikipedia <ExternalLink className="w-2.5 h-2.5" />
+            </a>
+          </div>
+        )}
+
+        {/* Similar books */}
+        {similarBooks.length > 0 && (
           <div>
-            <h3 className="text-xs font-medium text-akhand-text-secondary mb-3">
-              Related
-            </h3>
+            <div className="flex items-center gap-1.5 mb-3">
+              <Sparkles className="w-3.5 h-3.5 text-akhand-accent" />
+              <span className="text-xs font-medium text-akhand-text-secondary">
+                Similar books
+              </span>
+            </div>
             <div className="space-y-2">
-              {relatedPlaces.slice(0, 5).map((rp) => (
+              {similarBooks.map((rp) => (
                 <button
                   key={rp.id}
                   onClick={() => onSelectRelated?.(rp)}
-                  className="w-full text-left bg-akhand-surface-2 rounded-lg p-3 cursor-pointer hover:bg-akhand-surface-3 transition-colors"
+                  className="w-full text-left bg-akhand-surface-2 rounded-lg p-3 cursor-pointer hover:bg-akhand-surface-3 transition-colors flex items-center gap-3"
                 >
-                  <p className="text-xs font-medium text-akhand-text-primary">
-                    {rp.bookTitle}
-                  </p>
-                  <p className="text-[10px] text-akhand-text-muted mt-0.5">
-                    {rp.author} · {rp.placeName}
-                  </p>
+                  {rp.coverUrl && (
+                    <img
+                      src={rp.coverUrl}
+                      alt=""
+                      className="w-8 h-11 rounded object-cover flex-shrink-0"
+                      onError={(e) => {
+                        (e.target as HTMLImageElement).style.display = 'none';
+                      }}
+                    />
+                  )}
+                  <div className="min-w-0">
+                    <p className="text-xs font-medium text-akhand-text-primary truncate">
+                      {rp.bookTitle}
+                    </p>
+                    <p className="text-[10px] text-akhand-text-muted mt-0.5">
+                      {rp.author} · {rp.placeName}
+                    </p>
+                  </div>
                 </button>
               ))}
             </div>
