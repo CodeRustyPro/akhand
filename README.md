@@ -1,6 +1,6 @@
 # Akhand
 
-A literary geography platform that maps fiction to the physical world. 983 works of fiction across 172 places in 23 languages, drawn from automated API ingestion, web archive parsing, and human-curated spreadsheets.
+A literary geography platform that maps fiction to the physical world. 935 works of fiction across 169 places in 22 languages, drawn from automated API ingestion, web archive parsing, and human-curated spreadsheets.
 
 The name means "undivided" in Sanskrit. The platform treats South Asia's literary geography as a continuous space, ignoring political boundaries in favor of narrative ones.
 
@@ -15,7 +15,7 @@ Frontend (Next.js 14, MapLibre GL, deck.gl)
     v
 Backend API (FastAPI, Pydantic)
     |
-    |-- /api/places        serves 983 fiction entries with search/filter
+    |-- /api/places        serves 935 fiction entries with search/filter
     |-- /api/extract       spaCy + GLiNER + Gemini NLP pipeline
     |-- /api/wikidata/*    SPARQL proxy for Wikidata P840
     |
@@ -29,7 +29,7 @@ Data Ingestion (CLI scripts)
 
 ## Data
 
-**983 works of fiction** from three sources, with non-fiction entries (government reports, census data, biographies, academic studies) automatically filtered out:
+**935 works of fiction** from three sources, with non-fiction entries (museum catalogs, history studies, architecture references, government reports, academic studies) removed and duplicates deduplicated:
 
 | Source | Entries | Method |
 |--------|---------|--------|
@@ -37,7 +37,7 @@ Data Ingestion (CLI scripts)
 | CIF Archive | 284 | Parsed from citiesinfiction.com/archive (tab-separated). 460+ raw entries deduplicated against existing dataset. Geocoded via pre-populated coordinate cache covering 200+ locations. |
 | CIF Spreadsheet | 146 | Parsed from contributor spreadsheet. 89 unique places, 21 languages including Hindi, Bengali, Malayalam, Telugu, Odia, Kannada, Tamil, Urdu. Geocoded via coordinate cache + Nominatim fallback. |
 
-Coverage: 172 unique places, 773 unique authors, publication years 1476-2026, 23 languages, 7 regions. 478 entries have book descriptions, 378 have cover images, all have outbound links to Open Library or Google Books.
+Coverage: 169 unique places, 737 unique authors, publication years 200-2026, 22 languages, 7 regions. 478 entries have book descriptions, 378 have cover images, all have outbound links to Open Library or Google Books.
 
 ## NLP pipeline
 
@@ -85,7 +85,7 @@ All commands run from the project root (`akhand/`), not from subdirectories.
 # Frontend only (40 curated entries, no backend needed)
 cd frontend && npm install && npm run dev
 
-# Backend (983 fiction entries from Open Library + CIF)
+# Backend (935 fiction entries from Open Library + CIF)
 pip install -r backend/requirements.txt
 python -m spacy download en_core_web_md
 uvicorn backend.main:app --port 8000

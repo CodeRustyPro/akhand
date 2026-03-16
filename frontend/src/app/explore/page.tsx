@@ -252,6 +252,7 @@ function ExplorePage() {
         {/* Map */}
         <LiteraryMap
           places={filteredPlaces}
+          allPlaces={allPlaces}
           selectedPlace={selectedPlace}
           onSelectPlace={handleSelectPlace}
           layerMode={layerMode}

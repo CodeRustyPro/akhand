@@ -36,6 +36,7 @@ const INITIAL_VIEW: MapViewState = {
 
 interface LiteraryMapProps {
   places: LiteraryPlace[];
+  allPlaces?: LiteraryPlace[];
   selectedPlace: LiteraryPlace | null;
   onSelectPlace: (place: LiteraryPlace | null) => void;
   layerMode: MapLayerMode;
@@ -50,6 +51,7 @@ interface CityCluster {
 
 export default function LiteraryMap({
   places,
+  allPlaces,
   selectedPlace,
   onSelectPlace,
   layerMode,
@@ -135,10 +137,48 @@ export default function LiteraryMap({
 
   const pulse = Math.sin(time * 0.08) * 0.3 + 0.7;
 
+  // Determine if there's an active filter (places is a subset of allPlaces)
+  const isFiltered = allPlaces && allPlaces.length > 0 && places.length < allPlaces.length;
+  const filteredIds = useMemo(() => new Set(places.map((p) => p.id)), [places]);
+  const bgPlaces = useMemo(
+    () => (isFiltered && allPlaces ? allPlaces.filter((p) => !filteredIds.has(p.id)) : []),
+    [isFiltered, allPlaces, filteredIds]
+  );
+
   const layers = useMemo(() => {
     const result: (ScatterplotLayer | HeatmapLayer | ArcLayer | TextLayer)[] = [];
 
     if (layerMode === 'scatter') {
+      // Dim base layer for unmatched places when filtering
+      if (isFiltered && bgPlaces.length > 0) {
+        result.push(
+          new ScatterplotLayer({
+            id: 'scatter-bg-dim',
+            data: bgPlaces,
+            getPosition: (d: LiteraryPlace) => d.coordinates,
+            getFillColor: [100, 90, 80, 35] as [number, number, number, number],
+            getRadius: 3000,
+            radiusMinPixels: 2,
+            radiusMaxPixels: 6,
+            pickable: true,
+            onClick: ({ object }: { object?: LiteraryPlace }) => {
+              if (object) onSelectPlace(object);
+            },
+            onHover: ({
+              object,
+              x,
+              y,
+            }: {
+              object?: LiteraryPlace;
+              x: number;
+              y: number;
+            }) => {
+              setHoverInfo(object ? { x, y, place: object } : null);
+            },
+          } as ConstructorParameters<typeof ScatterplotLayer>[0])
+        );
+      }
+
       result.push(
         new ScatterplotLayer({
           id: 'scatter-glow',
@@ -147,17 +187,25 @@ export default function LiteraryMap({
           getFillColor: (d: LiteraryPlace) => {
             const count = bookCountByPlace[d.placeName] || 1;
             const intensity = Math.min(count / 15, 1);
-            return [196, 154, 108, Math.round(30 + intensity * 40)] as [number, number, number, number];
+            const baseAlpha = isFiltered ? 50 + intensity * 60 : 30 + intensity * 40;
+            const glowPulse = isFiltered ? (Math.sin(time * 0.06) * 0.3 + 0.7) : 1;
+            return [196, 154, 108, Math.round(baseAlpha * glowPulse)] as [number, number, number, number];
           },
           getRadius: (d: LiteraryPlace) => {
             const count = bookCountByPlace[d.placeName] || 1;
-            return 15000 + Math.sqrt(count) * 8000;
+            const base = 15000 + Math.sqrt(count) * 8000;
+            if (isFiltered) {
+              const breathe = Math.sin(time * 0.05) * 0.15 + 1;
+              return base * 1.2 * breathe;
+            }
+            return base;
           },
-          radiusMinPixels: 8,
-          radiusMaxPixels: 40,
+          radiusMinPixels: isFiltered ? 12 : 8,
+          radiusMaxPixels: isFiltered ? 55 : 40,
           pickable: false,
           updateTriggers: {
-            getFillColor: [time],
+            getFillColor: [time, isFiltered],
+            getRadius: [time, isFiltered],
           },
         } as ConstructorParameters<typeof ScatterplotLayer>[0])
       );
@@ -171,12 +219,17 @@ export default function LiteraryMap({
             if (selectedPlace?.id === d.id) {
               return [255, 220, 170, Math.round(200 + pulse * 55)] as [number, number, number, number];
             }
+            if (isFiltered) {
+              // Brighter when filtering is active
+              return [...sentimentColor(d.sentiment.polarity), 255] as [number, number, number, number];
+            }
             return [...sentimentColor(d.sentiment.polarity), 220] as [number, number, number, number];
           },
           getRadius: (d: LiteraryPlace) => {
             const count = bookCountByPlace[d.placeName] || 1;
             const base = 3000 + Math.sqrt(count) * 2500;
             if (selectedPlace?.id === d.id) return base * 1.8;
+            if (isFiltered) return base * 1.3;
             return base;
           },
           radiusMinPixels: 3,
@@ -392,7 +445,7 @@ export default function LiteraryMap({
     }
 
     return result;
-  }, [places, selectedPlace, layerMode, authorConnections, cityClusters, onSelectPlace, viewState.zoom, bookCountByPlace, pulse, time]);
+  }, [places, selectedPlace, layerMode, authorConnections, cityClusters, onSelectPlace, viewState.zoom, bookCountByPlace, pulse, time, isFiltered, bgPlaces]);
 
   const handleMapLoad = useCallback(() => {
     const map = mapRef.current?.getMap();

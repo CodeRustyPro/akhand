@@ -1,13 +1,11 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
-import { motion } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import {
   MapPin,
   Search,
-  BookOpen,
-  Sparkles,
   Globe2,
   Layers,
   Brain,
@@ -15,57 +13,60 @@ import {
   GitBranch,
   Compass,
   Quote,
-  BookMarked,
+  ArrowUpRight,
+  ChevronDown,
 } from 'lucide-react';
 import { literaryPlaces } from '@/lib/data';
 import { fetchLiteraryPlaces } from '@/lib/api';
 import type { LiteraryPlace } from '@/lib/types';
+
+/* ── Animations ─────────────────────────────────────── */
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
   visible: (i: number) => ({
     opacity: 1,
     y: 0,
-    transition: { delay: i * 0.1, duration: 0.6, ease: [0.22, 1, 0.36, 1] },
+    transition: { delay: i * 0.1, duration: 0.7, ease: [0.22, 1, 0.36, 1] },
   }),
 };
+
+const stagger = {
+  visible: { transition: { staggerChildren: 0.08 } },
+};
+
+/* ── Data helpers ───────────────────────────────────── */
 
 const features = [
   {
     icon: Search,
     title: 'Full-Text Search',
-    description:
-      'Search across 980+ works of fiction by title, author, city, theme, or passage. Filter by region, genre, language, and era.',
+    desc: 'Search across 930+ works by title, author, city, theme, or passage. Filter by region, genre, language, and era.',
   },
   {
     icon: Layers,
     title: 'Multi-Layer Maps',
-    description:
-      'Scatter plots, heatmaps, and connection arcs. Switch between visualization modes to reveal different patterns in literary geography.',
+    desc: 'Scatter plots, heatmaps, and connection arcs. Switch modes to reveal different patterns in literary geography.',
   },
   {
     icon: GitBranch,
     title: 'Author Networks',
-    description:
-      'Trace arc connections between cities an author inhabits across their body of work. See literary worlds as connected graphs.',
+    desc: 'Trace arc connections between cities an author inhabits across their body of work.',
   },
   {
     icon: Brain,
     title: 'NLP Pipeline',
-    description:
-      'spaCy NER, GLiNER zero-shot extraction, Gemini-powered structured analysis. From raw text to geocoded literary metadata at scale.',
+    desc: 'spaCy NER, GLiNER zero-shot, Gemini-powered extraction. From raw text to geocoded literary metadata.',
   },
   {
     icon: Globe2,
     title: 'Historical Aliases',
-    description:
-      'Bombay resolves alongside Mumbai. Calcutta with Kolkata. Historical name deduplication ensures no literary reference is lost to renaming.',
+    desc: 'Bombay resolves alongside Mumbai. Calcutta with Kolkata. No literary reference is lost to renaming.',
   },
   {
     icon: Compass,
     title: 'Sentiment Geography',
-    description:
-      'How do authors emotionally render cities? Sentiment polarity and dominant emotions extracted per passage, mapped as color-coded geography.',
+    desc: 'How do authors emotionally render cities? Sentiment and emotions extracted per passage, color-coded on the map.',
   },
 ];
 
@@ -90,14 +91,16 @@ interface ReadingList {
   title: string;
   description: string;
   query: string;
+  icon: string;
   filter: (p: LiteraryPlace) => boolean;
 }
 
 const READING_LISTS: ReadingList[] = [
   {
     title: 'Partition Fiction',
-    description: 'Novels that reckon with the 1947 partition of India and Pakistan',
+    description: 'Novels reckoning with the 1947 partition',
     query: 'partition',
+    icon: '𑗕',
     filter: (p) =>
       p.sentiment.themes.includes('partition') ||
       p.bookTitle.toLowerCase().includes('partition') ||
@@ -107,8 +110,9 @@ const READING_LISTS: ReadingList[] = [
   },
   {
     title: 'Mumbai Noir',
-    description: 'Crime, mystery, and the underbelly of the city that never sleeps',
+    description: 'Crime and the underbelly of the city that never sleeps',
     query: 'mumbai crime',
+    icon: '🌃',
     filter: (p) =>
       p.placeName === 'Mumbai' &&
       (p.genres.includes('crime') ||
@@ -118,15 +122,17 @@ const READING_LISTS: ReadingList[] = [
   },
   {
     title: 'Fiction in Translation',
-    description: 'Works originally written in Hindi, Bengali, Tamil, Urdu, and other languages',
+    description: 'Works in Hindi, Bengali, Tamil, Urdu, and more',
     query: '_lang:non-english',
+    icon: '🔤',
     filter: (p) =>
       p.language !== 'English' && p.language !== 'Unknown' && Boolean(p.language),
   },
   {
     title: 'Small Town Stories',
-    description: 'Fiction set beyond the metros, in villages, hill stations, and coastal towns',
+    description: 'Beyond the metros — villages, hill stations, coastal towns',
     query: '_list:small-towns',
+    icon: '🏘',
     filter: (p) => {
       const metros = new Set([
         'Mumbai', 'Delhi', 'Kolkata', 'Chennai', 'Bangalore',
@@ -140,18 +146,22 @@ const READING_LISTS: ReadingList[] = [
     title: 'Historical Fiction',
     description: 'Novels set in or about a bygone era',
     query: '_genre:historical fiction',
+    icon: '⏳',
     filter: (p) => p.genres.includes('historical fiction'),
   },
   {
     title: 'Coming of Age',
     description: 'Stories of childhood, adolescence, and growing up',
     query: 'childhood',
+    icon: '🌱',
     filter: (p) =>
       p.sentiment.themes.includes('childhood') ||
       p.genres.includes("children's") ||
       p.genres.includes('young adult'),
   },
 ];
+
+/* ── Main Page ──────────────────────────────────────── */
 
 export default function HomePage() {
   const [stats, setStats] = useState({
@@ -164,6 +174,14 @@ export default function HomePage() {
     pickFeatured(literaryPlaces)
   );
   const [allPlaces, setAllPlaces] = useState<LiteraryPlace[]>(literaryPlaces);
+
+  const heroRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ['start start', 'end start'],
+  });
+  const heroOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
+  const heroScale = useTransform(scrollYProgress, [0, 0.8], [1, 0.95]);
 
   useEffect(() => {
     fetchLiteraryPlaces({ limit: 2000 }).then((places) => {
@@ -186,164 +204,194 @@ export default function HomePage() {
   );
 
   return (
-    <div className="min-h-screen bg-akhand-bg gradient-bg">
-      {/* Navigation */}
+    <div className="min-h-screen bg-akhand-bg">
+      {/* ── Navigation ──────────────────────────────── */}
       <nav className="fixed top-0 w-full z-50 glass">
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-2">
-            <Sparkles className="w-5 h-5 text-akhand-accent" />
-            <span className="font-serif text-xl font-semibold text-akhand-text-primary tracking-tight">
+          <Link href="/" className="flex items-center gap-2.5 group">
+            <div className="w-7 h-7 rounded-lg bg-akhand-accent/10 flex items-center justify-center group-hover:bg-akhand-accent/20 transition-colors">
+              <span className="font-serif text-sm font-bold text-akhand-accent">A</span>
+            </div>
+            <span className="font-serif text-lg font-semibold text-akhand-text-primary tracking-tight">
               Akhand
             </span>
           </Link>
-          <div className="flex items-center gap-6">
-            <Link
-              href="/explore"
-              className="text-sm text-akhand-text-secondary hover:text-akhand-text-primary transition-colors"
-            >
-              Explore
-            </Link>
+          <div className="flex items-center gap-4">
             <a
               href="https://github.com/CodeRustyPro/akhand"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-sm text-akhand-text-secondary hover:text-akhand-text-primary transition-colors"
+              className="text-sm text-akhand-text-muted hover:text-akhand-text-secondary transition-colors hidden sm:block"
             >
               GitHub
             </a>
+            <Link
+              href="/explore"
+              className="inline-flex items-center gap-1.5 px-5 py-2 bg-akhand-accent/10 text-akhand-accent text-sm font-medium rounded-full hover:bg-akhand-accent/20 border border-akhand-accent/20 transition-all"
+            >
+              Explore
+              <ArrowUpRight className="w-3.5 h-3.5" />
+            </Link>
           </div>
         </div>
       </nav>
 
-      {/* Hero */}
-      <section className="relative min-h-screen flex items-center justify-center px-6 overflow-hidden">
-        {/* Decorative background dots */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          {literaryPlaces.slice(0, 20).map((place, i) => {
-            const x = ((place.coordinates[0] + 180) / 360) * 100;
-            const y = ((90 - place.coordinates[1]) / 180) * 100;
-            return (
+      {/* ── Hero ────────────────────────────────────── */}
+      <motion.section
+        ref={heroRef}
+        style={{ opacity: heroOpacity, scale: heroScale }}
+        className="relative min-h-screen flex items-center overflow-hidden"
+      >
+        {/* Aurora mesh background */}
+        <div className="hero-aurora" />
+        <div className="noise-overlay" />
+
+        {/* Content: side-by-side hero + reading lists */}
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-6 pt-24 pb-12">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center min-h-[calc(100vh-120px)]">
+            {/* Left: Hero text */}
+            <div className="lg:col-span-7">
+              <motion.h1
+                className="font-serif text-[clamp(2.5rem,6vw,5.5rem)] font-bold leading-[1.05] tracking-tight"
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.1, duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+              >
+                <span className="text-akhand-text-primary">Every novel{' '}</span>
+                <br className="hidden sm:block" />
+                <span className="text-akhand-text-primary">is a </span>
+                <span className="text-gradient">map.</span>
+              </motion.h1>
+
+              <motion.p
+                className="mt-6 text-lg sm:text-xl text-akhand-text-secondary max-w-xl leading-relaxed font-light"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.25, duration: 0.8 }}
+              >
+                Akhand extracts place references from world literature, geocodes them,
+                and renders them as interactive, searchable maps. The first platform to
+                close the loop between NLP and literary cartography.
+              </motion.p>
+
               <motion.div
-                key={place.id}
-                className="absolute w-1.5 h-1.5 rounded-full bg-akhand-accent"
-                style={{ left: `${x}%`, top: `${y}%` }}
-                initial={{ opacity: 0, scale: 0 }}
-                animate={{
-                  opacity: [0, 0.6, 0.3],
-                  scale: [0, 1.5, 1],
-                }}
-                transition={{
-                  delay: 0.5 + i * 0.08,
-                  duration: 2,
-                  repeat: Infinity,
-                  repeatType: 'reverse',
-                  repeatDelay: Math.random() * 4 + 2,
-                }}
-              />
-            );
-          })}
-        </div>
+                className="mt-10 flex flex-wrap items-center gap-4"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4, duration: 0.8 }}
+              >
+                <Link
+                  href="/explore"
+                  className="group inline-flex items-center gap-2.5 px-8 py-4 bg-akhand-accent text-akhand-bg font-semibold rounded-full hover:bg-akhand-accent-hover transition-all duration-300 glow-accent text-sm"
+                >
+                  Explore the Map
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+                </Link>
+                <a
+                  href="https://github.com/CodeRustyPro/akhand"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-6 py-4 text-sm font-medium text-akhand-text-secondary hover:text-akhand-text-primary border border-akhand-border rounded-full hover:border-akhand-border-light transition-all"
+                >
+                  View Source
+                  <ArrowUpRight className="w-3.5 h-3.5" />
+                </a>
+              </motion.div>
 
-        <div className="relative z-10 max-w-4xl mx-auto text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          >
-            <p className="text-sm font-medium text-akhand-accent tracking-[0.2em] uppercase mb-6">
-              Literary Geography Platform
-            </p>
-          </motion.div>
+              {/* Stats bar */}
+              <motion.div
+                className="mt-14 flex items-center gap-8 sm:gap-12"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.6, duration: 0.8 }}
+              >
+                {[
+                  { value: stats.books, label: 'Works' },
+                  { value: stats.cities, label: 'Cities' },
+                  { value: stats.authors, label: 'Authors' },
+                ].map((stat, i) => (
+                  <div key={stat.label} className="relative">
+                    {i > 0 && (
+                      <div className="absolute -left-4 sm:-left-6 top-1/2 -translate-y-1/2 w-px h-8 bg-akhand-border" />
+                    )}
+                    <p className="text-3xl sm:text-4xl font-serif font-bold text-akhand-text-primary tabular-nums">
+                      {stat.value}
+                    </p>
+                    <p className="text-xs text-akhand-text-muted mt-1 uppercase tracking-wider">
+                      {stat.label}
+                    </p>
+                  </div>
+                ))}
+              </motion.div>
+            </div>
 
-          <motion.h1
-            className="font-serif text-5xl sm:text-6xl md:text-7xl font-bold leading-[1.1] tracking-tight"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{
-              delay: 0.15,
-              duration: 0.8,
-              ease: [0.22, 1, 0.36, 1],
-            }}
-          >
-            <span className="text-akhand-text-primary">Every novel is a </span>
-            <span className="text-gradient">map</span>
-            <br />
-            <span className="text-akhand-text-primary">Every city, a </span>
-            <span className="text-gradient">story</span>
-          </motion.h1>
-
-          <motion.p
-            className="mt-8 text-lg text-akhand-text-secondary max-w-2xl mx-auto leading-relaxed"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3, duration: 0.8 }}
-          >
-            Akhand extracts place references from fiction, geocodes them, and
-            renders them as interactive, searchable maps. Built on NLP
-            pipelines that turn novels into geographic data, with a focus on
-            South Asian literary fiction and its global counterparts.
-          </motion.p>
-
-          <motion.div
-            className="mt-10 flex items-center justify-center gap-4"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.45, duration: 0.8 }}
-          >
-            <Link
-              href="/explore"
-              className="inline-flex items-center gap-2 px-8 py-3.5 bg-akhand-accent text-akhand-bg font-medium rounded-full hover:bg-akhand-accent-hover transition-all duration-300 glow-accent text-sm"
+            {/* Right: Reading Lists */}
+            <motion.div
+              className="lg:col-span-5"
+              initial={{ opacity: 0, x: 30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.3, duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
             >
-              Explore the Map
-              <ArrowRight className="w-4 h-4" />
-            </Link>
-          </motion.div>
+              <div className="space-y-3">
+                <p className="text-xs font-medium text-akhand-text-muted uppercase tracking-widest mb-4 pl-1">
+                  Curated Reading Lists
+                </p>
+                {READING_LISTS.map((list, i) => {
+                  const matches = allPlaces.filter(list.filter);
+                  if (matches.length < 2) return null;
+                  return (
+                    <Link
+                      key={list.title}
+                      href={`/explore?q=${encodeURIComponent(list.query)}`}
+                      className="group flex items-center gap-4 p-4 rounded-2xl bg-akhand-surface/60 border border-akhand-border/40 hover:border-akhand-accent/30 hover:bg-akhand-surface transition-all duration-300"
+                    >
+                      <span className="text-xl flex-shrink-0 w-10 h-10 rounded-xl bg-akhand-surface-2 flex items-center justify-center">
+                        {list.icon}
+                      </span>
+                      <div className="flex-1 min-w-0">
+                        <h3 className="text-sm font-semibold text-akhand-text-primary group-hover:text-akhand-accent transition-colors">
+                          {list.title}
+                        </h3>
+                        <p className="text-xs text-akhand-text-muted mt-0.5 truncate">
+                          {list.description}
+                        </p>
+                      </div>
+                      <div className="flex items-center gap-2 flex-shrink-0">
+                        <span className="text-xs tabular-nums text-akhand-accent font-medium bg-akhand-accent/10 px-2.5 py-1 rounded-full">
+                          {matches.length}
+                        </span>
+                        <ArrowRight className="w-3.5 h-3.5 text-akhand-text-muted group-hover:text-akhand-accent group-hover:translate-x-0.5 transition-all" />
+                      </div>
+                    </Link>
+                  );
+                })}
+              </div>
+            </motion.div>
+          </div>
 
-          {/* Stats */}
+          {/* Scroll indicator */}
           <motion.div
-            className="mt-16 flex items-center justify-center gap-12"
+            className="absolute bottom-6 left-1/2 -translate-x-1/2"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.6, duration: 0.8 }}
+            transition={{ delay: 1.5 }}
           >
-            {[
-              { value: stats.places, label: 'Literary Places' },
-              { value: stats.cities, label: 'Cities' },
-              { value: stats.authors, label: 'Authors' },
-              { value: stats.books, label: 'Works of Fiction' },
-            ].map((stat) => (
-              <div key={stat.label} className="text-center">
-                <p className="text-2xl font-serif font-bold text-akhand-accent">
-                  {stat.value}
-                </p>
-                <p className="text-xs text-akhand-text-muted mt-1">
-                  {stat.label}
-                </p>
-              </div>
-            ))}
+            <motion.div
+              animate={{ y: [0, 6, 0] }}
+              transition={{ duration: 2, repeat: Infinity }}
+              className="flex flex-col items-center gap-2"
+            >
+              <span className="text-[10px] text-akhand-text-muted uppercase tracking-widest">Scroll</span>
+              <ChevronDown className="w-4 h-4 text-akhand-text-muted" />
+            </motion.div>
           </motion.div>
         </div>
+      </motion.section>
 
-        {/* Scroll indicator */}
-        <motion.div
-          className="absolute bottom-8 left-1/2 -translate-x-1/2"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.5 }}
-        >
-          <motion.div
-            animate={{ y: [0, 8, 0] }}
-            transition={{ duration: 2, repeat: Infinity }}
-            className="w-5 h-8 border border-akhand-border-light rounded-full flex justify-center pt-1.5"
-          >
-            <div className="w-1 h-2 bg-akhand-accent rounded-full" />
-          </motion.div>
-        </motion.div>
-      </section>
-
-      {/* Features */}
-      <section className="py-32 px-6">
-        <div className="max-w-6xl mx-auto">
+      {/* ── Features ────────────────────────────────── */}
+      <section className="relative py-32 px-6">
+        <div className="absolute inset-0 bg-gradient-to-b from-akhand-bg via-akhand-surface/30 to-akhand-bg pointer-events-none" />
+        <div className="relative max-w-6xl mx-auto">
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -353,23 +401,23 @@ export default function HomePage() {
             <motion.p
               variants={fadeUp}
               custom={0}
-              className="text-sm font-medium text-akhand-accent tracking-[0.15em] uppercase"
+              className="text-xs font-medium text-akhand-accent tracking-[0.2em] uppercase"
             >
               Architecture
             </motion.p>
             <motion.h2
               variants={fadeUp}
               custom={1}
-              className="font-serif text-3xl sm:text-4xl font-bold text-akhand-text-primary mt-4"
+              className="font-serif text-3xl sm:text-5xl font-bold text-akhand-text-primary mt-5 leading-tight"
             >
-              Computational literary cartography,
+              Computational literary
               <br />
-              built on open-source tooling
+              cartography
             </motion.h2>
             <motion.p
               variants={fadeUp}
               custom={2}
-              className="text-akhand-text-secondary mt-4 max-w-2xl mx-auto"
+              className="text-akhand-text-secondary mt-5 max-w-2xl mx-auto text-base leading-relaxed"
             >
               From named entity recognition to geocoding, sentiment analysis
               to WebGL visualization. A convergent stack of NLP, spatial
@@ -377,139 +425,42 @@ export default function HomePage() {
             </motion.p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {features.map((feature, i) => (
-              <motion.div
-                key={feature.title}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, margin: '-50px' }}
-                variants={fadeUp}
-                custom={i}
-                className="group p-6 bg-akhand-surface rounded-2xl border border-akhand-border/50 hover:border-akhand-accent/30 transition-all duration-300"
-              >
-                <div className="w-10 h-10 rounded-xl bg-akhand-accent-dim flex items-center justify-center mb-4 group-hover:bg-akhand-accent/20 transition-colors">
-                  <feature.icon className="w-5 h-5 text-akhand-accent" />
-                </div>
-                <h3 className="font-serif text-lg font-semibold text-akhand-text-primary">
-                  {feature.title}
-                </h3>
-                <p className="text-sm text-akhand-text-secondary mt-2 leading-relaxed">
-                  {feature.description}
-                </p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Reading Lists */}
-      <section className="py-32 px-6 border-t border-akhand-border/30">
-        <div className="max-w-6xl mx-auto">
           <motion.div
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, margin: '-100px' }}
-            className="text-center mb-20"
+            viewport={{ once: true, margin: '-50px' }}
+            variants={stagger}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"
           >
-            <motion.p
-              variants={fadeUp}
-              custom={0}
-              className="text-sm font-medium text-akhand-accent tracking-[0.15em] uppercase"
-            >
-              Discover
-            </motion.p>
-            <motion.h2
-              variants={fadeUp}
-              custom={1}
-              className="font-serif text-3xl sm:text-4xl font-bold text-akhand-text-primary mt-4"
-            >
-              Curated reading lists
-            </motion.h2>
-            <motion.p
-              variants={fadeUp}
-              custom={2}
-              className="text-akhand-text-secondary mt-4 max-w-2xl mx-auto"
-            >
-              Thematic collections drawn from the corpus. Each list links
-              directly to the map, filtered to its entries.
-            </motion.p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {READING_LISTS.map((list, i) => {
-              const matches = allPlaces.filter(list.filter);
-              if (matches.length < 2) return null;
-              const sample = matches.slice(0, 3);
-              return (
-                <motion.div
-                  key={list.title}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true, margin: '-50px' }}
-                  variants={fadeUp}
-                  custom={i}
-                  className="group bg-akhand-surface rounded-2xl border border-akhand-border/50 hover:border-akhand-accent/30 transition-all duration-300 overflow-hidden"
-                >
-                  <div className="p-6">
-                    <div className="flex items-center gap-2 mb-3">
-                      <BookMarked className="w-4 h-4 text-akhand-accent" />
-                      <h3 className="font-serif text-lg font-semibold text-akhand-text-primary">
-                        {list.title}
-                      </h3>
-                    </div>
-                    <p className="text-sm text-akhand-text-secondary leading-relaxed">
-                      {list.description}
-                    </p>
-                    <p className="text-xs text-akhand-accent mt-3 font-medium">
-                      {matches.length} books
-                    </p>
-                    <div className="mt-4 space-y-2">
-                      {sample.map((p) => (
-                        <div
-                          key={p.id}
-                          className="flex items-center gap-2.5"
-                        >
-                          {p.coverUrl ? (
-                            <img
-                              src={p.coverUrl}
-                              alt=""
-                              className="w-6 h-8 rounded object-cover flex-shrink-0"
-                              onError={(e) => {
-                                (e.target as HTMLImageElement).style.display = 'none';
-                              }}
-                            />
-                          ) : (
-                            <div className="w-6 h-8 rounded bg-akhand-surface-2 flex-shrink-0" />
-                          )}
-                          <div className="min-w-0">
-                            <p className="text-xs text-akhand-text-primary truncate">
-                              {p.bookTitle}
-                            </p>
-                            <p className="text-[10px] text-akhand-text-muted">
-                              {p.author}
-                            </p>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
+            {features.map((feature, i) => (
+              <motion.div
+                key={feature.title}
+                variants={fadeUp}
+                custom={i}
+                className="group relative p-6 rounded-2xl bg-akhand-surface/50 border border-akhand-border/40 hover:border-akhand-accent/25 transition-all duration-500 overflow-hidden"
+              >
+                {/* Hover glow */}
+                <div className="absolute inset-0 bg-gradient-to-br from-akhand-accent/[0.03] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="relative">
+                  <div className="w-10 h-10 rounded-xl bg-akhand-accent/10 flex items-center justify-center mb-4 group-hover:bg-akhand-accent/15 transition-colors">
+                    <feature.icon className="w-5 h-5 text-akhand-accent" />
                   </div>
-                  <Link
-                    href={`/explore?q=${encodeURIComponent(list.query)}`}
-                    className="block px-6 py-3 border-t border-akhand-border/30 text-xs font-medium text-akhand-accent hover:bg-akhand-surface-2 transition-colors text-center"
-                  >
-                    Explore on map
-                  </Link>
-                </motion.div>
-              );
-            })}
-          </div>
+                  <h3 className="font-serif text-lg font-semibold text-akhand-text-primary">
+                    {feature.title}
+                  </h3>
+                  <p className="text-sm text-akhand-text-secondary mt-2 leading-relaxed">
+                    {feature.desc}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
         </div>
       </section>
 
-      {/* Featured Passages */}
+      {/* ── Featured Passages ───────────────────────── */}
       {featuredPassages.length > 0 && (
-        <section className="py-32 px-6 border-t border-akhand-border/30">
+        <section className="py-32 px-6">
           <div className="max-w-6xl mx-auto">
             <motion.div
               initial="hidden"
@@ -520,20 +471,20 @@ export default function HomePage() {
               <motion.p
                 variants={fadeUp}
                 custom={0}
-                className="text-sm font-medium text-akhand-accent tracking-[0.15em] uppercase"
+                className="text-xs font-medium text-akhand-accent tracking-[0.2em] uppercase"
               >
                 From the Corpus
               </motion.p>
               <motion.h2
                 variants={fadeUp}
                 custom={1}
-                className="font-serif text-3xl sm:text-4xl font-bold text-akhand-text-primary mt-4"
+                className="font-serif text-3xl sm:text-5xl font-bold text-akhand-text-primary mt-5"
               >
                 Cities as fiction renders them
               </motion.h2>
             </motion.div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
               {featuredPassages.map((place, i) => (
                 <motion.div
                   key={place.id}
@@ -542,11 +493,11 @@ export default function HomePage() {
                   viewport={{ once: true, margin: '-50px' }}
                   variants={fadeUp}
                   custom={i}
-                  className="bg-akhand-surface rounded-2xl border border-akhand-border/50 overflow-hidden group hover:border-akhand-accent/20 transition-all duration-300"
+                  className="group relative bg-akhand-surface/50 rounded-2xl border border-akhand-border/40 overflow-hidden hover:border-akhand-accent/20 transition-all duration-500"
                 >
                   <div className="p-6">
                     <div className="flex items-start gap-3 mb-4">
-                      <Quote className="w-5 h-5 text-akhand-accent/50 flex-shrink-0 mt-1" />
+                      <Quote className="w-4 h-4 text-akhand-accent/40 flex-shrink-0 mt-1" />
                       <p className="font-serif text-sm italic text-akhand-literary leading-relaxed">
                         &ldquo;
                         {place.passage.length > 180
@@ -555,17 +506,17 @@ export default function HomePage() {
                         &rdquo;
                       </p>
                     </div>
-                    <div className="flex items-center justify-between mt-4 pt-4 border-t border-akhand-border/30">
+                    <div className="flex items-center justify-between pt-4 border-t border-akhand-border/20">
                       <div>
                         <p className="text-sm font-medium text-akhand-text-primary">
                           {place.bookTitle}
                         </p>
-                        <p className="text-xs text-akhand-text-secondary mt-0.5">
+                        <p className="text-xs text-akhand-text-muted mt-0.5">
                           {place.author}, {place.publishYear}
                         </p>
                       </div>
-                      <div className="flex items-center gap-1.5">
-                        <MapPin className="w-3.5 h-3.5 text-akhand-accent" />
+                      <div className="flex items-center gap-1.5 bg-akhand-accent/10 px-2.5 py-1 rounded-full">
+                        <MapPin className="w-3 h-3 text-akhand-accent" />
                         <span className="text-xs text-akhand-accent font-medium">
                           {place.placeName}
                         </span>
@@ -579,9 +530,14 @@ export default function HomePage() {
         </section>
       )}
 
-      {/* CTA */}
-      <section className="py-32 px-6 border-t border-akhand-border/30">
-        <div className="max-w-3xl mx-auto text-center">
+      {/* ── CTA ─────────────────────────────────────── */}
+      <section className="relative py-32 px-6 overflow-hidden">
+        {/* Background glow */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] rounded-full bg-akhand-accent/[0.04] blur-[100px]" />
+        </div>
+
+        <div className="relative max-w-3xl mx-auto text-center">
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -590,7 +546,7 @@ export default function HomePage() {
             <motion.h2
               variants={fadeUp}
               custom={0}
-              className="font-serif text-3xl sm:text-4xl font-bold text-akhand-text-primary"
+              className="font-serif text-3xl sm:text-5xl font-bold text-akhand-text-primary leading-tight"
             >
               The map is not the territory.
               <br />
@@ -599,7 +555,7 @@ export default function HomePage() {
             <motion.p
               variants={fadeUp}
               custom={1}
-              className="text-akhand-text-secondary mt-6 max-w-xl mx-auto"
+              className="text-akhand-text-secondary mt-6 max-w-xl mx-auto leading-relaxed"
             >
               Computational literary geography produces genuine scholarly and
               creative insight. Maps reveal hidden structures in fiction that
@@ -608,27 +564,29 @@ export default function HomePage() {
             <motion.div variants={fadeUp} custom={2} className="mt-10">
               <Link
                 href="/explore"
-                className="inline-flex items-center gap-2 px-8 py-3.5 bg-akhand-accent text-akhand-bg font-medium rounded-full hover:bg-akhand-accent-hover transition-all duration-300 glow-accent text-sm"
+                className="group inline-flex items-center gap-2.5 px-10 py-4 bg-akhand-accent text-akhand-bg font-semibold rounded-full hover:bg-akhand-accent-hover transition-all duration-300 glow-accent text-sm"
               >
                 Begin Exploring
-                <ArrowRight className="w-4 h-4" />
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
               </Link>
             </motion.div>
           </motion.div>
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="border-t border-akhand-border/30 py-12 px-6">
-        <div className="max-w-6xl mx-auto flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <Sparkles className="w-4 h-4 text-akhand-accent" />
-            <span className="font-serif text-sm text-akhand-text-secondary">
+      {/* ── Footer ──────────────────────────────────── */}
+      <footer className="border-t border-akhand-border/20 py-10 px-6">
+        <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="flex items-center gap-2.5">
+            <div className="w-5 h-5 rounded bg-akhand-accent/10 flex items-center justify-center">
+              <span className="font-serif text-[10px] font-bold text-akhand-accent">A</span>
+            </div>
+            <span className="font-serif text-sm text-akhand-text-muted">
               Akhand
             </span>
           </div>
           <p className="text-xs text-akhand-text-muted">
-            PostGIS · pgvector · deck.gl · spaCy · GLiNER · Gemini
+            FastAPI &middot; deck.gl &middot; MapLibre &middot; spaCy &middot; GLiNER &middot; Gemini
           </p>
         </div>
       </footer>
