@@ -1,6 +1,7 @@
 'use client';
 
-import { useState, useCallback, useEffect } from 'react';
+import { Suspense, useState, useCallback, useEffect } from 'react';
+import { useSearchParams } from 'next/navigation';
 import dynamic from 'next/dynamic';
 import { AnimatePresence, motion } from 'framer-motion';
 import Link from 'next/link';
@@ -41,7 +42,18 @@ const layerOptions: { mode: MapLayerMode; icon: typeof Crosshair; label: string 
   { mode: 'arcs', icon: GitBranch, label: 'Connections' },
 ];
 
-export default function ExplorePage() {
+export default function ExplorePageWrapper() {
+  return (
+    <Suspense fallback={null}>
+      <ExplorePage />
+    </Suspense>
+  );
+}
+
+function ExplorePage() {
+  const searchParams = useSearchParams();
+  const initialQuery = searchParams.get('q') || '';
+
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [selectedPlace, setSelectedPlace] = useState<LiteraryPlace | null>(null);
   const [layerMode, setLayerMode] = useState<MapLayerMode>('scatter');
@@ -51,6 +63,7 @@ export default function ExplorePage() {
   const [dataSource, setDataSource] = useState<'fallback' | 'api'>('fallback');
   const [loading, setLoading] = useState(true);
   const [authorFilter, setAuthorFilter] = useState<string | null>(null);
+  const [genreFilter, setGenreFilter] = useState<string | null>(null);
 
   useEffect(() => {
     let cancelled = false;
@@ -78,6 +91,14 @@ export default function ExplorePage() {
 
   const handleViewAuthor = useCallback((author: string) => {
     setAuthorFilter(author);
+    setGenreFilter(null);
+    setSelectedPlace(null);
+    if (!sidebarOpen) setSidebarOpen(true);
+  }, [sidebarOpen]);
+
+  const handleFilterGenre = useCallback((genre: string) => {
+    setGenreFilter(genre);
+    setAuthorFilter(null);
     setSelectedPlace(null);
     if (!sidebarOpen) setSidebarOpen(true);
   }, [sidebarOpen]);
@@ -118,6 +139,9 @@ export default function ExplorePage() {
               onFilteredPlacesChange={handleFilteredPlacesChange}
               authorFilter={authorFilter}
               onClearAuthorFilter={() => setAuthorFilter(null)}
+              genreFilter={genreFilter}
+              onClearGenreFilter={() => setGenreFilter(null)}
+              initialQuery={initialQuery}
             />
           </motion.aside>
         )}
@@ -242,6 +266,7 @@ export default function ExplorePage() {
               onClose={() => setSelectedPlace(null)}
               onSelectRelated={handleSelectPlace}
               onViewAuthor={handleViewAuthor}
+              onFilterGenre={handleFilterGenre}
             />
           )}
         </AnimatePresence>

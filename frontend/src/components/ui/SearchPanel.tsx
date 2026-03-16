@@ -19,6 +19,9 @@ interface SearchPanelProps {
   onFilteredPlacesChange: (places: LiteraryPlace[]) => void;
   authorFilter?: string | null;
   onClearAuthorFilter?: () => void;
+  genreFilter?: string | null;
+  onClearGenreFilter?: () => void;
+  initialQuery?: string;
 }
 
 function FilterChip({
@@ -58,6 +61,12 @@ const ERA_RANGES = [
   '2000\u2013present',
 ];
 
+const METROS = new Set([
+  'Mumbai', 'Delhi', 'Kolkata', 'Chennai', 'Bangalore',
+  'Hyderabad', 'London', 'New York', 'Paris', 'Tokyo',
+  'Karachi', 'Lahore', 'Dhaka', 'Moscow',
+]);
+
 export default function SearchPanel({
   places,
   onSelectPlace,
@@ -65,8 +74,16 @@ export default function SearchPanel({
   onFilteredPlacesChange,
   authorFilter,
   onClearAuthorFilter,
+  genreFilter,
+  onClearGenreFilter,
+  initialQuery,
 }: SearchPanelProps) {
-  const [query, setQuery] = useState('');
+  const [query, setQuery] = useState(
+    initialQuery && !initialQuery.startsWith('_') ? initialQuery : ''
+  );
+  const [specialFilter, setSpecialFilter] = useState(
+    initialQuery?.startsWith('_') ? initialQuery : null
+  );
   const [showFilters, setShowFilters] = useState(false);
   const [selectedRegions, setSelectedRegions] = useState<string[]>([]);
   const [selectedGenres, setSelectedGenres] = useState<string[]>([]);
@@ -108,6 +125,25 @@ export default function SearchPanel({
 
     if (authorFilter) {
       result = result.filter((p) => p.author === authorFilter);
+    }
+
+    if (genreFilter) {
+      result = result.filter((p) => p.genres.includes(genreFilter));
+    }
+
+    if (specialFilter) {
+      if (specialFilter === '_lang:non-english') {
+        result = result.filter(
+          (p) => p.language !== 'English' && p.language !== 'Unknown' && Boolean(p.language)
+        );
+      } else if (specialFilter === '_list:small-towns') {
+        result = result.filter(
+          (p) => p.region === 'South Asia' && !METROS.has(p.placeName)
+        );
+      } else if (specialFilter.startsWith('_genre:')) {
+        const genre = specialFilter.slice(7);
+        result = result.filter((p) => p.genres.includes(genre));
+      }
     }
 
     if (query.trim()) {
@@ -168,7 +204,7 @@ export default function SearchPanel({
     onFilteredPlacesChange(result);
     return result;
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [query, selectedRegions, selectedGenres, selectedLanguages, selectedEras, authorFilter, places]);
+  }, [query, selectedRegions, selectedGenres, selectedLanguages, selectedEras, authorFilter, genreFilter, specialFilter, places]);
 
   const toggleFilter = (
     list: string[],
@@ -390,6 +426,46 @@ export default function SearchPanel({
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Special filter banner */}
+      {specialFilter && (
+        <div className="px-4 py-2.5 bg-akhand-accent-dim border-b border-akhand-border flex items-center justify-between">
+          <div className="text-xs">
+            <span className="text-akhand-text-muted">List: </span>
+            <span className="font-medium text-akhand-accent">
+              {specialFilter === '_lang:non-english'
+                ? 'Fiction in Translation'
+                : specialFilter === '_list:small-towns'
+                  ? 'Small Town Stories'
+                  : specialFilter.startsWith('_genre:')
+                    ? specialFilter.slice(7)
+                    : specialFilter}
+            </span>
+          </div>
+          <button
+            onClick={() => setSpecialFilter(null)}
+            className="text-akhand-text-muted hover:text-akhand-text-primary transition-colors"
+          >
+            <X className="w-3.5 h-3.5" />
+          </button>
+        </div>
+      )}
+
+      {/* Genre filter banner */}
+      {genreFilter && (
+        <div className="px-4 py-2.5 bg-akhand-accent-dim border-b border-akhand-border flex items-center justify-between">
+          <div className="text-xs">
+            <span className="text-akhand-text-muted">Genre: </span>
+            <span className="font-medium text-akhand-accent">{genreFilter}</span>
+          </div>
+          <button
+            onClick={onClearGenreFilter}
+            className="text-akhand-text-muted hover:text-akhand-text-primary transition-colors"
+          >
+            <X className="w-3.5 h-3.5" />
+          </button>
+        </div>
+      )}
 
       {/* Author filter banner */}
       {authorFilter && (

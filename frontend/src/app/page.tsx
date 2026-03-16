@@ -89,6 +89,7 @@ function pickFeatured(places: LiteraryPlace[]): LiteraryPlace[] {
 interface ReadingList {
   title: string;
   description: string;
+  query: string;
   filter: (p: LiteraryPlace) => boolean;
 }
 
@@ -96,6 +97,7 @@ const READING_LISTS: ReadingList[] = [
   {
     title: 'Partition Fiction',
     description: 'Novels that reckon with the 1947 partition of India and Pakistan',
+    query: 'partition',
     filter: (p) =>
       p.sentiment.themes.includes('partition') ||
       p.bookTitle.toLowerCase().includes('partition') ||
@@ -106,6 +108,7 @@ const READING_LISTS: ReadingList[] = [
   {
     title: 'Mumbai Noir',
     description: 'Crime, mystery, and the underbelly of the city that never sleeps',
+    query: 'mumbai crime',
     filter: (p) =>
       p.placeName === 'Mumbai' &&
       (p.genres.includes('crime') ||
@@ -116,12 +119,14 @@ const READING_LISTS: ReadingList[] = [
   {
     title: 'Fiction in Translation',
     description: 'Works originally written in Hindi, Bengali, Tamil, Urdu, and other languages',
+    query: '_lang:non-english',
     filter: (p) =>
       p.language !== 'English' && p.language !== 'Unknown' && Boolean(p.language),
   },
   {
     title: 'Small Town Stories',
     description: 'Fiction set beyond the metros, in villages, hill stations, and coastal towns',
+    query: '_list:small-towns',
     filter: (p) => {
       const metros = new Set([
         'Mumbai', 'Delhi', 'Kolkata', 'Chennai', 'Bangalore',
@@ -134,11 +139,13 @@ const READING_LISTS: ReadingList[] = [
   {
     title: 'Historical Fiction',
     description: 'Novels set in or about a bygone era',
+    query: '_genre:historical fiction',
     filter: (p) => p.genres.includes('historical fiction'),
   },
   {
     title: 'Coming of Age',
     description: 'Stories of childhood, adolescence, and growing up',
+    query: 'childhood',
     filter: (p) =>
       p.sentiment.themes.includes('childhood') ||
       p.genres.includes("children's") ||
@@ -488,7 +495,7 @@ export default function HomePage() {
                     </div>
                   </div>
                   <Link
-                    href="/explore"
+                    href={`/explore?q=${encodeURIComponent(list.query)}`}
                     className="block px-6 py-3 border-t border-akhand-border/30 text-xs font-medium text-akhand-accent hover:bg-akhand-surface-2 transition-colors text-center"
                   >
                     Explore on map

@@ -10,7 +10,7 @@ import maplibregl from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import { Protocol } from 'pmtiles';
 import { MapboxOverlay } from '@deck.gl/mapbox';
-import { ScatterplotLayer, ArcLayer } from '@deck.gl/layers';
+import { ScatterplotLayer, ArcLayer, TextLayer } from '@deck.gl/layers';
 import { HeatmapLayer } from '@deck.gl/aggregation-layers';
 import type {
   LiteraryPlace,
@@ -20,24 +20,18 @@ import type {
 } from '@/lib/types';
 import { sentimentColor } from '@/lib/data';
 
-// Register PMTiles protocol for zero-cost self-hosted vector tiles.
-// To use PMTiles: host a .pmtiles file on Cloudflare R2 or S3 (free egress),
-// then point BASEMAP_STYLE to a style.json referencing pmtiles:// sources.
-// For development, CARTO's free dark basemap works without any hosting.
 const pmtilesProtocol = new Protocol();
 maplibregl.addProtocol('pmtiles', pmtilesProtocol.tile);
 
-// Default: CARTO dark matter (free, no API key)
-// Production: self-hosted PMTiles on Cloudflare R2 for zero tile-serving cost
 const BASEMAP_DARK =
   'https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json';
 
 const INITIAL_VIEW: MapViewState = {
-  longitude: 68,
-  latitude: 25,
-  zoom: 3.2,
-  pitch: 0,
-  bearing: 0,
+  longitude: 78,
+  latitude: 22,
+  zoom: 4.2,
+  pitch: 45,
+  bearing: -8,
 };
 
 interface LiteraryMapProps {
@@ -47,45 +41,11 @@ interface LiteraryMapProps {
   layerMode: MapLayerMode;
 }
 
-function DeckGLOverlay({
-  layers,
-}: {
-  layers: (ScatterplotLayer | HeatmapLayer | ArcLayer)[];
-}) {
-  const overlayRef = useRef<MapboxOverlay | null>(null);
-  const mapRef = useRef<maplibregl.Map | null>(null);
-
-  useEffect(() => {
-    return () => {
-      if (overlayRef.current && mapRef.current) {
-        try {
-          mapRef.current.removeControl(overlayRef.current as unknown as maplibregl.IControl);
-        } catch {
-          // already removed
-        }
-      }
-    };
-  }, []);
-
-  const onMapLoad = useCallback(
-    (e: maplibregl.MapLibreEvent) => {
-      const map = e.target;
-      mapRef.current = map;
-      const overlay = new MapboxOverlay({ layers });
-      overlayRef.current = overlay;
-      map.addControl(overlay as unknown as maplibregl.IControl);
-    },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    []
-  );
-
-  useEffect(() => {
-    if (overlayRef.current) {
-      overlayRef.current.setProps({ layers });
-    }
-  }, [layers]);
-
-  return { onMapLoad };
+interface CityCluster {
+  placeName: string;
+  coordinates: [number, number];
+  count: number;
+  authors: number;
 }
 
 export default function LiteraryMap({
@@ -102,6 +62,31 @@ export default function LiteraryMap({
   } | null>(null);
   const mapRef = useRef<MapRef>(null);
   const overlayRef = useRef<MapboxOverlay | null>(null);
+  const [time, setTime] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTime((t) => t + 1);
+    }, 50);
+    return () => clearInterval(interval);
+  }, []);
+
+  const cityClusters = useMemo(() => {
+    const grouped: Record<string, LiteraryPlace[]> = {};
+    places.forEach((p) => {
+      const key = p.placeName;
+      if (!grouped[key]) grouped[key] = [];
+      grouped[key].push(p);
+    });
+    return Object.entries(grouped)
+      .map(([placeName, entries]): CityCluster => ({
+        placeName,
+        coordinates: entries[0].coordinates,
+        count: entries.length,
+        authors: new Set(entries.map((e) => e.author)).size,
+      }))
+      .filter((c) => c.count >= 2);
+  }, [places]);
 
   const authorConnections = useMemo(() => {
     const grouped: Record<string, LiteraryPlace[]> = {};
@@ -140,31 +125,70 @@ export default function LiteraryMap({
     setViewState(e.viewState as MapViewState);
   }, []);
 
+  const bookCountByPlace = useMemo(() => {
+    const counts: Record<string, number> = {};
+    places.forEach((p) => {
+      counts[p.placeName] = (counts[p.placeName] || 0) + 1;
+    });
+    return counts;
+  }, [places]);
+
+  const pulse = Math.sin(time * 0.08) * 0.3 + 0.7;
+
   const layers = useMemo(() => {
-    const result: (ScatterplotLayer | HeatmapLayer | ArcLayer)[] = [];
+    const result: (ScatterplotLayer | HeatmapLayer | ArcLayer | TextLayer)[] = [];
 
     if (layerMode === 'scatter') {
+      result.push(
+        new ScatterplotLayer({
+          id: 'scatter-glow',
+          data: places,
+          getPosition: (d: LiteraryPlace) => d.coordinates,
+          getFillColor: (d: LiteraryPlace) => {
+            const count = bookCountByPlace[d.placeName] || 1;
+            const intensity = Math.min(count / 15, 1);
+            return [196, 154, 108, Math.round(30 + intensity * 40)] as [number, number, number, number];
+          },
+          getRadius: (d: LiteraryPlace) => {
+            const count = bookCountByPlace[d.placeName] || 1;
+            return 15000 + Math.sqrt(count) * 8000;
+          },
+          radiusMinPixels: 8,
+          radiusMaxPixels: 40,
+          pickable: false,
+          updateTriggers: {
+            getFillColor: [time],
+          },
+        } as ConstructorParameters<typeof ScatterplotLayer>[0])
+      );
+
       result.push(
         new ScatterplotLayer({
           id: 'literary-scatter',
           data: places,
           getPosition: (d: LiteraryPlace) => d.coordinates,
           getFillColor: (d: LiteraryPlace) => {
-            if (selectedPlace?.id === d.id) return [196, 154, 108, 255];
-            return [...sentimentColor(d.sentiment.polarity), 200] as [number, number, number, number];
+            if (selectedPlace?.id === d.id) {
+              return [255, 220, 170, Math.round(200 + pulse * 55)] as [number, number, number, number];
+            }
+            return [...sentimentColor(d.sentiment.polarity), 220] as [number, number, number, number];
           },
-          getRadius: (d: LiteraryPlace) =>
-            selectedPlace?.id === d.id
-              ? 12000
-              : d.settingType === 'primary'
-                ? 8000
-                : 5000,
-          radiusMinPixels: 4,
-          radiusMaxPixels: 20,
+          getRadius: (d: LiteraryPlace) => {
+            const count = bookCountByPlace[d.placeName] || 1;
+            const base = 3000 + Math.sqrt(count) * 2500;
+            if (selectedPlace?.id === d.id) return base * 1.8;
+            return base;
+          },
+          radiusMinPixels: 3,
+          radiusMaxPixels: 18,
           pickable: true,
           stroked: true,
-          getLineColor: [196, 154, 108, 100],
-          getLineWidth: 1,
+          getLineColor: (d: LiteraryPlace) =>
+            selectedPlace?.id === d.id
+              ? [255, 220, 170, 255]
+              : [196, 154, 108, 80] as [number, number, number, number],
+          getLineWidth: (d: LiteraryPlace) =>
+            selectedPlace?.id === d.id ? 3 : 1,
           lineWidthMinPixels: 1,
           onClick: ({ object }: { object?: LiteraryPlace }) => {
             if (object) onSelectPlace(object);
@@ -181,15 +205,47 @@ export default function LiteraryMap({
             setHoverInfo(object ? { x, y, place: object } : null);
           },
           updateTriggers: {
-            getFillColor: selectedPlace?.id,
-            getRadius: selectedPlace?.id,
+            getFillColor: [selectedPlace?.id, time],
+            getRadius: [selectedPlace?.id],
+            getLineColor: [selectedPlace?.id],
+            getLineWidth: [selectedPlace?.id],
           },
           transitions: {
             getRadius: 300,
-            getFillColor: 300,
           },
         } as ConstructorParameters<typeof ScatterplotLayer>[0])
       );
+
+      if (viewState.zoom >= 3.5) {
+        result.push(
+          new TextLayer({
+            id: 'city-labels',
+            data: cityClusters.filter((c) => {
+              if (viewState.zoom >= 6) return c.count >= 1;
+              if (viewState.zoom >= 5) return c.count >= 3;
+              return c.count >= 5;
+            }),
+            getPosition: (d: CityCluster) => d.coordinates,
+            getText: (d: CityCluster) => `${d.placeName} (${d.count})`,
+            getSize: (d: CityCluster) => {
+              const base = Math.min(12 + Math.sqrt(d.count) * 1.5, 20);
+              return base;
+            },
+            getColor: [245, 240, 235, 200],
+            getTextAnchor: 'middle' as const,
+            getAlignmentBaseline: 'bottom' as const,
+            getPixelOffset: [0, -20],
+            fontFamily: 'Plus Jakarta Sans, system-ui, sans-serif',
+            fontWeight: 600,
+            outlineWidth: 3,
+            outlineColor: [5, 5, 5, 220],
+            pickable: false,
+            billboard: true,
+            sizeMinPixels: 10,
+            sizeMaxPixels: 22,
+          } as ConstructorParameters<typeof TextLayer>[0])
+        );
+      }
     }
 
     if (layerMode === 'heatmap') {
@@ -201,15 +257,15 @@ export default function LiteraryMap({
           getWeight: (d: LiteraryPlace) =>
             d.settingType === 'primary' ? 3 : 1,
           radiusPixels: 60,
-          intensity: 1.5,
-          threshold: 0.1,
+          intensity: 2,
+          threshold: 0.05,
           colorRange: [
-            [26, 26, 26, 0],
-            [100, 70, 40, 80],
-            [160, 110, 60, 140],
-            [196, 154, 108, 180],
-            [220, 180, 130, 220],
-            [245, 220, 180, 255],
+            [10, 5, 0, 0],
+            [60, 30, 10, 80],
+            [140, 80, 30, 140],
+            [196, 130, 70, 190],
+            [220, 170, 110, 230],
+            [255, 230, 190, 255],
           ],
           pickable: false,
         } as ConstructorParameters<typeof HeatmapLayer>[0])
@@ -219,10 +275,10 @@ export default function LiteraryMap({
           id: 'literary-scatter-overlay',
           data: places,
           getPosition: (d: LiteraryPlace) => d.coordinates,
-          getFillColor: [196, 154, 108, 150],
+          getFillColor: [255, 220, 170, 120],
           getRadius: 4000,
-          radiusMinPixels: 3,
-          radiusMaxPixels: 8,
+          radiusMinPixels: 2,
+          radiusMaxPixels: 6,
           pickable: true,
           onClick: ({ object }: { object?: LiteraryPlace }) => {
             if (object) onSelectPlace(object);
@@ -249,12 +305,14 @@ export default function LiteraryMap({
           data: authorConnections,
           getSourcePosition: (d: AuthorConnection) => d.source,
           getTargetPosition: (d: AuthorConnection) => d.target,
-          getSourceColor: [196, 154, 108, 180],
-          getTargetColor: [232, 213, 192, 120],
-          getWidth: 2,
+          getSourceColor: [196, 154, 108, 160],
+          getTargetColor: [140, 200, 255, 120],
+          getWidth: (d: AuthorConnection) =>
+            Math.min(1 + d.bookCount * 0.5, 5),
           widthMinPixels: 1,
-          widthMaxPixels: 4,
+          widthMaxPixels: 6,
           greatCircle: true,
+          getHeight: 0.4,
           pickable: true,
           onHover: ({
             object,
@@ -271,9 +329,9 @@ export default function LiteraryMap({
                 y,
                 place: {
                   id: `arc-${object.author}`,
-                  bookTitle: `${object.sourceCity} → ${object.targetCity}`,
+                  bookTitle: `${object.sourceCity} \u2194 ${object.targetCity}`,
                   author: object.author,
-                  placeName: '',
+                  placeName: `${object.bookCount} works`,
                   publishYear: 0,
                   coordinates: object.source,
                   placeType: 'real',
@@ -295,37 +353,46 @@ export default function LiteraryMap({
       result.push(
         new ScatterplotLayer({
           id: 'arc-endpoints',
-          data: places,
-          getPosition: (d: LiteraryPlace) => d.coordinates,
-          getFillColor: [196, 154, 108, 200],
-          getRadius: 6000,
+          data: cityClusters,
+          getPosition: (d: CityCluster) => d.coordinates,
+          getFillColor: [196, 154, 108, 220],
+          getRadius: (d: CityCluster) => 4000 + Math.sqrt(d.count) * 2000,
           radiusMinPixels: 4,
-          radiusMaxPixels: 12,
-          pickable: true,
+          radiusMaxPixels: 14,
+          pickable: false,
           stroked: true,
-          getLineColor: [232, 213, 192, 150],
+          getLineColor: [140, 200, 255, 100],
           getLineWidth: 2,
           lineWidthMinPixels: 1,
-          onClick: ({ object }: { object?: LiteraryPlace }) => {
-            if (object) onSelectPlace(object);
-          },
-          onHover: ({
-            object,
-            x,
-            y,
-          }: {
-            object?: LiteraryPlace;
-            x: number;
-            y: number;
-          }) => {
-            setHoverInfo(object ? { x, y, place: object } : null);
-          },
         } as ConstructorParameters<typeof ScatterplotLayer>[0])
       );
+      if (viewState.zoom >= 3) {
+        result.push(
+          new TextLayer({
+            id: 'arc-labels',
+            data: cityClusters.filter((c) => c.count >= 3),
+            getPosition: (d: CityCluster) => d.coordinates,
+            getText: (d: CityCluster) => d.placeName,
+            getSize: 12,
+            getColor: [200, 210, 230, 180],
+            getTextAnchor: 'middle' as const,
+            getAlignmentBaseline: 'bottom' as const,
+            getPixelOffset: [0, -16],
+            fontFamily: 'Plus Jakarta Sans, system-ui, sans-serif',
+            fontWeight: 500,
+            outlineWidth: 3,
+            outlineColor: [5, 5, 5, 200],
+            pickable: false,
+            billboard: true,
+            sizeMinPixels: 10,
+            sizeMaxPixels: 16,
+          } as ConstructorParameters<typeof TextLayer>[0])
+        );
+      }
     }
 
     return result;
-  }, [places, selectedPlace, layerMode, authorConnections, onSelectPlace]);
+  }, [places, selectedPlace, layerMode, authorConnections, cityClusters, onSelectPlace, viewState.zoom, bookCountByPlace, pulse, time]);
 
   const handleMapLoad = useCallback(() => {
     const map = mapRef.current?.getMap();
@@ -348,7 +415,7 @@ export default function LiteraryMap({
         longitude: lng,
         latitude: lat,
         zoom,
-        transitionDuration: 1200,
+        transitionDuration: 1500,
       }));
     },
     []
@@ -372,7 +439,7 @@ export default function LiteraryMap({
         style={{ width: '100%', height: '100%' }}
         cursor={hoverInfo ? 'pointer' : 'grab'}
       >
-        <NavigationControl position="bottom-right" showCompass={false} />
+        <NavigationControl position="bottom-right" showCompass visualizePitch />
       </Map>
 
       {hoverInfo && (
@@ -380,18 +447,29 @@ export default function LiteraryMap({
           className="map-tooltip"
           style={{ left: hoverInfo.x, top: hoverInfo.y }}
         >
-          <p className="text-sm text-akhand-accent font-medium">
-            {hoverInfo.place.bookTitle}
-          </p>
-          <p className="text-xs text-akhand-text-secondary mt-1">
-            {hoverInfo.place.author}
-            {hoverInfo.place.placeName && ` · ${hoverInfo.place.placeName}`}
-          </p>
-          {hoverInfo.place.narrativeEra && (
-            <p className="text-[10px] text-akhand-text-muted mt-0.5">
-              {hoverInfo.place.narrativeEra}
-            </p>
-          )}
+          <div className="flex items-start gap-3">
+            {(hoverInfo.place as LiteraryPlace & { coverUrl?: string }).coverUrl && (
+              <img
+                src={(hoverInfo.place as LiteraryPlace & { coverUrl?: string }).coverUrl!}
+                alt=""
+                className="w-8 h-11 rounded object-cover flex-shrink-0"
+              />
+            )}
+            <div>
+              <p className="text-sm text-akhand-accent font-medium leading-tight">
+                {hoverInfo.place.bookTitle}
+              </p>
+              <p className="text-xs text-akhand-text-secondary mt-1">
+                {hoverInfo.place.author}
+              </p>
+              {hoverInfo.place.placeName && (
+                <p className="text-[10px] text-akhand-text-muted mt-0.5">
+                  {hoverInfo.place.placeName}
+                  {hoverInfo.place.publishYear ? ` \u00b7 ${hoverInfo.place.publishYear}` : ''}
+                </p>
+              )}
+            </div>
+          </div>
         </div>
       )}
     </div>

@@ -30,6 +30,7 @@ interface PlaceDetailProps {
   onClose: () => void;
   onSelectRelated?: (place: LiteraryPlace) => void;
   onViewAuthor?: (author: string) => void;
+  onFilterGenre?: (genre: string) => void;
 }
 
 function SentimentBar({ polarity }: { polarity: number }) {
@@ -89,6 +90,7 @@ export default function PlaceDetail({
   onClose,
   onSelectRelated,
   onViewAuthor,
+  onFilterGenre,
 }: PlaceDetailProps) {
   const [gbInfo, setGbInfo] = useState<GoogleBookInfo | null>(null);
   const [wikiInfo, setWikiInfo] = useState<WikipediaSummary | null>(null);
@@ -386,12 +388,13 @@ export default function PlaceDetail({
             </span>
             <div className="flex flex-wrap gap-1.5 mt-2">
               {place.genres.map((genre) => (
-                <span
+                <button
                   key={genre}
-                  className="px-2.5 py-1 border border-akhand-border rounded-full text-[11px] text-akhand-text-muted"
+                  onClick={() => onFilterGenre?.(genre)}
+                  className="px-2.5 py-1 border border-akhand-border rounded-full text-[11px] text-akhand-text-muted hover:border-akhand-accent hover:text-akhand-accent transition-colors cursor-pointer"
                 >
                   {genre}
-                </span>
+                </button>
               ))}
             </div>
           </div>
