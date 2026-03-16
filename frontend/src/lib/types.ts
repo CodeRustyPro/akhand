@@ -14,6 +14,10 @@ export interface LiteraryPlace {
   language: string;
   genres: string[];
   region: string;
+  coverUrl?: string;
+  openLibraryKey?: string;
+  openLibraryUrl?: string;
+  goodreadsUrl?: string;
   wikidataBookId?: string;
   wikidataPlaceId?: string;
 }

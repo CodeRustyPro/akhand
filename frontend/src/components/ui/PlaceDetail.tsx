@@ -20,6 +20,7 @@ interface PlaceDetailProps {
   allPlaces: LiteraryPlace[];
   onClose: () => void;
   onSelectRelated?: (place: LiteraryPlace) => void;
+  onViewAuthor?: (author: string) => void;
 }
 
 function SentimentBar({ polarity }: { polarity: number }) {
@@ -78,6 +79,7 @@ export default function PlaceDetail({
   allPlaces,
   onClose,
   onSelectRelated,
+  onViewAuthor,
 }: PlaceDetailProps) {
   const relatedPlaces = useMemo(() => {
     return allPlaces.filter(
@@ -88,6 +90,8 @@ export default function PlaceDetail({
           p.bookTitle === place.bookTitle)
     );
   }, [place, allPlaces]);
+
+  const readUrl = place.openLibraryUrl || place.goodreadsUrl;
 
   return (
     <motion.div
@@ -114,14 +118,42 @@ export default function PlaceDetail({
       </div>
 
       <div className="p-5 space-y-6">
-        {/* Title section */}
-        <div>
-          <h2 className="text-lg font-semibold text-akhand-text-primary leading-tight">
-            {place.bookTitle}
-          </h2>
-          <p className="text-sm text-akhand-text-secondary mt-1">
-            by {place.author}
-          </p>
+        {/* Cover + Title */}
+        <div className="flex gap-4">
+          {place.coverUrl && (
+            <div className="flex-shrink-0">
+              <img
+                src={place.coverUrl}
+                alt={place.bookTitle}
+                className="w-20 h-auto rounded-lg shadow-md object-cover"
+                onError={(e) => {
+                  (e.target as HTMLImageElement).style.display = 'none';
+                }}
+              />
+            </div>
+          )}
+          <div className="flex-1 min-w-0">
+            <h2 className="text-lg font-semibold text-akhand-text-primary leading-tight">
+              {place.bookTitle}
+            </h2>
+            <button
+              onClick={() => onViewAuthor?.(place.author)}
+              className="text-sm text-akhand-text-secondary mt-1 hover:text-akhand-accent transition-colors text-left"
+            >
+              by {place.author}
+            </button>
+            {readUrl && (
+              <a
+                href={readUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-2 inline-flex items-center gap-1.5 text-xs font-medium text-akhand-accent hover:text-akhand-accent-hover transition-colors"
+              >
+                {place.openLibraryUrl ? 'Open Library' : 'Find this book'}
+                <ExternalLink className="w-3 h-3" />
+              </a>
+            )}
+          </div>
         </div>
 
         {/* Place info */}

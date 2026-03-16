@@ -50,6 +50,7 @@ export default function ExplorePage() {
   const [showLayerMenu, setShowLayerMenu] = useState(false);
   const [dataSource, setDataSource] = useState<'fallback' | 'api'>('fallback');
   const [loading, setLoading] = useState(true);
+  const [authorFilter, setAuthorFilter] = useState<string | null>(null);
 
   useEffect(() => {
     let cancelled = false;
@@ -74,6 +75,12 @@ export default function ExplorePage() {
   const handleFilteredPlacesChange = useCallback((places: LiteraryPlace[]) => {
     setFilteredPlaces(places);
   }, []);
+
+  const handleViewAuthor = useCallback((author: string) => {
+    setAuthorFilter(author);
+    setSelectedPlace(null);
+    if (!sidebarOpen) setSidebarOpen(true);
+  }, [sidebarOpen]);
 
   return (
     <div className="h-screen w-screen overflow-hidden bg-akhand-bg flex">
@@ -109,6 +116,8 @@ export default function ExplorePage() {
               selectedPlace={selectedPlace}
               onSelectPlace={handleSelectPlace}
               onFilteredPlacesChange={handleFilteredPlacesChange}
+              authorFilter={authorFilter}
+              onClearAuthorFilter={() => setAuthorFilter(null)}
             />
           </motion.aside>
         )}
@@ -232,6 +241,7 @@ export default function ExplorePage() {
               allPlaces={allPlaces}
               onClose={() => setSelectedPlace(null)}
               onSelectRelated={handleSelectPlace}
+              onViewAuthor={handleViewAuthor}
             />
           )}
         </AnimatePresence>

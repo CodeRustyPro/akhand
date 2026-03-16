@@ -17,6 +17,8 @@ interface SearchPanelProps {
   onSelectPlace: (place: LiteraryPlace) => void;
   selectedPlace: LiteraryPlace | null;
   onFilteredPlacesChange: (places: LiteraryPlace[]) => void;
+  authorFilter?: string | null;
+  onClearAuthorFilter?: () => void;
 }
 
 function FilterChip({
@@ -61,16 +63,20 @@ export default function SearchPanel({
   onSelectPlace,
   selectedPlace,
   onFilteredPlacesChange,
+  authorFilter,
+  onClearAuthorFilter,
 }: SearchPanelProps) {
   const [query, setQuery] = useState('');
   const [showFilters, setShowFilters] = useState(false);
   const [selectedRegions, setSelectedRegions] = useState<string[]>([]);
   const [selectedGenres, setSelectedGenres] = useState<string[]>([]);
   const [selectedEras, setSelectedEras] = useState<string[]>([]);
+  const [selectedLanguages, setSelectedLanguages] = useState<string[]>([]);
   const [expandedSections, setExpandedSections] = useState<
     Record<string, boolean>
   >({
     regions: true,
+    languages: false,
     genres: false,
     eras: false,
   });
@@ -86,8 +92,23 @@ export default function SearchPanel({
     return [...g].sort();
   }, [places]);
 
+  const languages = useMemo(() => {
+    const counts: Record<string, number> = {};
+    places.forEach((p) => {
+      const lang = p.language || 'Unknown';
+      counts[lang] = (counts[lang] || 0) + 1;
+    });
+    return Object.entries(counts)
+      .sort((a, b) => b[1] - a[1])
+      .map(([lang, count]) => ({ lang, count }));
+  }, [places]);
+
   const filteredPlaces = useMemo(() => {
     let result = places;
+
+    if (authorFilter) {
+      result = result.filter((p) => p.author === authorFilter);
+    }
 
     if (query.trim()) {
       const q = query.toLowerCase();
@@ -116,6 +137,12 @@ export default function SearchPanel({
       );
     }
 
+    if (selectedLanguages.length > 0) {
+      result = result.filter((p) =>
+        selectedLanguages.includes(p.language || 'Unknown')
+      );
+    }
+
     if (selectedEras.length > 0) {
       result = result.filter((p) => {
         const year = p.publishYear;
@@ -141,7 +168,7 @@ export default function SearchPanel({
     onFilteredPlacesChange(result);
     return result;
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [query, selectedRegions, selectedGenres, selectedEras, places]);
+  }, [query, selectedRegions, selectedGenres, selectedLanguages, selectedEras, authorFilter, places]);
 
   const toggleFilter = (
     list: string[],
@@ -160,12 +187,13 @@ export default function SearchPanel({
   };
 
   const activeFilterCount =
-    selectedRegions.length + selectedGenres.length + selectedEras.length;
+    selectedRegions.length + selectedGenres.length + selectedLanguages.length + selectedEras.length;
 
   const clearAll = () => {
     setQuery('');
     setSelectedRegions([]);
     setSelectedGenres([]);
+    setSelectedLanguages([]);
     setSelectedEras([]);
   };
 
@@ -264,6 +292,39 @@ export default function SearchPanel({
                 )}
               </div>
 
+              {/* Languages */}
+              <div>
+                <button
+                  onClick={() => toggleSection('languages')}
+                  className="flex items-center justify-between w-full text-xs font-medium text-akhand-text-secondary mb-2"
+                >
+                  Language
+                  {expandedSections.languages ? (
+                    <ChevronUp className="w-3 h-3" />
+                  ) : (
+                    <ChevronDown className="w-3 h-3" />
+                  )}
+                </button>
+                {expandedSections.languages && (
+                  <div className="flex flex-wrap gap-1.5">
+                    {languages.map(({ lang, count }) => (
+                      <FilterChip
+                        key={lang}
+                        label={`${lang} (${count})`}
+                        active={selectedLanguages.includes(lang)}
+                        onClick={() =>
+                          toggleFilter(
+                            selectedLanguages,
+                            setSelectedLanguages,
+                            lang
+                          )
+                        }
+                      />
+                    ))}
+                  </div>
+                )}
+              </div>
+
               {/* Genres */}
               <div>
                 <button
@@ -330,6 +391,22 @@ export default function SearchPanel({
         )}
       </AnimatePresence>
 
+      {/* Author filter banner */}
+      {authorFilter && (
+        <div className="px-4 py-2.5 bg-akhand-accent-dim border-b border-akhand-border flex items-center justify-between">
+          <div className="text-xs">
+            <span className="text-akhand-text-muted">Author: </span>
+            <span className="font-medium text-akhand-accent">{authorFilter}</span>
+          </div>
+          <button
+            onClick={onClearAuthorFilter}
+            className="text-akhand-text-muted hover:text-akhand-text-primary transition-colors"
+          >
+            <X className="w-3.5 h-3.5" />
+          </button>
+        </div>
+      )}
+
       {/* Results count */}
       <div className="px-4 py-2 text-xs text-akhand-text-muted border-b border-akhand-border/50">
         {filteredPlaces.length} literary place
@@ -353,11 +430,22 @@ export default function SearchPanel({
               }`}
             >
               <div className="flex items-start gap-3">
-                <div
-                  className={`w-2 h-2 rounded-full mt-1.5 flex-shrink-0 ${sentimentDot(
-                    place.sentiment.polarity
-                  )}`}
-                />
+                {place.coverUrl ? (
+                  <img
+                    src={place.coverUrl}
+                    alt=""
+                    className="w-10 h-14 rounded object-cover flex-shrink-0 bg-akhand-surface-3"
+                    onError={(e) => {
+                      (e.target as HTMLImageElement).style.display = 'none';
+                    }}
+                  />
+                ) : (
+                  <div
+                    className={`w-2 h-2 rounded-full mt-1.5 flex-shrink-0 ${sentimentDot(
+                      place.sentiment.polarity
+                    )}`}
+                  />
+                )}
                 <div className="flex-1 min-w-0">
                   <h4 className="text-sm font-medium text-akhand-text-primary truncate">
                     {place.bookTitle}
@@ -371,6 +459,11 @@ export default function SearchPanel({
                     <span className="text-xs text-akhand-accent">
                       {place.placeName}
                     </span>
+                    {place.language && place.language !== 'English' && (
+                      <span className="text-[10px] text-akhand-text-muted ml-1">
+                        · {place.language}
+                      </span>
+                    )}
                   </div>
                   {hasPassage && (
                     <p className="text-[11px] text-akhand-text-muted mt-1.5 line-clamp-2 italic leading-relaxed">
