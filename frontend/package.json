@@ -21,7 +21,8 @@
     "pmtiles": "^4.4.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-map-gl": "^7.1.8"
+    "react-map-gl": "^7.1.8",
+    "scrollama": "^3.2.0"
   },
   "devDependencies": {
     "@types/node": "^22.10.0",

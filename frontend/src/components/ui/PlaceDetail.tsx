@@ -23,6 +23,8 @@ import {
   type GoogleBookInfo,
   type WikipediaSummary,
 } from '@/lib/external';
+import { computeCityDna } from '@/lib/cityDna';
+import RadarChart from './RadarChart';
 
 interface PlaceDetailProps {
   place: LiteraryPlace;
@@ -120,21 +122,42 @@ export default function PlaceDetail({
       .filter((p) => p.id !== place.id)
       .map((p) => {
         let score = 0;
-        if (p.placeName === place.placeName) score += 3;
-        if (p.region === place.region) score += 1;
-        const sharedGenres = p.genres.filter((g) => placeGenres.has(g)).length;
-        score += sharedGenres * 2;
-        const sharedThemes = p.sentiment.themes.filter((t) => placeThemes.has(t)).length;
-        score += sharedThemes * 2;
+        const reasons: string[] = [];
+
+        if (p.placeName === place.placeName) {
+          score += 3;
+          reasons.push('Same city');
+        }
+        if (p.region === place.region && p.placeName !== place.placeName) score += 1;
+
+        const sharedGenres = p.genres.filter((g) => placeGenres.has(g));
+        score += sharedGenres.length * 2;
+        if (sharedGenres.length > 0) {
+          reasons.push(`Shared: ${sharedGenres.slice(0, 2).join(', ')}`);
+        }
+
+        const sharedThemes = p.sentiment.themes.filter((t) => placeThemes.has(t));
+        score += sharedThemes.length * 2;
+        if (sharedThemes.length > 0 && reasons.length < 2) {
+          reasons.push(`Themes: ${sharedThemes.slice(0, 2).map((t) => t.replace(/_/g, ' ')).join(', ')}`);
+        }
+
         const yearDiff = Math.abs((p.publishYear || 0) - (place.publishYear || 0));
-        if (yearDiff < 20) score += 1;
-        if (p.language === place.language && place.language !== 'English') score += 2;
-        return { place: p, score };
+        if (yearDiff < 20) {
+          score += 1;
+          if (reasons.length < 2) reasons.push('Similar era');
+        }
+
+        if (p.language === place.language && place.language !== 'English') {
+          score += 2;
+          if (reasons.length < 2) reasons.push(`Both in ${p.language}`);
+        }
+
+        return { place: p, score, reasons };
       })
       .filter((s) => s.score >= 3)
       .sort((a, b) => b.score - a.score)
-      .slice(0, 5)
-      .map((s) => s.place);
+      .slice(0, 8);
   }, [place, allPlaces]);
 
   const cityStats = useMemo(() => {
@@ -158,6 +181,11 @@ export default function PlaceDetail({
         .map(([d]) => d),
     };
   }, [place.placeName, allPlaces]);
+
+  const cityDna = useMemo(
+    () => computeCityDna(place.placeName, allPlaces),
+    [place.placeName, allPlaces]
+  );
 
   const readUrl = place.openLibraryUrl || place.goodreadsUrl;
   const readLabel = place.openLibraryUrl ? 'Open Library' : 'Google Books';
@@ -431,6 +459,22 @@ export default function PlaceDetail({
           </div>
         )}
 
+        {/* City Literary DNA */}
+        {cityDna && (
+          <div className="bg-akhand-surface-2 rounded-xl p-4">
+            <div className="flex items-center gap-1.5 mb-2">
+              <Sparkles className="w-3.5 h-3.5 text-akhand-accent" />
+              <span className="text-xs font-medium text-akhand-text-secondary">
+                {place.placeName} Literary DNA
+              </span>
+            </div>
+            <p className="text-[10px] text-akhand-text-muted mb-3">
+              Theme fingerprint across {cityDna.totalBooks} books ({cityDna.totalThemes} unique themes)
+            </p>
+            <RadarChart axes={cityDna.axes} size={240} />
+          </div>
+        )}
+
         {/* Wikipedia context */}
         {wikiInfo && (
           <div className="bg-akhand-surface rounded-xl p-4 border border-akhand-border/50">
@@ -456,7 +500,7 @@ export default function PlaceDetail({
           </div>
         )}
 
-        {/* Similar books */}
+        {/* Similar books — horizontal scroll */}
         {similarBooks.length > 0 && (
           <div>
             <div className="flex items-center gap-1.5 mb-3">
@@ -465,30 +509,38 @@ export default function PlaceDetail({
                 Similar books
               </span>
             </div>
-            <div className="space-y-2">
-              {similarBooks.map((rp) => (
+            <div className="flex gap-3 overflow-x-auto scrollbar-hide snap-x snap-mandatory pb-2 -mx-5 px-5">
+              {similarBooks.map((item) => (
                 <button
-                  key={rp.id}
-                  onClick={() => onSelectRelated?.(rp)}
-                  className="w-full text-left bg-akhand-surface-2 rounded-lg p-3 cursor-pointer hover:bg-akhand-surface-3 transition-colors flex items-center gap-3"
+                  key={item.place.id}
+                  onClick={() => onSelectRelated?.(item.place)}
+                  className="flex-shrink-0 w-[140px] snap-start bg-akhand-surface-2 rounded-xl p-3 cursor-pointer hover:bg-akhand-surface-3 transition-colors text-left"
                 >
-                  {rp.coverUrl && (
+                  {item.place.coverUrl && (
                     <img
-                      src={rp.coverUrl}
+                      src={item.place.coverUrl}
                       alt=""
-                      className="w-8 h-11 rounded object-cover flex-shrink-0"
+                      className="w-full h-[140px] rounded-lg object-cover mb-2"
                       onError={(e) => {
                         (e.target as HTMLImageElement).style.display = 'none';
                       }}
                     />
                   )}
-                  <div className="min-w-0">
-                    <p className="text-xs font-medium text-akhand-text-primary truncate">
-                      {rp.bookTitle}
-                    </p>
-                    <p className="text-[10px] text-akhand-text-muted mt-0.5">
-                      {rp.author} · {rp.placeName}
-                    </p>
+                  <p className="text-[11px] font-medium text-akhand-text-primary leading-tight line-clamp-2">
+                    {item.place.bookTitle}
+                  </p>
+                  <p className="text-[10px] text-akhand-text-muted mt-0.5 truncate">
+                    {item.place.author}
+                  </p>
+                  <div className="flex flex-wrap gap-1 mt-2">
+                    {item.reasons.slice(0, 2).map((reason) => (
+                      <span
+                        key={reason}
+                        className="px-1.5 py-0.5 bg-akhand-accent/10 text-akhand-accent rounded text-[9px] leading-tight"
+                      >
+                        {reason}
+                      </span>
+                    ))}
                   </div>
                 </button>
               ))}

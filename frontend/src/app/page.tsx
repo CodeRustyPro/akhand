@@ -15,10 +15,12 @@ import {
   Quote,
   ArrowUpRight,
   ChevronDown,
+  BookOpen,
 } from 'lucide-react';
 import { literaryPlaces } from '@/lib/data';
 import { fetchLiteraryPlaces } from '@/lib/api';
 import type { LiteraryPlace } from '@/lib/types';
+import { tours } from '@/lib/tours';
 
 /* ── Animations ─────────────────────────────────────── */
 
@@ -217,6 +219,12 @@ export default function HomePage() {
             </span>
           </Link>
           <div className="flex items-center gap-4">
+            <Link
+              href="/stories/literary-mumbai"
+              className="text-sm text-akhand-text-muted hover:text-akhand-text-secondary transition-colors hidden sm:block"
+            >
+              Stories
+            </Link>
             <a
               href="https://github.com/CodeRustyPro/akhand"
               target="_blank"
@@ -529,6 +537,96 @@ export default function HomePage() {
           </div>
         </section>
       )}
+
+      {/* ── Literary Tours ──────────────────────────── */}
+      <section className="py-32 px-6">
+        <div className="max-w-6xl mx-auto">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: '-100px' }}
+            className="text-center mb-16"
+          >
+            <motion.p
+              variants={fadeUp}
+              custom={0}
+              className="text-xs font-medium text-akhand-accent tracking-[0.2em] uppercase"
+            >
+              Scrollytelling
+            </motion.p>
+            <motion.h2
+              variants={fadeUp}
+              custom={1}
+              className="font-serif text-3xl sm:text-5xl font-bold text-akhand-text-primary mt-5"
+            >
+              Literary Tours
+            </motion.h2>
+            <motion.p
+              variants={fadeUp}
+              custom={2}
+              className="text-akhand-text-secondary mt-5 max-w-2xl mx-auto text-base leading-relaxed"
+            >
+              Narrative-driven explorations that guide you through a city&apos;s fiction,
+              one book at a time. Scroll through the story while the map follows along.
+            </motion.p>
+          </motion.div>
+
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: '-50px' }}
+            variants={stagger}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"
+          >
+            {tours.map((tour, i) => (
+              <motion.div key={tour.slug} variants={fadeUp} custom={i}>
+                <Link
+                  href={`/stories/${tour.slug}`}
+                  className="group block relative bg-akhand-surface/50 rounded-2xl border border-akhand-border/40 overflow-hidden hover:border-akhand-accent/25 transition-all duration-500"
+                >
+                  {/* Decorative map preview gradient */}
+                  <div className="h-40 bg-gradient-to-br from-akhand-surface-2 via-akhand-surface to-akhand-bg relative overflow-hidden">
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div className="relative">
+                        {tour.stops.map((stop, j) => (
+                          <div
+                            key={stop.id}
+                            className="absolute w-2 h-2 rounded-full bg-akhand-accent/60"
+                            style={{
+                              left: `${((stop.coordinates[0] - 72.7) / 0.3) * 60 - 30}px`,
+                              top: `${((19.15 - stop.coordinates[1]) / 0.2) * 60 - 30}px`,
+                            }}
+                          />
+                        ))}
+                        <div className="w-8 h-8 rounded-full bg-akhand-accent/10 flex items-center justify-center">
+                          <BookOpen className="w-4 h-4 text-akhand-accent" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="p-6">
+                    <h3 className="font-serif text-lg font-semibold text-akhand-text-primary group-hover:text-akhand-accent transition-colors">
+                      {tour.title}
+                    </h3>
+                    <p className="text-xs text-akhand-text-muted mt-1">
+                      {tour.subtitle}
+                    </p>
+                    <p className="text-sm text-akhand-text-secondary mt-3 leading-relaxed line-clamp-2">
+                      {tour.description}
+                    </p>
+                    <div className="flex items-center gap-3 mt-4">
+                      <span className="text-xs text-akhand-accent font-medium bg-akhand-accent/10 px-2.5 py-1 rounded-full">
+                        {tour.stops.length} stops
+                      </span>
+                      <ArrowRight className="w-3.5 h-3.5 text-akhand-text-muted group-hover:text-akhand-accent group-hover:translate-x-0.5 transition-all" />
+                    </div>
+                  </div>
+                </Link>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
 
       {/* ── CTA ─────────────────────────────────────── */}
       <section className="relative py-32 px-6 overflow-hidden">
