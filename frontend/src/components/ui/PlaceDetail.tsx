@@ -92,6 +92,7 @@ export default function PlaceDetail({
   }, [place, allPlaces]);
 
   const readUrl = place.openLibraryUrl || place.goodreadsUrl;
+  const readLabel = place.openLibraryUrl ? 'Open Library' : 'Google Books';
 
   return (
     <motion.div
@@ -149,7 +150,7 @@ export default function PlaceDetail({
                 rel="noopener noreferrer"
                 className="mt-2 inline-flex items-center gap-1.5 text-xs font-medium text-akhand-accent hover:text-akhand-accent-hover transition-colors"
               >
-                {place.openLibraryUrl ? 'Open Library' : 'Find this book'}
+                {readLabel}
                 <ExternalLink className="w-3 h-3" />
               </a>
             )}

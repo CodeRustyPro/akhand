@@ -1,6 +1,6 @@
 # Akhand
 
-A literary geography platform that maps fiction to the physical world. 1124 literary places across 174 cities in 23 languages, drawn from automated API ingestion, web archive parsing, and human-curated spreadsheets.
+A literary geography platform that maps fiction to the physical world. 983 works of fiction across 172 places in 23 languages, drawn from automated API ingestion, web archive parsing, and human-curated spreadsheets.
 
 The name means "undivided" in Sanskrit. The platform treats South Asia's literary geography as a continuous space, ignoring political boundaries in favor of narrative ones.
 
@@ -15,7 +15,7 @@ Frontend (Next.js 14, MapLibre GL, deck.gl)
     v
 Backend API (FastAPI, Pydantic)
     |
-    |-- /api/places        serves 1124 ingested entries with search/filter
+    |-- /api/places        serves 983 fiction entries with search/filter
     |-- /api/extract       spaCy + GLiNER + Gemini NLP pipeline
     |-- /api/wikidata/*    SPARQL proxy for Wikidata P840
     |
@@ -29,15 +29,15 @@ Data Ingestion (CLI scripts)
 
 ## Data
 
-**1124 literary places** from three sources:
+**983 works of fiction** from three sources, with non-fiction entries (government reports, census data, biographies, academic studies) automatically filtered out:
 
 | Source | Entries | Method |
 |--------|---------|--------|
-| Open Library API | 688 | Automated search across 54 cities with historical name alias expansion (Bombay/Mumbai, Calcutta/Kolkata, Benaras/Varanasi/Kashi, Cochin/Kochi, etc.). Deduplication by work key. |
+| Open Library API | 553 | Automated search across 54 cities with historical name alias expansion (Bombay/Mumbai, Calcutta/Kolkata, Benaras/Varanasi/Kashi, Cochin/Kochi, etc.). Deduplication by work key. Enriched with descriptions and cover images from the Works API. |
 | CIF Archive | 284 | Parsed from citiesinfiction.com/archive (tab-separated). 460+ raw entries deduplicated against existing dataset. Geocoded via pre-populated coordinate cache covering 200+ locations. |
-| CIF Spreadsheet | 152 | Parsed from contributor spreadsheet. 89 unique places, 21 languages including Hindi, Bengali, Malayalam, Telugu, Odia, Kannada, Tamil, Urdu. Geocoded via coordinate cache + Nominatim fallback. |
+| CIF Spreadsheet | 146 | Parsed from contributor spreadsheet. 89 unique places, 21 languages including Hindi, Bengali, Malayalam, Telugu, Odia, Kannada, Tamil, Urdu. Geocoded via coordinate cache + Nominatim fallback. |
 
-Coverage: 174 unique places, 901 unique authors, 1105 unique titles, publication years 1476-2026, 23 languages, 7 regions.
+Coverage: 172 unique places, 773 unique authors, publication years 1476-2026, 23 languages, 7 regions. 478 entries have book descriptions, 378 have cover images, all have outbound links to Open Library or Google Books.
 
 ## NLP pipeline
 
@@ -85,7 +85,7 @@ All commands run from the project root (`akhand/`), not from subdirectories.
 # Frontend only (40 curated entries, no backend needed)
 cd frontend && npm install && npm run dev
 
-# Backend (1124 entries from Open Library + CIF)
+# Backend (983 fiction entries from Open Library + CIF)
 pip install -r backend/requirements.txt
 python -m spacy download en_core_web_md
 uvicorn backend.main:app --port 8000
@@ -116,7 +116,7 @@ docker compose up
 
 - The API has no authentication or rate limiting. `/api/places/refresh` is unauthenticated. Fine for development, not deployable to a public URL without middleware.
 - CORS allows `localhost:3000` and `shahdev.me`. Additional origins require updating the middleware.
-- Sentiment analysis is empty for Open Library entries. The NLP pipeline can do it, but ingestion prioritizes breadth (1124 entries) over depth (rich per-entry analysis).
+- Sentiment analysis is empty for Open Library entries. The NLP pipeline can do it, but ingestion prioritizes breadth (983 entries) over depth (rich per-entry analysis).
 - Neither source contains actual literary passages, only plot summaries (Open Library) and contributor descriptions (CIF). Copyrighted text requires publisher APIs or Project Gutenberg (public domain, pre-1928).
 - Geocoding approximates regions to centroids. "Marwar region in Western part of Rajasthan" maps to Jodhpur. State-level entries and fictional places are similarly approximate.
 - Open Library sorts by relevance, not recency. Recently published books are underrepresented.
