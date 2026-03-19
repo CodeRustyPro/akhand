@@ -1,0 +1,24 @@
+{
+  "sourceRows": 500,
+  "filteredOutNonfictionRows": 15,
+  "totalRows": 485,
+  "reviewedRows": 485,
+  "reviewedCoverageRate": 1.0,
+  "singlePlaceRows": 477,
+  "multiPlaceRows": 8,
+  "unknownRows": 5,
+  "fictionalRows": 16,
+  "nonfictionRows": 0,
+  "narrativeRows": 464,
+  "systemTierCountsReviewed": {
+    "gold": 98,
+    "unknown": 192,
+    "silver": 97,
+    "stub": 98
+  },
+  "recordTypeCounts": {
+    "narrative": 464,
+    "fictional": 16,
+    "unknown": 5
+  }
+}
