@@ -16,6 +16,7 @@ import {
   ArrowUpRight,
   ChevronDown,
   BookOpen,
+  FlaskConical,
 } from 'lucide-react';
 import { literaryPlaces } from '@/lib/data';
 import { fetchLiteraryPlaces } from '@/lib/api';
@@ -84,7 +85,7 @@ const FEATURED_IDS = [
 ];
 
 function pickFeatured(places: LiteraryPlace[]): LiteraryPlace[] {
-  const pool = places.filter((p) => p.qualityTier === 'gold');
+  const pool = places.filter((p) => p.qualityTier !== 'gold');
   const found = FEATURED_IDS
     .map((id) => pool.find((p) => p.id === id) || places.find((p) => p.id === id))
     .filter(Boolean) as LiteraryPlace[];
@@ -169,10 +170,9 @@ const READING_LISTS: ReadingList[] = [
 /* ── Main Page ──────────────────────────────────────── */
 
 export default function HomePage() {
-  const basePlaces = normalizePlacesMetadata(literaryPlaces);
+  const basePlaces = normalizePlacesMetadata(literaryPlaces).filter((p) => p.qualityTier !== 'gold');
   const [stats, setStats] = useState({
     places: basePlaces.length,
-    goldPlaces: basePlaces.filter((p) => p.qualityTier === 'gold').length,
     books: new Set(basePlaces.map((p) => p.bookTitle)).size,
     authors: new Set(basePlaces.map((p) => p.author)).size,
     cities: new Set(basePlaces.map((p) => p.placeName)).size,
@@ -193,16 +193,16 @@ export default function HomePage() {
   useEffect(() => {
     fetchLiteraryPlaces({ limit: 2000 }).then((places) => {
       const normalized = normalizePlacesMetadata(places);
-      if (normalized.length > basePlaces.length) {
-        setAllPlaces(normalized);
+      const filtered = normalized.filter((p) => p.qualityTier !== 'gold');
+      if (filtered.length > basePlaces.length) {
+        setAllPlaces(filtered);
         setStats({
-          places: normalized.length,
-          goldPlaces: normalized.filter((p) => p.qualityTier === 'gold').length,
-          books: new Set(normalized.map((p) => p.bookTitle)).size,
-          authors: new Set(normalized.map((p) => p.author)).size,
-          cities: new Set(normalized.map((p) => p.placeName)).size,
+          places: filtered.length,
+          books: new Set(filtered.map((p) => p.bookTitle)).size,
+          authors: new Set(filtered.map((p) => p.author)).size,
+          cities: new Set(filtered.map((p) => p.placeName)).size,
         });
-        const f = pickFeatured(normalized);
+        const f = pickFeatured(filtered);
         if (f.length > 0) setFeatured(f);
       }
     });
@@ -226,6 +226,13 @@ export default function HomePage() {
             </span>
           </Link>
           <div className="flex items-center gap-4">
+            <Link
+              href="/research"
+              className="inline-flex items-center gap-1.5 px-4 py-2 bg-akhand-accent/10 text-akhand-accent border border-akhand-accent/30 text-sm font-medium rounded-full hover:bg-akhand-accent/20 hover:border-akhand-accent/40 transition-all"
+            >
+              <FlaskConical className="w-3.5 h-3.5" />
+              Research
+            </Link>
             <Link
               href="/stories/literary-mumbai"
               className="inline-flex items-center gap-1.5 px-4 py-2 bg-gradient-to-r from-akhand-accent/10 to-purple-500/10 text-akhand-accent border border-akhand-accent/30 text-sm font-medium rounded-full hover:bg-akhand-accent/20 hover:border-akhand-accent/40 transition-all"
@@ -322,7 +329,6 @@ export default function HomePage() {
                 transition={{ delay: 0.6, duration: 0.8 }}
               >
                 {[
-                  { value: stats.goldPlaces, label: 'Gold Places' },
                   { value: stats.places, label: 'Total Places' },
                   { value: stats.books, label: 'Works' },
                   { value: stats.cities, label: 'Cities' },
@@ -355,7 +361,7 @@ export default function HomePage() {
                   Curated Reading Lists
                 </p>
                 {READING_LISTS.map((list, i) => {
-                  const matches = allPlaces.filter((p) => p.qualityTier === 'gold').filter(list.filter);
+                  const matches = allPlaces.filter(list.filter);
                   if (matches.length < 2) return null;
                   return (
                     <Link

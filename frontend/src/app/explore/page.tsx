@@ -15,6 +15,7 @@ import {
   Sparkles,
   WifiOff,
   Database,
+  FlaskConical,
 } from 'lucide-react';
 import SearchPanel from '@/components/ui/SearchPanel';
 import PlaceDetail from '@/components/ui/PlaceDetail';
@@ -56,7 +57,7 @@ export default function ExplorePageWrapper() {
 function ExplorePage() {
   const searchParams = useSearchParams();
   const initialQuery = searchParams.get('q') || '';
-  const basePlaces = normalizePlacesMetadata(fallbackPlaces);
+  const basePlaces = normalizePlacesMetadata(fallbackPlaces).filter((p) => p.qualityTier !== 'gold');
 
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [selectedPlace, setSelectedPlace] = useState<LiteraryPlace | null>(null);
@@ -78,7 +79,9 @@ function ExplorePage() {
       // Phase 1: Try slim static index first (instant map render)
       const slimIndex = await fetchSlimIndex();
       if (!cancelled && slimIndex) {
-        const slimPlaces = normalizePlacesMetadata(slimIndex.map(slimToLiteraryPlace));
+        const slimPlaces = normalizePlacesMetadata(slimIndex.map(slimToLiteraryPlace)).filter(
+          (p) => p.qualityTier !== 'gold'
+        );
         setAllPlaces(slimPlaces);
         setFilteredPlaces(slimPlaces);
         setDataSource('api');
@@ -87,7 +90,7 @@ function ExplorePage() {
         // Phase 2: Upgrade to full data in background
         const fullPlaces = await fetchLiteraryPlaces({ limit: 5000 });
         if (!cancelled && fullPlaces !== fallbackPlaces) {
-          const normalized = normalizePlacesMetadata(fullPlaces);
+          const normalized = normalizePlacesMetadata(fullPlaces).filter((p) => p.qualityTier !== 'gold');
           setAllPlaces(normalized);
           setFilteredPlaces(normalized);
         }
@@ -97,7 +100,7 @@ function ExplorePage() {
       // Fallback: load everything from API
       const places = await fetchLiteraryPlaces({ limit: 5000 });
       if (!cancelled) {
-        const normalized = normalizePlacesMetadata(places);
+        const normalized = normalizePlacesMetadata(places).filter((p) => p.qualityTier !== 'gold');
         setAllPlaces(normalized);
         setFilteredPlaces(normalized);
         setDataSource(places !== fallbackPlaces ? 'api' : 'fallback');
@@ -130,7 +133,6 @@ function ExplorePage() {
     if (!sidebarOpen) setSidebarOpen(true);
   }, [sidebarOpen]);
 
-  const goldCount = filteredPlaces.filter((p) => p.qualityTier === 'gold').length;
   const mapCandidates = filteredPlaces.filter((p) => (p.placeGranularity || 'city') !== 'region');
   const mapNonStubCount = mapCandidates.filter((p) => p.qualityTier !== 'stub').length;
   const mapVisibleCount = mapNonStubCount > 0 ? mapNonStubCount : mapCandidates.length;
@@ -149,12 +151,22 @@ function ExplorePage() {
           >
             {/* Sidebar header */}
             <div className="flex items-center justify-between p-4 border-b border-akhand-border">
-              <Link href="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
-                <Sparkles className="w-4 h-4 text-akhand-accent" />
-                <h1 className="text-lg font-semibold text-akhand-text-primary tracking-tight">
-                  Akhand
-                </h1>
-              </Link>
+              <div className="flex items-center gap-2">
+                <Link href="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
+                  <Sparkles className="w-4 h-4 text-akhand-accent" />
+                  <h1 className="text-lg font-semibold text-akhand-text-primary tracking-tight">
+                    Akhand
+                  </h1>
+                </Link>
+                <Link
+                  href="/research"
+                  className="inline-flex items-center gap-1 rounded-full border border-akhand-accent/30 bg-akhand-accent/10 px-2.5 py-1 text-[11px] font-medium text-akhand-accent hover:bg-akhand-accent/20"
+                  title="Research page"
+                >
+                  <FlaskConical className="h-3 w-3" />
+                  Research
+                </Link>
+              </div>
               <button
                 onClick={() => setSidebarOpen(false)}
                 className="p-1.5 rounded-lg hover:bg-akhand-surface-2 transition-colors"
@@ -244,9 +256,9 @@ function ExplorePage() {
             )}
             <div className="text-center">
               <p className="text-xs font-semibold text-akhand-accent">
-                {loading ? '...' : goldCount}
+                {loading ? '...' : mapVisibleCount}
               </p>
-              <p className="text-[10px] text-akhand-text-muted">gold</p>
+              <p className="text-[10px] text-akhand-text-muted">map pins</p>
             </div>
           </div>
           <div className="w-px h-6 bg-akhand-border" />
