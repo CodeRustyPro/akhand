@@ -2,6 +2,7 @@
 const nextConfig = {
   basePath: '/akhand',
   output: 'export',
+  trailingSlash: true,
   images: { unoptimized: true },
   transpilePackages: [
     '@deck.gl/core',

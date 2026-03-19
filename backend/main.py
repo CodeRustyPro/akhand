@@ -255,22 +255,22 @@ async def web_root_head():
 
 @app.get("/research", include_in_schema=False)
 async def web_research():
-    return RedirectResponse(url=_frontend_target("/research"), status_code=307)
+    return RedirectResponse(url=_frontend_target("/research/"), status_code=307)
 
 
 @app.get("/research/", include_in_schema=False)
 async def web_research_slash():
-    return RedirectResponse(url=_frontend_target("/research"), status_code=307)
+    return RedirectResponse(url=_frontend_target("/research/"), status_code=307)
 
 
 @app.get("/explore", include_in_schema=False)
 async def web_explore():
-    return RedirectResponse(url=_frontend_target("/explore"), status_code=307)
+    return RedirectResponse(url=_frontend_target("/explore/"), status_code=307)
 
 
 @app.get("/explore/", include_in_schema=False)
 async def web_explore_slash():
-    return RedirectResponse(url=_frontend_target("/explore"), status_code=307)
+    return RedirectResponse(url=_frontend_target("/explore/"), status_code=307)
 
 
 @app.get("/stories/{slug:path}", include_in_schema=False)
