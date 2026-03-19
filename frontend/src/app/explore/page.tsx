@@ -18,9 +18,12 @@ import {
 } from 'lucide-react';
 import SearchPanel from '@/components/ui/SearchPanel';
 import PlaceDetail from '@/components/ui/PlaceDetail';
+import BooksNearMe from '@/components/ui/BooksNearMe';
+import BottomSheet from '@/components/ui/BottomSheet';
 import { literaryPlaces as fallbackPlaces } from '@/lib/data';
-import { fetchLiteraryPlaces } from '@/lib/api';
-import type { LiteraryPlace, MapLayerMode } from '@/lib/types';
+import { fetchLiteraryPlaces, fetchSlimIndex, fetchPlaceDetail, slimToLiteraryPlace } from '@/lib/api';
+import type { LiteraryPlace, MapLayerMode, MapViewState } from '@/lib/types';
+import { normalizePlacesMetadata } from '@/lib/quality';
 
 const LiteraryMap = dynamic(() => import('@/components/map/LiteraryMap'), {
   ssr: false,
@@ -53,33 +56,57 @@ export default function ExplorePageWrapper() {
 function ExplorePage() {
   const searchParams = useSearchParams();
   const initialQuery = searchParams.get('q') || '';
+  const basePlaces = normalizePlacesMetadata(fallbackPlaces);
 
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [selectedPlace, setSelectedPlace] = useState<LiteraryPlace | null>(null);
   const [layerMode, setLayerMode] = useState<MapLayerMode>('scatter');
-  const [allPlaces, setAllPlaces] = useState<LiteraryPlace[]>(fallbackPlaces);
-  const [filteredPlaces, setFilteredPlaces] = useState<LiteraryPlace[]>(fallbackPlaces);
+  const [allPlaces, setAllPlaces] = useState<LiteraryPlace[]>(basePlaces);
+  const [filteredPlaces, setFilteredPlaces] = useState<LiteraryPlace[]>(basePlaces);
   const [showLayerMenu, setShowLayerMenu] = useState(false);
   const [dataSource, setDataSource] = useState<'fallback' | 'api'>('fallback');
   const [loading, setLoading] = useState(true);
   const [authorFilter, setAuthorFilter] = useState<string | null>(null);
   const [genreFilter, setGenreFilter] = useState<string | null>(null);
+  const [targetViewState, setTargetViewState] = useState<MapViewState | null>(null);
 
   useEffect(() => {
     let cancelled = false;
     async function loadData() {
       setLoading(true);
-      const places = await fetchLiteraryPlaces({ limit: 2000 });
+
+      // Phase 1: Try slim static index first (instant map render)
+      const slimIndex = await fetchSlimIndex();
+      if (!cancelled && slimIndex) {
+        const slimPlaces = normalizePlacesMetadata(slimIndex.map(slimToLiteraryPlace));
+        setAllPlaces(slimPlaces);
+        setFilteredPlaces(slimPlaces);
+        setDataSource('api');
+        setLoading(false);
+
+        // Phase 2: Upgrade to full data in background
+        const fullPlaces = await fetchLiteraryPlaces({ limit: 5000 });
+        if (!cancelled && fullPlaces !== fallbackPlaces) {
+          const normalized = normalizePlacesMetadata(fullPlaces);
+          setAllPlaces(normalized);
+          setFilteredPlaces(normalized);
+        }
+        return;
+      }
+
+      // Fallback: load everything from API
+      const places = await fetchLiteraryPlaces({ limit: 5000 });
       if (!cancelled) {
-        setAllPlaces(places);
-        setFilteredPlaces(places);
+        const normalized = normalizePlacesMetadata(places);
+        setAllPlaces(normalized);
+        setFilteredPlaces(normalized);
         setDataSource(places !== fallbackPlaces ? 'api' : 'fallback');
         setLoading(false);
       }
     }
     loadData();
     return () => { cancelled = true; };
-  }, []);
+  }, [basePlaces]);
 
   const handleSelectPlace = useCallback((place: LiteraryPlace | null) => {
     setSelectedPlace(place);
@@ -102,6 +129,11 @@ function ExplorePage() {
     setSelectedPlace(null);
     if (!sidebarOpen) setSidebarOpen(true);
   }, [sidebarOpen]);
+
+  const goldCount = filteredPlaces.filter((p) => p.qualityTier === 'gold').length;
+  const mapCandidates = filteredPlaces.filter((p) => (p.placeGranularity || 'city') !== 'region');
+  const mapNonStubCount = mapCandidates.filter((p) => p.qualityTier !== 'stub').length;
+  const mapVisibleCount = mapNonStubCount > 0 ? mapNonStubCount : mapCandidates.length;
 
   return (
     <div className="h-screen w-screen overflow-hidden bg-akhand-bg flex">
@@ -161,7 +193,7 @@ function ExplorePage() {
         )}
 
         {/* Layer controls */}
-        <div className="absolute top-4 right-4 z-20">
+        <div className="absolute top-4 right-4 z-20 flex flex-col gap-2 items-end">
           <div className="relative">
             <button
               onClick={() => setShowLayerMenu(!showLayerMenu)}
@@ -187,11 +219,10 @@ function ExplorePage() {
                         setLayerMode(mode);
                         setShowLayerMenu(false);
                       }}
-                      className={`w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm transition-colors ${
-                        layerMode === mode
-                          ? 'bg-akhand-accent-dim text-akhand-accent'
-                          : 'text-akhand-text-secondary hover:bg-akhand-surface-2 hover:text-akhand-text-primary'
-                      }`}
+                      className={`w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm transition-colors ${layerMode === mode
+                        ? 'bg-akhand-accent-dim text-akhand-accent'
+                        : 'text-akhand-text-secondary hover:bg-akhand-surface-2 hover:text-akhand-text-primary'
+                        }`}
                     >
                       <Icon className="w-4 h-4" />
                       {label}
@@ -213,10 +244,24 @@ function ExplorePage() {
             )}
             <div className="text-center">
               <p className="text-xs font-semibold text-akhand-accent">
-                {loading ? '...' : filteredPlaces.length}
+                {loading ? '...' : goldCount}
               </p>
-              <p className="text-[10px] text-akhand-text-muted">places</p>
+              <p className="text-[10px] text-akhand-text-muted">gold</p>
             </div>
+          </div>
+          <div className="w-px h-6 bg-akhand-border" />
+          <div className="text-center">
+            <p className="text-xs font-semibold text-akhand-text-primary">
+              {mapVisibleCount}
+            </p>
+            <p className="text-[10px] text-akhand-text-muted">map pins</p>
+          </div>
+          <div className="w-px h-6 bg-akhand-border" />
+          <div className="text-center">
+            <p className="text-xs font-semibold text-akhand-text-primary">
+              {filteredPlaces.length}
+            </p>
+            <p className="text-[10px] text-akhand-text-muted">results</p>
           </div>
           <div className="w-px h-6 bg-akhand-border" />
           <div className="text-center">
@@ -239,6 +284,8 @@ function ExplorePage() {
             </p>
             <p className="text-[10px] text-akhand-text-muted">cities</p>
           </div>
+          <div className="w-px h-6 bg-akhand-border" />
+          <BooksNearMe onSelectPlace={handleSelectPlace} allPlaces={allPlaces} />
           {dataSource === 'api' && (
             <>
               <div className="w-px h-6 bg-akhand-border" />
@@ -256,10 +303,32 @@ function ExplorePage() {
           selectedPlace={selectedPlace}
           onSelectPlace={handleSelectPlace}
           layerMode={layerMode}
+          targetViewState={targetViewState}
         />
 
-        {/* Place detail panel */}
-        <AnimatePresence>
+        {/* Place detail panel — desktop */}
+        <div className="hidden md:block">
+          <AnimatePresence>
+            {selectedPlace && (
+              <PlaceDetail
+                place={selectedPlace}
+                allPlaces={allPlaces}
+                onClose={() => setSelectedPlace(null)}
+                onSelectRelated={handleSelectPlace}
+                onViewAuthor={handleViewAuthor}
+                onFilterGenre={handleFilterGenre}
+              />
+            )}
+          </AnimatePresence>
+        </div>
+
+        {/* Place detail — mobile bottom sheet */}
+        <BottomSheet
+          isOpen={!!selectedPlace}
+          onClose={() => setSelectedPlace(null)}
+          title={selectedPlace?.bookTitle}
+          subtitle={selectedPlace ? `${selectedPlace.author} · ${selectedPlace.placeName}` : undefined}
+        >
           {selectedPlace && (
             <PlaceDetail
               place={selectedPlace}
@@ -270,7 +339,7 @@ function ExplorePage() {
               onFilterGenre={handleFilterGenre}
             />
           )}
-        </AnimatePresence>
+        </BottomSheet>
       </div>
     </div>
   );

@@ -1,0 +1,13 @@
+{
+  "total": 11053,
+  "tier_counts": {
+    "gold": 1250,
+    "silver": 5415,
+    "stub": 4388
+  },
+  "stub_reasons": {
+    "vague_or_region_place": 3565,
+    "missing_core_metadata": 1281,
+    "empty_enrichment": 3771
+  }
+}

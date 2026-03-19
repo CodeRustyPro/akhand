@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useCallback, useMemo, useRef, useEffect } from 'react';
-import Map, {
+import MapView, {
   NavigationControl,
   type MapRef,
   type ViewStateChangeEvent,
@@ -19,20 +19,12 @@ import type {
   AuthorConnection,
 } from '@/lib/types';
 import { sentimentColor } from '@/lib/data';
+import { DEFAULT_MAP_VIEW } from '@/lib/geo';
 
 const pmtilesProtocol = new Protocol();
 maplibregl.addProtocol('pmtiles', pmtilesProtocol.tile);
 
-const BASEMAP_DARK =
-  'https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json';
-
-const INITIAL_VIEW: MapViewState = {
-  longitude: 78,
-  latitude: 22,
-  zoom: 4.2,
-  pitch: 45,
-  bearing: -8,
-};
+const BASEMAP_DARK = 'https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json';
 
 interface LiteraryMapProps {
   places: LiteraryPlace[];
@@ -40,6 +32,7 @@ interface LiteraryMapProps {
   selectedPlace: LiteraryPlace | null;
   onSelectPlace: (place: LiteraryPlace | null) => void;
   layerMode: MapLayerMode;
+  targetViewState?: MapViewState | null;
 }
 
 interface CityCluster {
@@ -49,33 +42,70 @@ interface CityCluster {
   authors: number;
 }
 
+interface ScatterStack {
+  coordinates: [number, number];
+  placeName: string;
+  count: number;
+  representative: LiteraryPlace;
+  avgPolarity: number;
+}
+
+function tierMultiplier(place: LiteraryPlace): number {
+  return place.qualityTier === 'gold' ? 1.35 : 0.9;
+}
+
+function canRenderOnMap(place: LiteraryPlace): boolean {
+  if ((place.placeGranularity || 'city') === 'region') return false;
+  return (place.qualityTier || 'stub') !== 'stub';
+}
+
 export default function LiteraryMap({
   places,
   allPlaces,
   selectedPlace,
   onSelectPlace,
   layerMode,
+  targetViewState,
 }: LiteraryMapProps) {
-  const [viewState, setViewState] = useState<MapViewState>(INITIAL_VIEW);
+  const [viewState, setViewState] = useState<MapViewState>(() => ({ ...DEFAULT_MAP_VIEW }));
   const [hoverInfo, setHoverInfo] = useState<{
     x: number;
     y: number;
     place: LiteraryPlace;
+    count?: number;
   } | null>(null);
   const mapRef = useRef<MapRef>(null);
   const overlayRef = useRef<MapboxOverlay | null>(null);
-  const [time, setTime] = useState(0);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setTime((t) => t + 1);
-    }, 50);
-    return () => clearInterval(interval);
-  }, []);
+    if (targetViewState && mapRef.current) {
+      mapRef.current.flyTo({
+        center: [targetViewState.longitude, targetViewState.latitude],
+        zoom: targetViewState.zoom,
+        pitch: targetViewState.pitch,
+        bearing: targetViewState.bearing,
+        duration: 2500,
+      });
+      setViewState(targetViewState);
+    }
+  }, [targetViewState]);
+
+  const mapPlaces = useMemo(() => {
+    const nonRegion = places.filter((p) => (p.placeGranularity || 'city') !== 'region');
+    const nonStub = nonRegion.filter(canRenderOnMap);
+    return nonStub.length > 0 ? nonStub : nonRegion;
+  }, [places]);
+  const mapAllPlaces = useMemo(() => {
+    if (!allPlaces || allPlaces.length === 0) return [];
+    const nonRegion = allPlaces.filter((p) => (p.placeGranularity || 'city') !== 'region');
+    const nonStub = nonRegion.filter(canRenderOnMap);
+    return nonStub.length > 0 ? nonStub : nonRegion;
+  }, [allPlaces]);
+  const goldPlaces = useMemo(() => mapPlaces.filter((p) => p.qualityTier === 'gold'), [mapPlaces]);
 
   const cityClusters = useMemo(() => {
     const grouped: Record<string, LiteraryPlace[]> = {};
-    places.forEach((p) => {
+    mapPlaces.forEach((p) => {
       const key = p.placeName;
       if (!grouped[key]) grouped[key] = [];
       grouped[key].push(p);
@@ -88,11 +118,46 @@ export default function LiteraryMap({
         authors: new Set(entries.map((e) => e.author)).size,
       }))
       .filter((c) => c.count >= 2);
-  }, [places]);
+  }, [mapPlaces]);
+
+  const scatterStacks = useMemo(() => {
+    const grouped = new Map<string, LiteraryPlace[]>();
+    for (const place of mapPlaces) {
+      const [lon, lat] = place.coordinates;
+      const key = `${place.placeName}__${lon.toFixed(6)}__${lat.toFixed(6)}`;
+      const existing = grouped.get(key);
+      if (existing) {
+        existing.push(place);
+      } else {
+        grouped.set(key, [place]);
+      }
+    }
+
+    const stacks: ScatterStack[] = [];
+    for (const [key, entries] of grouped) {
+      const [placeName] = key.split('__');
+      const representative = entries
+        .slice()
+        .sort((a, b) => {
+          if ((a.qualityTier || 'stub') === 'gold' && (b.qualityTier || 'stub') !== 'gold') return -1;
+          if ((b.qualityTier || 'stub') === 'gold' && (a.qualityTier || 'stub') !== 'gold') return 1;
+          return (b.passage?.length || 0) - (a.passage?.length || 0);
+        })[0];
+      const avgPolarity = entries.reduce((sum, p) => sum + (p.sentiment?.polarity || 0), 0) / entries.length;
+      stacks.push({
+        coordinates: representative.coordinates,
+        placeName,
+        count: entries.length,
+        representative,
+        avgPolarity,
+      });
+    }
+    return stacks;
+  }, [mapPlaces]);
 
   const authorConnections = useMemo(() => {
     const grouped: Record<string, LiteraryPlace[]> = {};
-    places.forEach((p) => {
+    mapPlaces.forEach((p) => {
       if (!grouped[p.author]) grouped[p.author] = [];
       grouped[p.author].push(p);
     });
@@ -121,59 +186,91 @@ export default function LiteraryMap({
       }
     });
     return connections;
-  }, [places]);
+  }, [mapPlaces]);
 
   const handleMove = useCallback((e: ViewStateChangeEvent) => {
     setViewState(e.viewState as MapViewState);
   }, []);
 
-  const bookCountByPlace = useMemo(() => {
-    const counts: Record<string, number> = {};
-    places.forEach((p) => {
-      counts[p.placeName] = (counts[p.placeName] || 0) + 1;
-    });
-    return counts;
-  }, [places]);
-
-  const pulse = Math.sin(time * 0.08) * 0.3 + 0.7;
-
   // Determine if there's an active filter (places is a subset of allPlaces)
-  const isFiltered = allPlaces && allPlaces.length > 0 && places.length < allPlaces.length;
-  const filteredIds = useMemo(() => new Set(places.map((p) => p.id)), [places]);
+  const isFiltered = mapAllPlaces && mapAllPlaces.length > 0 && mapPlaces.length < mapAllPlaces.length;
+  const filteredIds = useMemo(() => new Set(mapPlaces.map((p) => p.id)), [mapPlaces]);
   const bgPlaces = useMemo(
-    () => (isFiltered && allPlaces ? allPlaces.filter((p) => !filteredIds.has(p.id)) : []),
-    [isFiltered, allPlaces, filteredIds]
+    () => (isFiltered ? mapAllPlaces.filter((p) => !filteredIds.has(p.id)) : []),
+    [isFiltered, mapAllPlaces, filteredIds]
   );
+
+  const bgScatterStacks = useMemo(() => {
+    const grouped = new Map<string, LiteraryPlace[]>();
+    for (const place of bgPlaces) {
+      const [lon, lat] = place.coordinates;
+      const key = `${place.placeName}__${lon.toFixed(6)}__${lat.toFixed(6)}`;
+      const existing = grouped.get(key);
+      if (existing) {
+        existing.push(place);
+      } else {
+        grouped.set(key, [place]);
+      }
+    }
+
+    const stacks: ScatterStack[] = [];
+    for (const [key, entries] of grouped) {
+      const [placeName] = key.split('__');
+      const representative = entries[0];
+      const avgPolarity = entries.reduce((sum, p) => sum + (p.sentiment?.polarity || 0), 0) / entries.length;
+      stacks.push({
+        coordinates: representative.coordinates,
+        placeName,
+        count: entries.length,
+        representative,
+        avgPolarity,
+      });
+    }
+    return stacks;
+  }, [bgPlaces]);
 
   const layers = useMemo(() => {
     const result: (ScatterplotLayer | HeatmapLayer | ArcLayer | TextLayer)[] = [];
 
     if (layerMode === 'scatter') {
       // Dim base layer for unmatched places when filtering
-      if (isFiltered && bgPlaces.length > 0) {
+      if (isFiltered && bgScatterStacks.length > 0) {
         result.push(
           new ScatterplotLayer({
             id: 'scatter-bg-dim',
-            data: bgPlaces,
-            getPosition: (d: LiteraryPlace) => d.coordinates,
+            data: bgScatterStacks,
+            getPosition: (d: ScatterStack) => d.coordinates,
             getFillColor: [100, 90, 80, 35] as [number, number, number, number],
-            getRadius: 3000,
-            radiusMinPixels: 2,
-            radiusMaxPixels: 6,
+            getRadius: (d: ScatterStack) => 3200 + Math.sqrt(d.count) * 2200,
+            radiusMinPixels: 3,
+            radiusMaxPixels: 12,
             pickable: true,
-            onClick: ({ object }: { object?: LiteraryPlace }) => {
-              if (object) onSelectPlace(object);
+            onClick: ({ object }: { object?: ScatterStack }) => {
+              if (object) onSelectPlace(object.representative);
             },
             onHover: ({
               object,
               x,
               y,
             }: {
-              object?: LiteraryPlace;
+              object?: ScatterStack;
               x: number;
               y: number;
             }) => {
-              setHoverInfo(object ? { x, y, place: object } : null);
+              setHoverInfo(
+                object
+                  ? {
+                    x,
+                    y,
+                    place: {
+                      ...object.representative,
+                      bookTitle: `${object.count} books in ${object.placeName}`,
+                      author: `${new Set(bgPlaces.filter((p) => p.placeName === object.placeName).map((p) => p.author)).size} authors`,
+                    },
+                    count: object.count,
+                  }
+                  : null
+              );
             },
           } as ConstructorParameters<typeof ScatterplotLayer>[0])
         );
@@ -181,90 +278,64 @@ export default function LiteraryMap({
 
       result.push(
         new ScatterplotLayer({
-          id: 'scatter-glow',
-          data: places,
-          getPosition: (d: LiteraryPlace) => d.coordinates,
-          getFillColor: (d: LiteraryPlace) => {
-            const count = bookCountByPlace[d.placeName] || 1;
-            const intensity = Math.min(count / 15, 1);
-            const baseAlpha = isFiltered ? 50 + intensity * 60 : 30 + intensity * 40;
-            const glowPulse = isFiltered ? (Math.sin(time * 0.06) * 0.3 + 0.7) : 1;
-            return [196, 154, 108, Math.round(baseAlpha * glowPulse)] as [number, number, number, number];
-          },
-          getRadius: (d: LiteraryPlace) => {
-            const count = bookCountByPlace[d.placeName] || 1;
-            const base = 15000 + Math.sqrt(count) * 8000;
-            if (isFiltered) {
-              const breathe = Math.sin(time * 0.05) * 0.15 + 1;
-              return base * 1.2 * breathe;
-            }
-            return base;
-          },
-          radiusMinPixels: isFiltered ? 12 : 8,
-          radiusMaxPixels: isFiltered ? 55 : 40,
-          pickable: false,
-          updateTriggers: {
-            getFillColor: [time, isFiltered],
-            getRadius: [time, isFiltered],
-          },
-        } as ConstructorParameters<typeof ScatterplotLayer>[0])
-      );
-
-      result.push(
-        new ScatterplotLayer({
           id: 'literary-scatter',
-          data: places,
-          getPosition: (d: LiteraryPlace) => d.coordinates,
-          getFillColor: (d: LiteraryPlace) => {
-            if (selectedPlace?.id === d.id) {
-              return [255, 220, 170, Math.round(200 + pulse * 55)] as [number, number, number, number];
+          data: scatterStacks,
+          getPosition: (d: ScatterStack) => d.coordinates,
+          getFillColor: (d: ScatterStack) => {
+            if (selectedPlace?.id === d.representative.id) {
+              return [255, 220, 170, 255] as [number, number, number, number];
             }
-            if (isFiltered) {
-              // Brighter when filtering is active
-              return [...sentimentColor(d.sentiment.polarity), 255] as [number, number, number, number];
-            }
-            return [...sentimentColor(d.sentiment.polarity), 220] as [number, number, number, number];
+            const alpha = d.representative.qualityTier === 'gold' ? 240 : 200;
+            return [...sentimentColor(d.avgPolarity), alpha] as [number, number, number, number];
           },
-          getRadius: (d: LiteraryPlace) => {
-            const count = bookCountByPlace[d.placeName] || 1;
-            const base = 3000 + Math.sqrt(count) * 2500;
-            if (selectedPlace?.id === d.id) return base * 1.8;
-            if (isFiltered) return base * 1.3;
+          getRadius: (d: ScatterStack) => {
+            const base = 3200 + Math.sqrt(d.count) * 2600;
+            if (selectedPlace?.id === d.representative.id) return base * 1.25;
             return base;
           },
-          radiusMinPixels: 3,
-          radiusMaxPixels: 18,
+          radiusMinPixels: 4,
+          radiusMaxPixels: 22,
           pickable: true,
           stroked: true,
-          getLineColor: (d: LiteraryPlace) =>
-            selectedPlace?.id === d.id
-              ? [255, 220, 170, 255]
-              : [196, 154, 108, 80] as [number, number, number, number],
-          getLineWidth: (d: LiteraryPlace) =>
-            selectedPlace?.id === d.id ? 3 : 1,
-          lineWidthMinPixels: 1,
-          onClick: ({ object }: { object?: LiteraryPlace }) => {
-            if (object) onSelectPlace(object);
+          getLineColor: (d: ScatterStack) =>
+            selectedPlace?.id === d.representative.id
+              ? [255, 255, 255, 255]
+              : [40, 40, 40, 100] as [number, number, number, number],
+          getLineWidth: (d: ScatterStack) =>
+            selectedPlace?.id === d.representative.id ? 2 : 0.5,
+          lineWidthMinPixels: 0.5,
+          onClick: ({ object }: { object?: ScatterStack }) => {
+            if (object) onSelectPlace(object.representative);
           },
           onHover: ({
             object,
             x,
             y,
           }: {
-            object?: LiteraryPlace;
+            object?: ScatterStack;
             x: number;
             y: number;
           }) => {
-            setHoverInfo(object ? { x, y, place: object } : null);
+            setHoverInfo(
+              object
+                ? {
+                  x,
+                  y,
+                  place: {
+                    ...object.representative,
+                    bookTitle: `${object.count} books in ${object.placeName}`,
+                    author: `${new Set(mapPlaces.filter((p) => p.placeName === object.placeName).map((p) => p.author)).size} authors`,
+                  },
+                  count: object.count,
+                }
+                : null
+            );
           },
           updateTriggers: {
-            getFillColor: [selectedPlace?.id, time],
+            getFillColor: [selectedPlace?.id],
             getRadius: [selectedPlace?.id],
             getLineColor: [selectedPlace?.id],
             getLineWidth: [selectedPlace?.id],
-          },
-          transitions: {
-            getRadius: 300,
           },
         } as ConstructorParameters<typeof ScatterplotLayer>[0])
       );
@@ -305,7 +376,7 @@ export default function LiteraryMap({
       result.push(
         new HeatmapLayer({
           id: 'literary-heatmap',
-          data: places,
+          data: mapPlaces,
           getPosition: (d: LiteraryPlace) => d.coordinates,
           getWeight: (d: LiteraryPlace) =>
             d.settingType === 'primary' ? 3 : 1,
@@ -326,7 +397,7 @@ export default function LiteraryMap({
       result.push(
         new ScatterplotLayer({
           id: 'literary-scatter-overlay',
-          data: places,
+          data: mapPlaces,
           getPosition: (d: LiteraryPlace) => d.coordinates,
           getFillColor: [255, 220, 170, 120],
           getRadius: 4000,
@@ -445,7 +516,7 @@ export default function LiteraryMap({
     }
 
     return result;
-  }, [places, selectedPlace, layerMode, authorConnections, cityClusters, onSelectPlace, viewState.zoom, bookCountByPlace, pulse, time, isFiltered, bgPlaces]);
+  }, [mapPlaces, goldPlaces, selectedPlace, layerMode, authorConnections, cityClusters, onSelectPlace, viewState.zoom, isFiltered, bgPlaces, scatterStacks, bgScatterStacks]);
 
   const handleMapLoad = useCallback(() => {
     const map = mapRef.current?.getMap();
@@ -482,7 +553,7 @@ export default function LiteraryMap({
 
   return (
     <div className="relative w-full h-full">
-      <Map
+      <MapView
         ref={mapRef}
         {...viewState}
         onMove={handleMove}
@@ -493,7 +564,7 @@ export default function LiteraryMap({
         cursor={hoverInfo ? 'pointer' : 'grab'}
       >
         <NavigationControl position="bottom-right" showCompass visualizePitch />
-      </Map>
+      </MapView>
 
       {hoverInfo && (
         <div

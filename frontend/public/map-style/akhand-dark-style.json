@@ -1,0 +1,227 @@
+{
+    "version": 8,
+    "name": "Akhand Literary Dark",
+    "metadata": {
+        "description": "Deep navy literary map with warm gold labels for Akhand"
+    },
+    "sources": {
+        "carto": {
+            "type": "vector",
+            "tiles": [
+                "https://basemaps.cartocdn.com/gl/dark-matter-gl-style/{z}/{x}/{y}.mvt"
+            ],
+            "maxzoom": 14
+        },
+        "openmaptiles": {
+            "type": "vector",
+            "url": "https://tiles.stadiamaps.com/data/openmaptiles.json"
+        }
+    },
+    "glyphs": "https://tiles.stadiamaps.com/fonts/{fontstack}/{range}.pbf",
+    "layers": [
+        {
+            "id": "background",
+            "type": "background",
+            "paint": {
+                "background-color": "#080c16"
+            }
+        },
+        {
+            "id": "water",
+            "type": "fill",
+            "source": "openmaptiles",
+            "source-layer": "water",
+            "paint": {
+                "fill-color": "#0a1a2e"
+            }
+        },
+        {
+            "id": "waterway",
+            "type": "line",
+            "source": "openmaptiles",
+            "source-layer": "waterway",
+            "paint": {
+                "line-color": "#0d2137",
+                "line-width": 1
+            }
+        },
+        {
+            "id": "landuse",
+            "type": "fill",
+            "source": "openmaptiles",
+            "source-layer": "landuse",
+            "paint": {
+                "fill-color": "#0e1525",
+                "fill-opacity": 0.4
+            }
+        },
+        {
+            "id": "boundary-country",
+            "type": "line",
+            "source": "openmaptiles",
+            "source-layer": "boundary",
+            "filter": [
+                "==",
+                "admin_level",
+                2
+            ],
+            "paint": {
+                "line-color": "#3a3520",
+                "line-width": 0.8,
+                "line-opacity": 0.4,
+                "line-dasharray": [
+                    3,
+                    2
+                ]
+            }
+        },
+        {
+            "id": "boundary-state",
+            "type": "line",
+            "source": "openmaptiles",
+            "source-layer": "boundary",
+            "filter": [
+                "==",
+                "admin_level",
+                4
+            ],
+            "paint": {
+                "line-color": "#2a2520",
+                "line-width": 0.4,
+                "line-opacity": 0.2
+            }
+        },
+        {
+            "id": "road-minor",
+            "type": "line",
+            "source": "openmaptiles",
+            "source-layer": "transportation",
+            "minzoom": 10,
+            "paint": {
+                "line-color": "#1a1f30",
+                "line-width": 0.5,
+                "line-opacity": 0.3
+            }
+        },
+        {
+            "id": "road-major",
+            "type": "line",
+            "source": "openmaptiles",
+            "source-layer": "transportation",
+            "filter": [
+                "in",
+                "class",
+                "primary",
+                "secondary",
+                "tertiary",
+                "trunk"
+            ],
+            "paint": {
+                "line-color": "#222840",
+                "line-width": [
+                    "interpolate",
+                    [
+                        "linear"
+                    ],
+                    [
+                        "zoom"
+                    ],
+                    5,
+                    0.3,
+                    12,
+                    1.5
+                ],
+                "line-opacity": 0.45
+            }
+        },
+        {
+            "id": "label-country",
+            "type": "symbol",
+            "source": "openmaptiles",
+            "source-layer": "place",
+            "filter": [
+                "==",
+                "class",
+                "country"
+            ],
+            "layout": {
+                "text-field": "{name:latin}",
+                "text-font": [
+                    "Stadia Regular"
+                ],
+                "text-size": [
+                    "interpolate",
+                    [
+                        "linear"
+                    ],
+                    [
+                        "zoom"
+                    ],
+                    2,
+                    10,
+                    6,
+                    14
+                ],
+                "text-transform": "uppercase",
+                "text-letter-spacing": 0.15,
+                "text-max-width": 8
+            },
+            "paint": {
+                "text-color": "#8a7a5a",
+                "text-halo-color": "#080c16",
+                "text-halo-width": 1.5,
+                "text-opacity": 0.65
+            }
+        },
+        {
+            "id": "label-city",
+            "type": "symbol",
+            "source": "openmaptiles",
+            "source-layer": "place",
+            "filter": [
+                "in",
+                "class",
+                "city",
+                "town"
+            ],
+            "layout": {
+                "text-field": "{name:latin}",
+                "text-font": [
+                    "Stadia Regular"
+                ],
+                "text-size": [
+                    "interpolate",
+                    [
+                        "linear"
+                    ],
+                    [
+                        "zoom"
+                    ],
+                    4,
+                    9,
+                    10,
+                    14
+                ],
+                "text-max-width": 8
+            },
+            "paint": {
+                "text-color": "#c49a6c",
+                "text-halo-color": "#080c16",
+                "text-halo-width": 1.2,
+                "text-opacity": [
+                    "interpolate",
+                    [
+                        "linear"
+                    ],
+                    [
+                        "zoom"
+                    ],
+                    4,
+                    0.3,
+                    8,
+                    0.75
+                ]
+            }
+        }
+    ]
+}

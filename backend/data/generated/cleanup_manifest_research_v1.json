@@ -1,0 +1,487 @@
+{
+  "input": "backend/data/releases/2026-03-17-strict-v2/literary_places.json",
+  "output": "backend/data/generated/literary_places_cleaned_research_v1.json",
+  "original_total": 9057,
+  "final_total": 9041,
+  "removed_total": 67,
+  "stage_counts": {
+    "vague_places_tagged": 2544,
+    "nonfiction": 3,
+    "ambiguous_titles": 5,
+    "title_city_mismatch": 2,
+    "composite_places_expanded": 26,
+    "composite_places_removed": 57,
+    "deduplicated": 0
+  },
+  "removed_entries": [
+    {
+      "id": "wd-Q52240439-Q25",
+      "bookTitle": "A Topographical Dictionary of Wales",
+      "author": "Samuel Lewis",
+      "placeName": "Wales",
+      "reason": "nonfiction_title"
+    },
+    {
+      "id": "wd-Q108393617-Q23666",
+      "bookTitle": "Dictionary Of British And Irish Botantists",
+      "author": "Ray Desmond",
+      "placeName": "Great Britain",
+      "reason": "nonfiction_title"
+    },
+    {
+      "id": "wd-Q58655407-Q1362696",
+      "bookTitle": "Journal of W.S. Hall, Aug 1863 - Dec 1865",
+      "author": "William Shakespeare Hall",
+      "placeName": "Pilbara",
+      "reason": "nonfiction_title"
+    },
+    {
+      "id": "wd-Q3179366-Q39",
+      "bookTitle": "Jo",
+      "author": "Unknown",
+      "placeName": "Switzerland",
+      "reason": "ambiguous_title"
+    },
+    {
+      "id": "ol-OL26386W-london",
+      "bookTitle": "Poems",
+      "author": "William Wordsworth",
+      "placeName": "London",
+      "reason": "ambiguous_title"
+    },
+    {
+      "id": "wd-Q30598958-Q84",
+      "bookTitle": "13",
+      "author": "Mike Bartlett",
+      "placeName": "London",
+      "reason": "ambiguous_title"
+    },
+    {
+      "id": "wd-Q3599350-Q65",
+      "bookTitle": "54",
+      "author": "Wu Ming",
+      "placeName": "Los Angeles",
+      "reason": "ambiguous_title"
+    },
+    {
+      "id": "wd-Q125460417-Q117",
+      "bookTitle": "Fragments",
+      "author": "Ayi Kwei Armah",
+      "placeName": "Ghana",
+      "reason": "ambiguous_title"
+    },
+    {
+      "id": "cif-mumbai-brides",
+      "bookTitle": "Mumbai Brides",
+      "author": "Esther David",
+      "placeName": "Ahmedabad",
+      "reason": "title_city_mismatch"
+    },
+    {
+      "id": "wd-Q3024669-Q25322",
+      "bookTitle": "Destination New York",
+      "author": "Hergé",
+      "placeName": "Arctic",
+      "reason": "title_city_mismatch"
+    },
+    {
+      "id": "cif-146-assam;-shillong::p1",
+      "bookTitle": "One More Story About Climbing a Hill",
+      "author": "Davabrata Das",
+      "placeName": "Assam",
+      "reason": "composite_place_unresolved"
+    },
+    {
+      "id": "cif-146-assam;-shillong",
+      "bookTitle": "One More Story About Climbing a Hill",
+      "author": "Davabrata Das",
+      "placeName": "Assam; Shillong",
+      "reason": "composite_place_unresolved"
+    },
+    {
+      "id": "cif-151-konkan-coast;-ahmedabad;-pune::p1",
+      "bookTitle": "Miss Samuel: A Jewish-Indian Saga",
+      "author": "Sheela Rohekar",
+      "placeName": "Konkan Coast",
+      "reason": "composite_place_unresolved"
+    },
+    {
+      "id": "cif-151-konkan-coast;-ahmedabad;-pune",
+      "bookTitle": "Miss Samuel: A Jewish-Indian Saga",
+      "author": "Sheela Rohekar",
+      "placeName": "Konkan Coast; Ahmedabad; Pune",
+      "reason": "composite_place_unresolved"
+    },
+    {
+      "id": "cif-155-north-sentinel-island;-andaman::p1",
+      "bookTitle": "Island",
+      "author": "Sujit Saraf",
+      "placeName": "North Sentinel Island",
+      "reason": "composite_place_unresolved"
+    },
+    {
+      "id": "cif-155-north-sentinel-island;-andaman",
+      "bookTitle": "Island",
+      "author": "Sujit Saraf",
+      "placeName": "North Sentinel Island; Andaman",
+      "reason": "composite_place_unresolved"
+    },
+    {
+      "id": "cif-no-bridge-over-the-troubled-waters::p2",
+      "bookTitle": "No Bridge Over the Troubled Waters",
+      "author": "Mohammad Kamran",
+      "placeName": "Nicobar Islands",
+      "reason": "composite_place_unresolved"
+    },
+    {
+      "id": "cif-no-bridge-over-the-troubled-waters",
+      "bookTitle": "No Bridge Over the Troubled Waters",
+      "author": "Mohammad Kamran",
+      "placeName": "Andaman and Nicobar Islands",
+      "reason": "composite_place_unresolved"
+    },
+    {
+      "id": "cif-what-we-know-about-her::p2",
+      "bookTitle": "What We Know About Her",
+      "author": "Krupa Ge",
+      "placeName": "Benares",
+      "reason": "composite_place_unresolved"
+    },
+    {
+      "id": "cif-what-we-know-about-her",
+      "bookTitle": "What We Know About Her",
+      "author": "Krupa Ge",
+      "placeName": "Chennai and Benares",
+      "reason": "composite_place_unresolved"
+    },
+    {
+      "id": "cif-the-cosmopolitans::p1",
+      "bookTitle": "The Cosmopolitans",
+      "author": "Anjum Hasan",
+      "placeName": "Karnataka-Bangalore",
+      "reason": "composite_place_unresolved"
+    },
+    {
+      "id": "cif-the-cosmopolitans::p2",
+      "bookTitle": "The Cosmopolitans",
+      "author": "Anjum Hasan",
+      "placeName": "Madhya Pradesh-unnamed",
+      "reason": "composite_place_unresolved"
+    },
+    {
+      "id": "cif-the-cosmopolitans",
+      "bookTitle": "The Cosmopolitans",
+      "author": "Anjum Hasan",
+      "placeName": "Karnataka-Bangalore; Madhya Pradesh-unnamed",
+      "reason": "composite_place_unresolved"
+    },
+    {
+      "id": "cif-betty-s-butter-tea-stories-from-ladakh::p1",
+      "bookTitle": "Betty's Butter Tea stories from Ladakh",
+      "author": "Lhundup Gyalpo",
+      "placeName": "Leh",
+      "reason": "composite_place_unresolved"
+    },
+    {
+      "id": "cif-betty-s-butter-tea-stories-from-ladakh::p2",
+      "bookTitle": "Betty's Butter Tea stories from Ladakh",
+      "author": "Lhundup Gyalpo",
+      "placeName": "Laddakh",
+      "reason": "composite_place_unresolved"
+    },
+    {
+      "id": "cif-betty-s-butter-tea-stories-from-ladakh",
+      "bookTitle": "Betty's Butter Tea stories from Ladakh",
+      "author": "Lhundup Gyalpo",
+      "placeName": "Leh & Laddakh",
+      "reason": "composite_place_unresolved"
+    },
+    {
+      "id": "cif-such-a-long-journey::p1",
+      "bookTitle": "Such a Long Journey",
+      "author": "Rohinton Mistry",
+      "placeName": "Mumbai (late 70s",
+      "reason": "composite_place_unresolved"
+    },
+    {
+      "id": "cif-such-a-long-journey::p2",
+      "bookTitle": "Such a Long Journey",
+      "author": "Rohinton Mistry",
+      "placeName": "80s)",
+      "reason": "composite_place_unresolved"
+    },
+    {
+      "id": "cif-such-a-long-journey",
+      "bookTitle": "Such a Long Journey",
+      "author": "Rohinton Mistry",
+      "placeName": "Mumbai (late 70s and 80s)",
+      "reason": "composite_place_unresolved"
+    },
+    {
+      "id": "cif-the-pakistani-bride::p2",
+      "bookTitle": "The Pakistani Bride",
+      "author": "Bapsi Sidhwa",
+      "placeName": "Kohistan",
+      "reason": "composite_place_unresolved"
+    },
+    {
+      "id": "cif-the-pakistani-bride",
+      "bookTitle": "The Pakistani Bride",
+      "author": "Bapsi Sidhwa",
+      "placeName": "Lahore & Kohistan",
+      "reason": "composite_place_unresolved"
+    },
+    {
+      "id": "cif-house-next-to-the-factory::p1",
+      "bookTitle": "House Next to the Factory",
+      "author": "Sonal Kohli",
+      "placeName": "Punjab",
+      "reason": "composite_place_unresolved"
+    },
+    {
+      "id": "cif-house-next-to-the-factory",
+      "bookTitle": "House Next to the Factory",
+      "author": "Sonal Kohli",
+      "placeName": "Punjab; Delhi",
+      "reason": "composite_place_unresolved"
+    },
+    {
+      "id": "cif-savi-and-the-memory-keeper::p1",
+      "bookTitle": "Savi and the Memory Keeper",
+      "author": "Bijal Vachharajani",
+      "placeName": "Shajarpur based on Bangalore",
+      "reason": "composite_place_unresolved"
+    },
+    {
+      "id": "cif-savi-and-the-memory-keeper",
+      "bookTitle": "Savi and the Memory Keeper",
+      "author": "Bijal Vachharajani",
+      "placeName": "Shajarpur based on Bangalore and Mumbai",
+      "reason": "composite_place_unresolved"
+    },
+    {
+      "id": "cif-maitri::p1",
+      "bookTitle": "Maitri",
+      "author": "Ajithan",
+      "placeName": "Kedarnath",
+      "reason": "composite_place_unresolved"
+    },
+    {
+      "id": "cif-maitri::p2",
+      "bookTitle": "Maitri",
+      "author": "Ajithan",
+      "placeName": "villages",
+      "reason": "composite_place_unresolved"
+    },
+    {
+      "id": "cif-maitri",
+      "bookTitle": "Maitri",
+      "author": "Ajithan",
+      "placeName": "Kedarnath and villages",
+      "reason": "composite_place_unresolved"
+    },
+    {
+      "id": "cif-the-scent-of-god::p2",
+      "bookTitle": "The Scent of God",
+      "author": "Saikat Majumdar",
+      "placeName": "Suburbs",
+      "reason": "composite_place_unresolved"
+    },
+    {
+      "id": "cif-the-scent-of-god",
+      "bookTitle": "The Scent of God",
+      "author": "Saikat Majumdar",
+      "placeName": "Kolkata and Suburbs",
+      "reason": "composite_place_unresolved"
+    },
+    {
+      "id": "cif-the-firebird::p2",
+      "bookTitle": "The Firebird",
+      "author": "Saikat Majumdar",
+      "placeName": "Suburbs",
+      "reason": "composite_place_unresolved"
+    },
+    {
+      "id": "cif-the-firebird",
+      "bookTitle": "The Firebird",
+      "author": "Saikat Majumdar",
+      "placeName": "Kolkata and Suburbs",
+      "reason": "composite_place_unresolved"
+    },
+    {
+      "id": "wd-Q4456228-Q225::p2",
+      "bookTitle": "Comanche Territory",
+      "author": "Arturo Pérez-Reverte",
+      "placeName": "Herzegovina",
+      "reason": "composite_place_unresolved"
+    },
+    {
+      "id": "wd-Q4456228-Q225",
+      "bookTitle": "Comanche Territory",
+      "author": "Arturo Pérez-Reverte",
+      "placeName": "Bosnia and Herzegovina",
+      "reason": "composite_place_unresolved"
+    },
+    {
+      "id": "wd-Q110814337-Q225::p2",
+      "bookTitle": "Hajduks: notes from a travel across Rujno",
+      "author": "Milan Milićević",
+      "placeName": "Herzegovina",
+      "reason": "composite_place_unresolved"
+    },
+    {
+      "id": "wd-Q110814337-Q225",
+      "bookTitle": "Hajduks: notes from a travel across Rujno",
+      "author": "Milan Milićević",
+      "placeName": "Bosnia and Herzegovina",
+      "reason": "composite_place_unresolved"
+    },
+    {
+      "id": "wd-Q86518145-Q64200::p1",
+      "bookTitle": "Hot chocolate at Hanselmann's",
+      "author": "Rosetta Loy",
+      "placeName": "Sils im Engadin",
+      "reason": "composite_place_unresolved"
+    },
+    {
+      "id": "wd-Q86518145-Q64200::p2",
+      "bookTitle": "Hot chocolate at Hanselmann's",
+      "author": "Rosetta Loy",
+      "placeName": "Segl",
+      "reason": "composite_place_unresolved"
+    },
+    {
+      "id": "wd-Q86518145-Q64200",
+      "bookTitle": "Hot chocolate at Hanselmann's",
+      "author": "Rosetta Loy",
+      "placeName": "Sils im Engadin/Segl",
+      "reason": "composite_place_unresolved"
+    },
+    {
+      "id": "wd-Q3844708-Q19464773::p1",
+      "bookTitle": "Manituana",
+      "author": "Wu Ming",
+      "placeName": "Northern America",
+      "reason": "composite_place_unresolved"
+    },
+    {
+      "id": "wd-Q3844708-Q19464773::p2",
+      "bookTitle": "Manituana",
+      "author": "Wu Ming",
+      "placeName": "Mexico",
+      "reason": "composite_place_unresolved"
+    },
+    {
+      "id": "wd-Q3844708-Q19464773",
+      "bookTitle": "Manituana",
+      "author": "Wu Ming",
+      "placeName": "Northern America and Mexico",
+      "reason": "composite_place_unresolved"
+    },
+    {
+      "id": "wd-Q109336108-Q225::p2",
+      "bookTitle": "Nazarenes: a novel",
+      "author": "Jaša Tomić",
+      "placeName": "Herzegovina",
+      "reason": "composite_place_unresolved"
+    },
+    {
+      "id": "wd-Q109336108-Q225",
+      "bookTitle": "Nazarenes: a novel",
+      "author": "Jaša Tomić",
+      "placeName": "Bosnia and Herzegovina",
+      "reason": "composite_place_unresolved"
+    },
+    {
+      "id": "wd-Q109336114-Q225::p2",
+      "bookTitle": "Omer Celebija : a short story from the life of the Serbian people",
+      "author": "Milan Milićević",
+      "placeName": "Herzegovina",
+      "reason": "composite_place_unresolved"
+    },
+    {
+      "id": "wd-Q109336114-Q225",
+      "bookTitle": "Omer Celebija : a short story from the life of the Serbian people",
+      "author": "Milan Milićević",
+      "placeName": "Bosnia and Herzegovina",
+      "reason": "composite_place_unresolved"
+    },
+    {
+      "id": "wd-Q109336229-Q225::p2",
+      "bookTitle": "Reception of Emperor Dušan in Dubrovnik in 1349",
+      "author": "Vid Vuletić Vukasović",
+      "placeName": "Herzegovina",
+      "reason": "composite_place_unresolved"
+    },
+    {
+      "id": "wd-Q109336229-Q225",
+      "bookTitle": "Reception of Emperor Dušan in Dubrovnik in 1349",
+      "author": "Vid Vuletić Vukasović",
+      "placeName": "Bosnia and Herzegovina",
+      "reason": "composite_place_unresolved"
+    },
+    {
+      "id": "wd-Q115483025-Q619829::p1",
+      "bookTitle": "Revolution in Rojava: Democratic Autonomy and Women’s Liberation in the Syrian Kurdistan",
+      "author": "Ercan Ayboğa",
+      "placeName": "Democratic Autonomous Administration of North",
+      "reason": "composite_place_unresolved"
+    },
+    {
+      "id": "wd-Q115483025-Q619829::p2",
+      "bookTitle": "Revolution in Rojava: Democratic Autonomy and Women’s Liberation in the Syrian Kurdistan",
+      "author": "Ercan Ayboğa",
+      "placeName": "East Syria",
+      "reason": "composite_place_unresolved"
+    },
+    {
+      "id": "wd-Q115483025-Q619829",
+      "bookTitle": "Revolution in Rojava: Democratic Autonomy and Women’s Liberation in the Syrian Kurdistan",
+      "author": "Ercan Ayboğa",
+      "placeName": "Democratic Autonomous Administration of North and East Syria",
+      "reason": "composite_place_unresolved"
+    },
+    {
+      "id": "wd-Q111948676-Q754::p1",
+      "bookTitle": "Salt",
+      "author": "Earl Lovelace",
+      "placeName": "Trinidad",
+      "reason": "composite_place_unresolved"
+    },
+    {
+      "id": "wd-Q111948676-Q754::p2",
+      "bookTitle": "Salt",
+      "author": "Earl Lovelace",
+      "placeName": "Tobago",
+      "reason": "composite_place_unresolved"
+    },
+    {
+      "id": "wd-Q111948676-Q754",
+      "bookTitle": "Salt",
+      "author": "Earl Lovelace",
+      "placeName": "Trinidad and Tobago",
+      "reason": "composite_place_unresolved"
+    },
+    {
+      "id": "wd-Q493574-Q19464773::p1",
+      "bookTitle": "The Last of the Mohicans",
+      "author": "James Fenimore Cooper",
+      "placeName": "Northern America",
+      "reason": "composite_place_unresolved"
+    },
+    {
+      "id": "wd-Q493574-Q19464773::p2",
+      "bookTitle": "The Last of the Mohicans",
+      "author": "James Fenimore Cooper",
+      "placeName": "Mexico",
+      "reason": "composite_place_unresolved"
+    },
+    {
+      "id": "wd-Q493574-Q19464773",
+      "bookTitle": "The Last of the Mohicans",
+      "author": "James Fenimore Cooper",
+      "placeName": "Northern America and Mexico",
+      "reason": "composite_place_unresolved"
+    }
+  ]
+}

@@ -4,6 +4,7 @@ import { useRef, useEffect, useCallback } from 'react';
 import maplibregl from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import type { TourStop } from '@/lib/tours';
+import { DEFAULT_TOUR_CENTER, DEFAULT_TOUR_ZOOM } from '@/lib/geo';
 
 interface TourMapProps {
   stops: TourStop[];
@@ -64,8 +65,8 @@ export default function TourMap({ stops, activeIndex }: TourMapProps) {
           },
         ],
       },
-      center: stops[0]?.coordinates || [72.85, 19.0],
-      zoom: stops[0]?.zoom || 12,
+      center: stops[0]?.coordinates ?? DEFAULT_TOUR_CENTER,
+      zoom: stops[0]?.zoom ?? DEFAULT_TOUR_ZOOM,
       pitch: 30,
       attributionControl: false,
     });

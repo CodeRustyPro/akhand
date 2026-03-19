@@ -17,6 +17,11 @@ Data pipeline:
 """
 
 import logging
+import asyncio
+import json
+import urllib.parse
+import urllib.request
+import urllib.error
 from dataclasses import dataclass, field
 
 import httpx
@@ -24,10 +29,12 @@ import httpx
 logger = logging.getLogger(__name__)
 
 WIKIDATA_SPARQL_ENDPOINT = "https://query.wikidata.org/sparql"
-USER_AGENT = "Akhand Literary Geography Platform/0.1 (https://github.com/akhand)"
+USER_AGENT = "Akhand Literary Geography Platform/0.1 (+https://github.com/akhand; contact: bot-traffic@wikimedia.org)"
 
 # Timeout generously — Wikidata SPARQL can be slow for complex queries
 QUERY_TIMEOUT = 60.0
+MAX_QUERY_RETRIES = 4
+RETRY_BACKOFF_SECONDS = 2.0
 
 
 @dataclass
@@ -50,21 +57,57 @@ class WikidataLiteraryPlace:
 
 QUERY_ALL_NARRATIVE_LOCATIONS = """
 SELECT ?book ?bookLabel ?place ?placeLabel ?coord
-       ?author ?authorLabel ?pubDate ?langLabel ?countryLabel
+             ?author ?authorLabel ?pubDate ?langLabel ?countryLabel
+             (GROUP_CONCAT(DISTINCT ?genreLabel; separator="|") AS ?genreLabels)
 WHERE {
-  ?book wdt:P840 ?place ;
-        wdt:P31/wdt:P279* wd:Q7725634 .  # instance of literary work
-  ?place wdt:P625 ?coord .
+    ?book wdt:P840 ?place .
+    ?place wdt:P625 ?coord .
 
-  OPTIONAL { ?book wdt:P50 ?author . }
-  OPTIONAL { ?book wdt:P577 ?pubDate . }
-  OPTIONAL { ?book wdt:P407 ?lang . }
-  OPTIONAL { ?place wdt:P17 ?country . }
+    # Literary coverage: literary work superclass + common fiction subtypes.
+    {
+        ?book wdt:P31/wdt:P279* wd:Q7725634 .
+    }
+    UNION { ?book wdt:P31 wd:Q571 . }      # novel
+    UNION { ?book wdt:P31 wd:Q8261 . }     # novel series
+    UNION { ?book wdt:P31 wd:Q49084 . }    # short story
+    UNION { ?book wdt:P31 wd:Q277759 . }   # novella
 
-  SERVICE wikibase:label { bd:serviceParam wikibase:language "en,hi,ur,bn,ta,te,ml,mr" . }
+    OPTIONAL { ?book wdt:P50 ?author . }
+    OPTIONAL { ?book wdt:P577 ?pubDate . }
+    OPTIONAL { ?book wdt:P407 ?lang . }
+    OPTIONAL { ?book wdt:P136 ?genre . }
+    OPTIONAL { ?place wdt:P17 ?country . }
+
+    SERVICE wikibase:label { bd:serviceParam wikibase:language "en,hi,ur,bn,ta,te,ml,mr" . }
 }
+GROUP BY ?book ?bookLabel ?place ?placeLabel ?coord ?author ?authorLabel ?pubDate ?langLabel ?countryLabel
 ORDER BY ?bookLabel
 """
+
+
+QUERY_NOVELS_ONLY = """
+SELECT ?book ?bookLabel ?place ?placeLabel ?coord
+             ?author ?authorLabel ?pubDate ?langLabel ?countryLabel
+             (GROUP_CONCAT(DISTINCT ?genreLabel; separator="|") AS ?genreLabels)
+WHERE {
+    ?book wdt:P840 ?place ;
+                wdt:P31/wdt:P279* wd:Q571 .  # novel (including subclasses)
+    ?place wdt:P625 ?coord .
+
+    OPTIONAL { ?book wdt:P50 ?author . }
+    OPTIONAL { ?book wdt:P577 ?pubDate . }
+    OPTIONAL { ?book wdt:P407 ?lang . }
+    OPTIONAL { ?book wdt:P136 ?genre . }
+    OPTIONAL { ?place wdt:P17 ?country . }
+
+    SERVICE wikibase:label { bd:serviceParam wikibase:language "en" . }
+}
+GROUP BY ?book ?bookLabel ?place ?placeLabel ?coord ?author ?authorLabel ?pubDate ?langLabel ?countryLabel
+ORDER BY ?bookLabel
+"""
+
+QUERY_ALL_NARRATIVE_LOCATIONS_PAGED = QUERY_ALL_NARRATIVE_LOCATIONS + "\nLIMIT __LIMIT__\nOFFSET __OFFSET__\n"
+QUERY_NOVELS_ONLY_PAGED = QUERY_NOVELS_ONLY + "\nLIMIT __LIMIT__\nOFFSET __OFFSET__\n"
 
 QUERY_SOUTH_ASIAN_LITERATURE = """
 SELECT ?book ?bookLabel ?place ?placeLabel ?coord
@@ -154,24 +197,178 @@ def _extract_qid(uri: str) -> str:
 
 async def query_wikidata(sparql: str) -> list[dict]:
     """Execute a SPARQL query against the Wikidata endpoint."""
-    async with httpx.AsyncClient(timeout=QUERY_TIMEOUT) as client:
-        response = await client.get(
+
+    def _query_with_urllib() -> list[dict]:
+        payload = urllib.parse.urlencode({"query": sparql, "format": "json"}).encode("utf-8")
+        req = urllib.request.Request(
             WIKIDATA_SPARQL_ENDPOINT,
-            params={"query": sparql, "format": "json"},
+            data=payload,
+            method="POST",
             headers={
                 "User-Agent": USER_AGENT,
                 "Accept": "application/sparql-results+json",
+                "Content-Type": "application/x-www-form-urlencoded",
             },
         )
-        response.raise_for_status()
-        data = response.json()
+        with urllib.request.urlopen(req, timeout=QUERY_TIMEOUT) as response:
+            body = response.read().decode("utf-8", errors="ignore")
+        data = json.loads(body)
         return data.get("results", {}).get("bindings", [])
+
+    async with httpx.AsyncClient(timeout=QUERY_TIMEOUT) as client:
+        for attempt in range(MAX_QUERY_RETRIES + 1):
+            response = await client.post(
+                WIKIDATA_SPARQL_ENDPOINT,
+                data={"query": sparql, "format": "json"},
+                headers={
+                    "User-Agent": USER_AGENT,
+                    "Accept": "application/sparql-results+json",
+                    "Content-Type": "application/x-www-form-urlencoded",
+                },
+            )
+
+            if response.status_code < 400:
+                data = response.json()
+                return data.get("results", {}).get("bindings", [])
+
+            # WDQS can hard-throttle specific HTTP client fingerprints.
+            # Fallback to urllib has proven more reliable in this workspace.
+            if response.status_code == 403:
+                try:
+                    return await asyncio.to_thread(_query_with_urllib)
+                except urllib.error.HTTPError as ue:
+                    if ue.code not in {403, 429, 502, 503, 504}:
+                        raise
+                except Exception:
+                    pass
+
+            retryable = response.status_code in {403, 429, 502, 503, 504}
+            if retryable and attempt < MAX_QUERY_RETRIES:
+                retry_after = response.headers.get("Retry-After")
+                if retry_after:
+                    try:
+                        wait_seconds = float(retry_after)
+                    except ValueError:
+                        wait_seconds = RETRY_BACKOFF_SECONDS * (2 ** attempt)
+                else:
+                    wait_seconds = RETRY_BACKOFF_SECONDS * (2 ** attempt)
+                logger.warning(
+                    "Wikidata query throttled (status=%s). Retrying in %.1fs [attempt %s/%s]",
+                    response.status_code,
+                    wait_seconds,
+                    attempt + 1,
+                    MAX_QUERY_RETRIES,
+                )
+                await asyncio.sleep(wait_seconds)
+                continue
+
+            response.raise_for_status()
+
+    return []
+
+
+async def query_wikidata_paginated(
+    sparql_template: str,
+    page_size: int = 2000,
+    max_pages: int = 0,
+    pause_seconds: float = 1.5,
+    start_offset: int = 0,
+) -> list[dict]:
+    """
+    Execute a paginated SPARQL query with LIMIT/OFFSET placeholders.
+
+    The query template must contain __LIMIT__ and __OFFSET__ tokens.
+    max_pages=0 means no explicit page cap.
+    """
+    all_bindings: list[dict] = []
+    page = 0
+    offset = max(start_offset, 0)
+
+    while True:
+        if max_pages > 0 and page >= max_pages:
+            break
+
+        sparql = (
+            sparql_template.replace("__LIMIT__", str(page_size)).replace("__OFFSET__", str(offset))
+        )
+        logger.info("Wikidata paged query: page=%s offset=%s size=%s", page + 1, offset, page_size)
+        try:
+            bindings = await query_wikidata(sparql)
+        except httpx.HTTPStatusError as exc:
+            status = exc.response.status_code if exc.response is not None else "unknown"
+            if all_bindings:
+                logger.warning(
+                    "Wikidata paged query stopped at page=%s after HTTP %s; returning partial results (%s rows)",
+                    page + 1,
+                    status,
+                    len(all_bindings),
+                )
+                break
+            raise
+
+        if not bindings:
+            break
+
+        all_bindings.extend(bindings)
+        logger.info("Wikidata paged query: received %s rows (total=%s)", len(bindings), len(all_bindings))
+
+        if len(bindings) < page_size:
+            break
+
+        page += 1
+        offset += page_size
+        await asyncio.sleep(pause_seconds)
+
+    return all_bindings
 
 
 async def fetch_all_narrative_locations() -> list[WikidataLiteraryPlace]:
     """Fetch all literary works with narrative locations (P840) from Wikidata."""
     logger.info("Querying Wikidata for all narrative locations (P840)...")
     bindings = await query_wikidata(QUERY_ALL_NARRATIVE_LOCATIONS)
+    return _parse_bindings(bindings)
+
+
+async def fetch_novels_only_locations() -> list[WikidataLiteraryPlace]:
+    """Fetch only novel entries with narrative locations from Wikidata."""
+    logger.info("Querying Wikidata for novels with narrative locations (P840)...")
+    bindings = await query_wikidata(QUERY_NOVELS_ONLY)
+    return _parse_bindings(bindings)
+
+
+async def fetch_all_narrative_locations_paged(
+    page_size: int = 2000,
+    max_pages: int = 0,
+    pause_seconds: float = 1.5,
+    start_offset: int = 0,
+) -> list[WikidataLiteraryPlace]:
+    """Fetch narrative locations using paginated LIMIT/OFFSET queries."""
+    logger.info("Querying Wikidata with paginated narrative-location fetch...")
+    bindings = await query_wikidata_paginated(
+        QUERY_ALL_NARRATIVE_LOCATIONS_PAGED,
+        page_size=page_size,
+        max_pages=max_pages,
+        pause_seconds=pause_seconds,
+        start_offset=start_offset,
+    )
+    return _parse_bindings(bindings)
+
+
+async def fetch_novels_only_locations_paged(
+    page_size: int = 2000,
+    max_pages: int = 0,
+    pause_seconds: float = 1.5,
+    start_offset: int = 0,
+) -> list[WikidataLiteraryPlace]:
+    """Fetch novels-only narrative locations using paginated LIMIT/OFFSET queries."""
+    logger.info("Querying Wikidata with paginated novels-only fetch...")
+    bindings = await query_wikidata_paginated(
+        QUERY_NOVELS_ONLY_PAGED,
+        page_size=page_size,
+        max_pages=max_pages,
+        pause_seconds=pause_seconds,
+        start_offset=start_offset,
+    )
     return _parse_bindings(bindings)
 
 
@@ -245,6 +442,9 @@ def _parse_bindings(bindings: list[dict]) -> list[WikidataLiteraryPlace]:
                     b.get("pubDate", {}).get("value")
                 ),
                 language_label=b.get("langLabel", {}).get("value"),
+                genre_labels=[
+                    g.strip() for g in b.get("genreLabels", {}).get("value", "").split("|") if g.strip()
+                ],
                 country_label=b.get("countryLabel", {}).get("value"),
             )
         )

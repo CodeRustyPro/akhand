@@ -27,8 +27,16 @@ export function computeCityDna(
   const cityPlaces = allPlaces.filter((p) => p.placeName === city);
   if (cityPlaces.length < 3) return null;
 
+  // Gold is canonical for DNA; fallback to Silver if city has too little Gold data.
+  const groundedPlaces = cityPlaces.filter(
+    (p) => p.qualityTier === 'gold' && p.sentiment.themes.length > 0
+  );
+  const fallbackPlaces = cityPlaces.filter(
+    (p) => p.qualityTier === 'silver' && p.sentiment.themes.length > 0
+  );
+
   const themeCounts = new Map<string, number>();
-  cityPlaces.forEach((p) => {
+  (groundedPlaces.length >= 3 ? groundedPlaces : fallbackPlaces.length >= 3 ? fallbackPlaces : cityPlaces).forEach((p) => {
     p.sentiment.themes.forEach((t) => {
       themeCounts.set(t, (themeCounts.get(t) || 0) + 1);
     });

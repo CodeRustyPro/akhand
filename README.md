@@ -1,6 +1,11 @@
 # Akhand
 
-A literary geography platform that maps fiction to the physical world. 935 works of fiction across 169 places in 22 languages, drawn from automated API ingestion, web archive parsing, and human-curated spreadsheets.
+A literary geography platform that maps fiction to the physical world.
+
+Canonical data layer status (Mar 17, 2026):
+- Working scaffold: 11,073 entries
+- Strict release: 9,057 entries
+- Active versioned release: backend/data/releases/2026-03-17-strict-v2/literary_places.json
 
 The name means "undivided" in Sanskrit. The platform treats South Asia's literary geography as a continuous space, ignoring political boundaries in favor of narrative ones.
 
@@ -15,7 +20,10 @@ Frontend (Next.js 14, MapLibre GL, deck.gl)
     v
 Backend API (FastAPI, Pydantic)
     |
-    |-- /api/places        serves 935 fiction entries with search/filter
+    |-- /api/places        serves canonical release entries with search/filter
+    |-- /api/meta          dataset version/source/count metadata
+    |-- /api/places.geojson full GeoJSON FeatureCollection export
+    |-- /api/export        bulk CSV export
     |-- /api/extract       spaCy + GLiNER + Gemini NLP pipeline
     |-- /api/wikidata/*    SPARQL proxy for Wikidata P840
     |
@@ -29,15 +37,12 @@ Data Ingestion (CLI scripts)
 
 ## Data
 
-**935 works of fiction** from three sources, with non-fiction entries (museum catalogs, history studies, architecture references, government reports, academic studies) removed and duplicates deduplicated:
+Current corpus snapshot:
 
-| Source | Entries | Method |
-|--------|---------|--------|
-| Open Library API | 553 | Automated search across 54 cities with historical name alias expansion (Bombay/Mumbai, Calcutta/Kolkata, Benaras/Varanasi/Kashi, Cochin/Kochi, etc.). Deduplication by work key. Enriched with descriptions and cover images from the Works API. |
-| CIF Archive | 284 | Parsed from citiesinfiction.com/archive (tab-separated). 460+ raw entries deduplicated against existing dataset. Geocoded via pre-populated coordinate cache covering 200+ locations. |
-| CIF Spreadsheet | 146 | Parsed from contributor spreadsheet. 89 unique places, 21 languages including Hindi, Bengali, Malayalam, Telugu, Odia, Kannada, Tamil, Urdu. Geocoded via coordinate cache + Nominatim fallback. |
-
-Coverage: 169 unique places, 737 unique authors, publication years 200-2026, 22 languages, 7 regions. 478 entries have book descriptions, 378 have cover images, all have outbound links to Open Library or Google Books.
+- Working scaffold (generated): 11,073
+- Strict canonical release (v2026-03-17-strict-v2): 9,057
+- Frontend static index/details synced to strict release: 9,057
+- Enrichment run continues in background with checkpointed resume.
 
 ## NLP pipeline
 
@@ -69,6 +74,9 @@ PMTiles protocol registered for future zero-cost self-hosted tile serving.
 |--------|------|-------------|
 | GET | `/api/places` | List places. Params: `q`, `region`, `city`, `author`, `genre`, `year_min`, `year_max`, `limit`, `offset` |
 | GET | `/api/places/{id}` | Single place by ID |
+| GET | `/api/meta` | Dataset version/source/count metadata |
+| GET | `/api/places.geojson` | Full dataset as GeoJSON FeatureCollection |
+| GET | `/api/export?format=csv` | Full dataset as CSV |
 | POST | `/api/places/refresh` | Hot-reload data from disk after re-ingestion |
 | POST | `/api/extract` | Run NLP pipeline on arbitrary text |
 | POST | `/api/extract/summary` | Gemini structured extraction from book summary |
@@ -82,10 +90,10 @@ Full-text search across titles, authors, cities, genres, themes, and passages. A
 All commands run from the project root (`akhand/`), not from subdirectories.
 
 ```bash
-# Frontend only (40 curated entries, no backend needed)
+# Frontend only (250 curated fallback entries, no backend needed)
 cd frontend && npm install && npm run dev
 
-# Backend (935 fiction entries from Open Library + CIF)
+# Backend
 pip install -r backend/requirements.txt
 python -m spacy download en_core_web_md
 uvicorn backend.main:app --port 8000
@@ -99,6 +107,10 @@ uvicorn backend.main:app --port 8000
 python -m backend.data.ingest              # Open Library (54 cities)
 python -m backend.data.cif_ingest --merge  # merge CIF spreadsheet + archive
 curl -X POST http://localhost:8000/api/places/refresh
+
+# Cut a versioned release
+python -m backend.scripts.quality_gate --input backend/data/releases/2026-03-17-strict-v2/literary_places.json --threshold 0.55 --reject --block-filler --filler-min-hits 2 --output backend/data/generated/literary_places_release_strict_next.json --output-report backend/data/generated/quality_report_strict_next.json
+python -m backend.scripts.cut_release --input backend/data/generated/literary_places_release_strict_next.json --report backend/data/generated/quality_report_strict_next.json --version 2026-03-18-strict
 
 # Docker (full stack)
 docker compose up
@@ -114,11 +126,45 @@ docker compose up
 
 ## Limitations
 
-- The API has no authentication or rate limiting. `/api/places/refresh` is unauthenticated. Fine for development, not deployable to a public URL without middleware.
+- API write/extract/admin routes are key-protected and rate-limited. Public read routes remain open.
 - CORS allows `localhost:3000` and `shahdev.me`. Additional origins require updating the middleware.
-- Sentiment analysis is empty for Open Library entries. The NLP pipeline can do it, but ingestion prioritizes breadth (983 entries) over depth (rich per-entry analysis).
+- Full enrichment is still in progress for the complete scaffold. The strict release intentionally excludes weaker rows until re-enriched.
 - Neither source contains actual literary passages, only plot summaries (Open Library) and contributor descriptions (CIF). Copyrighted text requires publisher APIs or Project Gutenberg (public domain, pre-1928).
 - Geocoding approximates regions to centroids. "Marwar region in Western part of Rajasthan" maps to Jodhpur. State-level entries and fictional places are similarly approximate.
 - Open Library sorts by relevance, not recency. Recently published books are underrepresented.
 - Wikidata SPARQL endpoint rate-limits heavily (429 on every query during development). Code is correct but the live endpoint is unreliable for bulk queries.
 - The `en_core_web_md` spaCy model, while better than `sm`, still misses literary place names in unusual syntactic positions. GLiNER compensates but its 0.4 threshold needs manual benchmarking against annotated passages.
+
+## Production Security Checklist
+
+Set these environment variables in production:
+
+- `AKHAND_ADMIN_API_KEY` (required for `/api/places/refresh`)
+- `AKHAND_WRITE_API_KEY` (required for `/api/contribute`)
+- `AKHAND_EXTRACT_API_KEY` (required for `/api/extract*` and `/api/analyze/passage`)
+- `AKHAND_TRUSTED_HOSTS` (comma-separated host allowlist, e.g. `api.example.com`)
+- `AKHAND_CORS_ORIGINS` (comma-separated explicit origins)
+- `AKHAND_CORS_METHODS` (default `GET,POST,OPTIONS`)
+- `AKHAND_CORS_HEADERS` (default `Content-Type,X-API-Key`)
+- `AKHAND_ENABLE_SECURITY_HEADERS=1` (enables HSTS/XFO/nosniff/referrer-policy)
+
+Release hardening:
+
+```bash
+python -m backend.scripts.data_cleanup \
+    --input backend/data/releases/2026-03-19-research-v1/literary_places.json \
+    --output backend/data/generated/literary_places_cleaned_prod.json \
+    --manifest backend/data/generated/cleanup_manifest_prod.json
+
+python -m backend.scripts.quality_gate \
+    --input backend/data/generated/literary_places_cleaned_prod.json \
+    --reject --threshold 0.6 --geo-threshold 0.65 \
+    --output backend/data/generated/literary_places_release_prod.json \
+    --output-report backend/data/generated/quality_report_prod.json
+
+python -m backend.scripts.cut_release \
+    --input backend/data/generated/literary_places_release_prod.json \
+    --report backend/data/generated/quality_report_prod.json \
+    --version 2026-03-19-prod \
+    --min-passing-ratio 0.60
+```

@@ -1,0 +1,156 @@
+{
+  "input": "backend/data/generated/literary_places_passages_merged.json",
+  "output": "backend/data/generated/literary_places_cleaned_v2.json",
+  "original_total": 11073,
+  "final_total": 11053,
+  "removed_total": 20,
+  "stage_counts": {
+    "vague_places_tagged": 3853,
+    "nonfiction": 4,
+    "ambiguous_titles": 11,
+    "title_city_mismatch": 5,
+    "deduplicated": 0
+  },
+  "removed_entries": [
+    {
+      "id": "wd-Q52240439-Q25",
+      "bookTitle": "A Topographical Dictionary of Wales",
+      "author": "Samuel Lewis",
+      "placeName": "Wales",
+      "reason": "nonfiction_title"
+    },
+    {
+      "id": "wd-Q108393617-Q23666",
+      "bookTitle": "Dictionary Of British And Irish Botantists",
+      "author": "Ray Desmond",
+      "placeName": "Great Britain",
+      "reason": "nonfiction_title"
+    },
+    {
+      "id": "wd-Q19303449-Q46",
+      "bookTitle": "Journal of Dr. John Morgan of Philadelphia",
+      "author": "John Morgan",
+      "placeName": "Europe",
+      "reason": "nonfiction_title"
+    },
+    {
+      "id": "wd-Q58655407-Q1362696",
+      "bookTitle": "Journal of W.S. Hall, Aug 1863 - Dec 1865",
+      "author": "William Shakespeare Hall",
+      "placeName": "Pilbara",
+      "reason": "nonfiction_title"
+    },
+    {
+      "id": "wd-Q3179366-Q39",
+      "bookTitle": "Jo",
+      "author": "Unknown",
+      "placeName": "Switzerland",
+      "reason": "ambiguous_title"
+    },
+    {
+      "id": "ol-OL26386W-london",
+      "bookTitle": "Poems",
+      "author": "William Wordsworth",
+      "placeName": "London",
+      "reason": "ambiguous_title"
+    },
+    {
+      "id": "ol-OL67548W-rome",
+      "bookTitle": "Selected works",
+      "author": "Cicero",
+      "placeName": "Rome",
+      "reason": "ambiguous_title"
+    },
+    {
+      "id": "ol-OL23067757W-toronto",
+      "bookTitle": "Us",
+      "author": "Sarina Bowen, Elle Kennedy",
+      "placeName": "Toronto",
+      "reason": "ambiguous_title"
+    },
+    {
+      "id": "wd-Q30598958-Q84",
+      "bookTitle": "13",
+      "author": "Mike Bartlett",
+      "placeName": "London",
+      "reason": "ambiguous_title"
+    },
+    {
+      "id": "wd-Q3599350-Q65",
+      "bookTitle": "54",
+      "author": "Wu Ming",
+      "placeName": "Los Angeles",
+      "reason": "ambiguous_title"
+    },
+    {
+      "id": "wd-Q5207187-Q104262550",
+      "bookTitle": "Da",
+      "author": "Hugh Leonard",
+      "placeName": "Dalkey",
+      "reason": "ambiguous_title"
+    },
+    {
+      "id": "wd-Q3706793-Q40",
+      "bookTitle": "Diary",
+      "author": "Arthur Schnitzler",
+      "placeName": "Austria",
+      "reason": "ambiguous_title"
+    },
+    {
+      "id": "wd-Q125460417-Q117",
+      "bookTitle": "Fragments",
+      "author": "Ayi Kwei Armah",
+      "placeName": "Ghana",
+      "reason": "ambiguous_title"
+    },
+    {
+      "id": "wd-Q5574659-Q60",
+      "bookTitle": "Go",
+      "author": "John Clellon Holmes",
+      "placeName": "New York City",
+      "reason": "ambiguous_title"
+    },
+    {
+      "id": "wd-Q17030397-Q1342",
+      "bookTitle": "K.",
+      "author": "Mary Roberts Rinehart",
+      "placeName": "Pittsburgh",
+      "reason": "ambiguous_title"
+    },
+    {
+      "id": "cif-mumbai-brides",
+      "bookTitle": "Mumbai Brides",
+      "author": "Esther David",
+      "placeName": "Ahmedabad",
+      "reason": "title_city_mismatch"
+    },
+    {
+      "id": "wd-Q3024669-Q25322",
+      "bookTitle": "Destination New York",
+      "author": "Hergé",
+      "placeName": "Arctic",
+      "reason": "title_city_mismatch"
+    },
+    {
+      "id": "ol-OL86320W-london",
+      "bookTitle": "Dubliners",
+      "author": "James Joyce",
+      "placeName": "London",
+      "reason": "title_city_mismatch"
+    },
+    {
+      "id": "ol-OL37623219W-berlin",
+      "bookTitle": "Octopussy and the Living Daylights - Octopussy/The property of a lady/The living daylights/007 in New York",
+      "author": "Ian Fleming",
+      "placeName": "Berlin",
+      "reason": "title_city_mismatch"
+    },
+    {
+      "id": "wd-Q110624554-Q11299",
+      "bookTitle": "Mannahatta: A Natural History of New York City",
+      "author": "Eric W. Sanderson",
+      "placeName": "Manhattan",
+      "reason": "title_city_mismatch"
+    }
+  ]
+}

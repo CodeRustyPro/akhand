@@ -16,8 +16,8 @@ class SettingType(str, Enum):
 
 class SentimentData(BaseModel):
     polarity: float = Field(ge=-1.0, le=1.0)
-    dominant_emotions: list[str] = []
-    themes: list[str] = []
+    dominant_emotions: list[str] = Field(default_factory=list)
+    themes: list[str] = Field(default_factory=list)
 
 
 class ExtractedEntity(BaseModel):
@@ -55,7 +55,7 @@ class LiteraryPlaceCreate(BaseModel):
     passage: str
     sentiment: SentimentData
     language: str = "English"
-    genres: list[str] = []
+    genres: list[str] = Field(default_factory=list)
     region: str | None = None
     wikidata_book_id: str | None = None
     wikidata_place_id: str | None = None
@@ -88,7 +88,7 @@ class PassageAnalysis(BaseModel):
     sentiment: SentimentData
     setting_type: SettingType
     narrative_era: str | None = None
-    themes: list[str] = []
+    themes: list[str] = Field(default_factory=list)
 
 
 class BatchExtractionRequest(BaseModel):

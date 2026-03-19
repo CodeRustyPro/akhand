@@ -21,6 +21,8 @@ import { literaryPlaces } from '@/lib/data';
 import { fetchLiteraryPlaces } from '@/lib/api';
 import type { LiteraryPlace } from '@/lib/types';
 import { tours } from '@/lib/tours';
+import { buildTourPreviewProjector } from '@/lib/geo';
+import { normalizePlacesMetadata } from '@/lib/quality';
 
 /* ── Animations ─────────────────────────────────────── */
 
@@ -82,11 +84,12 @@ const FEATURED_IDS = [
 ];
 
 function pickFeatured(places: LiteraryPlace[]): LiteraryPlace[] {
+  const pool = places.filter((p) => p.qualityTier === 'gold');
   const found = FEATURED_IDS
-    .map((id) => places.find((p) => p.id === id))
+    .map((id) => pool.find((p) => p.id === id) || places.find((p) => p.id === id))
     .filter(Boolean) as LiteraryPlace[];
   if (found.length >= 4) return found.slice(0, 6);
-  return places.filter((p) => p.passage && p.passage.length > 40).slice(0, 6);
+  return pool.filter((p) => p.passage && p.passage.length > 40).slice(0, 6);
 }
 
 interface ReadingList {
@@ -104,7 +107,7 @@ const READING_LISTS: ReadingList[] = [
     query: 'partition',
     icon: '𑗕',
     filter: (p) =>
-      p.sentiment.themes.includes('partition') ||
+      p.sentiment.themes.some(t => t.includes('partition')) ||
       p.bookTitle.toLowerCase().includes('partition') ||
       p.bookTitle.toLowerCase().includes('train to pakistan') ||
       p.bookTitle.toLowerCase().includes('tamas') ||
@@ -120,7 +123,7 @@ const READING_LISTS: ReadingList[] = [
       (p.genres.includes('crime') ||
         p.genres.includes('mystery') ||
         p.genres.includes('thriller') ||
-        p.sentiment.themes.includes('corruption')),
+        p.sentiment.themes.some(t => t.includes('corruption'))),
   },
   {
     title: 'Fiction in Translation',
@@ -157,7 +160,7 @@ const READING_LISTS: ReadingList[] = [
     query: 'childhood',
     icon: '🌱',
     filter: (p) =>
-      p.sentiment.themes.includes('childhood') ||
+      p.sentiment.themes.some(t => t.includes('childhood')) ||
       p.genres.includes("children's") ||
       p.genres.includes('young adult'),
   },
@@ -166,40 +169,44 @@ const READING_LISTS: ReadingList[] = [
 /* ── Main Page ──────────────────────────────────────── */
 
 export default function HomePage() {
+  const basePlaces = normalizePlacesMetadata(literaryPlaces);
   const [stats, setStats] = useState({
-    places: literaryPlaces.length,
-    books: new Set(literaryPlaces.map((p) => p.bookTitle)).size,
-    authors: new Set(literaryPlaces.map((p) => p.author)).size,
-    cities: new Set(literaryPlaces.map((p) => p.placeName)).size,
+    places: basePlaces.length,
+    goldPlaces: basePlaces.filter((p) => p.qualityTier === 'gold').length,
+    books: new Set(basePlaces.map((p) => p.bookTitle)).size,
+    authors: new Set(basePlaces.map((p) => p.author)).size,
+    cities: new Set(basePlaces.map((p) => p.placeName)).size,
   });
   const [featured, setFeatured] = useState<LiteraryPlace[]>(
-    pickFeatured(literaryPlaces)
+    pickFeatured(basePlaces)
   );
-  const [allPlaces, setAllPlaces] = useState<LiteraryPlace[]>(literaryPlaces);
+  const [allPlaces, setAllPlaces] = useState<LiteraryPlace[]>(basePlaces);
 
   const heroRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
     target: heroRef,
     offset: ['start start', 'end start'],
   });
-  const heroOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
-  const heroScale = useTransform(scrollYProgress, [0, 0.8], [1, 0.95]);
+  const heroOpacity = useTransform(scrollYProgress, [0, 0.5, 1], [1, 0.8, 0]);
+  const heroScale = useTransform(scrollYProgress, [0, 0.5, 1], [1, 0.98, 0.95]);
 
   useEffect(() => {
     fetchLiteraryPlaces({ limit: 2000 }).then((places) => {
-      if (places.length > literaryPlaces.length) {
-        setAllPlaces(places);
+      const normalized = normalizePlacesMetadata(places);
+      if (normalized.length > basePlaces.length) {
+        setAllPlaces(normalized);
         setStats({
-          places: places.length,
-          books: new Set(places.map((p) => p.bookTitle)).size,
-          authors: new Set(places.map((p) => p.author)).size,
-          cities: new Set(places.map((p) => p.placeName)).size,
+          places: normalized.length,
+          goldPlaces: normalized.filter((p) => p.qualityTier === 'gold').length,
+          books: new Set(normalized.map((p) => p.bookTitle)).size,
+          authors: new Set(normalized.map((p) => p.author)).size,
+          cities: new Set(normalized.map((p) => p.placeName)).size,
         });
-        const f = pickFeatured(places);
+        const f = pickFeatured(normalized);
         if (f.length > 0) setFeatured(f);
       }
     });
-  }, []);
+  }, [basePlaces]);
 
   const featuredPassages = featured.filter(
     (p) => p.passage && p.passage.length > 20
@@ -221,8 +228,9 @@ export default function HomePage() {
           <div className="flex items-center gap-4">
             <Link
               href="/stories/literary-mumbai"
-              className="text-sm text-akhand-text-muted hover:text-akhand-text-secondary transition-colors hidden sm:block"
+              className="inline-flex items-center gap-1.5 px-4 py-2 bg-gradient-to-r from-akhand-accent/10 to-purple-500/10 text-akhand-accent border border-akhand-accent/30 text-sm font-medium rounded-full hover:bg-akhand-accent/20 hover:border-akhand-accent/40 transition-all"
             >
+              <Quote className="w-3.5 h-3.5" />
               Stories
             </Link>
             <a
@@ -314,6 +322,8 @@ export default function HomePage() {
                 transition={{ delay: 0.6, duration: 0.8 }}
               >
                 {[
+                  { value: stats.goldPlaces, label: 'Gold Places' },
+                  { value: stats.places, label: 'Total Places' },
                   { value: stats.books, label: 'Works' },
                   { value: stats.cities, label: 'Cities' },
                   { value: stats.authors, label: 'Authors' },
@@ -345,7 +355,7 @@ export default function HomePage() {
                   Curated Reading Lists
                 </p>
                 {READING_LISTS.map((list, i) => {
-                  const matches = allPlaces.filter(list.filter);
+                  const matches = allPlaces.filter((p) => p.qualityTier === 'gold').filter(list.filter);
                   if (matches.length < 2) return null;
                   return (
                     <Link
@@ -539,8 +549,13 @@ export default function HomePage() {
       )}
 
       {/* ── Literary Tours ──────────────────────────── */}
-      <section className="py-32 px-6">
-        <div className="max-w-6xl mx-auto">
+      <section className="py-32 px-6 relative overflow-hidden">
+        {/* Accent glow for emphasis */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] rounded-full bg-purple-500/[0.03] blur-[80px]" />
+        </div>
+
+        <div className="relative max-w-6xl mx-auto">
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -550,7 +565,7 @@ export default function HomePage() {
             <motion.p
               variants={fadeUp}
               custom={0}
-              className="text-xs font-medium text-akhand-accent tracking-[0.2em] uppercase"
+              className="text-xs font-medium bg-gradient-to-r from-akhand-accent to-purple-400 bg-clip-text text-transparent tracking-[0.2em] uppercase"
             >
               Scrollytelling
             </motion.p>
@@ -578,52 +593,58 @@ export default function HomePage() {
             variants={stagger}
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"
           >
-            {tours.map((tour, i) => (
-              <motion.div key={tour.slug} variants={fadeUp} custom={i}>
-                <Link
-                  href={`/stories/${tour.slug}`}
-                  className="group block relative bg-akhand-surface/50 rounded-2xl border border-akhand-border/40 overflow-hidden hover:border-akhand-accent/25 transition-all duration-500"
-                >
-                  {/* Decorative map preview gradient */}
-                  <div className="h-40 bg-gradient-to-br from-akhand-surface-2 via-akhand-surface to-akhand-bg relative overflow-hidden">
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="relative">
-                        {tour.stops.map((stop, j) => (
-                          <div
-                            key={stop.id}
-                            className="absolute w-2 h-2 rounded-full bg-akhand-accent/60"
-                            style={{
-                              left: `${((stop.coordinates[0] - 72.7) / 0.3) * 60 - 30}px`,
-                              top: `${((19.15 - stop.coordinates[1]) / 0.2) * 60 - 30}px`,
-                            }}
-                          />
-                        ))}
-                        <div className="w-8 h-8 rounded-full bg-akhand-accent/10 flex items-center justify-center">
-                          <BookOpen className="w-4 h-4 text-akhand-accent" />
+            {tours.map((tour, i) => {
+              const projectToPreview = buildTourPreviewProjector(tour.stops);
+              return (
+                <motion.div key={tour.slug} variants={fadeUp} custom={i}>
+                  <Link
+                    href={`/stories/${tour.slug}`}
+                    className="group block relative bg-akhand-surface/50 rounded-2xl border border-akhand-border/40 overflow-hidden hover:border-akhand-accent/25 transition-all duration-500"
+                  >
+                    {/* Decorative map preview gradient */}
+                    <div className="h-40 bg-gradient-to-br from-akhand-surface-2 via-akhand-surface to-akhand-bg relative overflow-hidden">
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <div className="relative">
+                          {tour.stops.map((stop) => {
+                            const [x, y] = projectToPreview(stop.coordinates);
+                            return (
+                              <div
+                                key={stop.id}
+                                className="absolute w-2 h-2 rounded-full bg-akhand-accent/60"
+                                style={{
+                                  left: `${x}px`,
+                                  top: `${y}px`,
+                                }}
+                              />
+                            );
+                          })}
+                          <div className="w-8 h-8 rounded-full bg-akhand-accent/10 flex items-center justify-center">
+                            <BookOpen className="w-4 h-4 text-akhand-accent" />
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                  <div className="p-6">
-                    <h3 className="font-serif text-lg font-semibold text-akhand-text-primary group-hover:text-akhand-accent transition-colors">
-                      {tour.title}
-                    </h3>
-                    <p className="text-xs text-akhand-text-muted mt-1">
-                      {tour.subtitle}
-                    </p>
-                    <p className="text-sm text-akhand-text-secondary mt-3 leading-relaxed line-clamp-2">
-                      {tour.description}
-                    </p>
-                    <div className="flex items-center gap-3 mt-4">
-                      <span className="text-xs text-akhand-accent font-medium bg-akhand-accent/10 px-2.5 py-1 rounded-full">
-                        {tour.stops.length} stops
-                      </span>
-                      <ArrowRight className="w-3.5 h-3.5 text-akhand-text-muted group-hover:text-akhand-accent group-hover:translate-x-0.5 transition-all" />
+                    <div className="p-6">
+                      <h3 className="font-serif text-lg font-semibold text-akhand-text-primary group-hover:text-akhand-accent transition-colors">
+                        {tour.title}
+                      </h3>
+                      <p className="text-xs text-akhand-text-muted mt-1">
+                        {tour.subtitle}
+                      </p>
+                      <p className="text-sm text-akhand-text-secondary mt-3 leading-relaxed line-clamp-2">
+                        {tour.description}
+                      </p>
+                      <div className="flex items-center gap-3 mt-4">
+                        <span className="text-xs text-akhand-accent font-medium bg-akhand-accent/10 px-2.5 py-1 rounded-full">
+                          {tour.stops.length} stops
+                        </span>
+                        <ArrowRight className="w-3.5 h-3.5 text-akhand-text-muted group-hover:text-akhand-accent group-hover:translate-x-0.5 transition-all" />
+                      </div>
                     </div>
-                  </div>
-                </Link>
-              </motion.div>
-            ))}
+                  </Link>
+                </motion.div>
+              );
+            })}
           </motion.div>
         </div>
       </section>

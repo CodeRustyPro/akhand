@@ -56,6 +56,8 @@ HISTORICAL_ALIASES: dict[str, list[str]] = {
     "St Petersburg": ["Leningrad", "Saint Petersburg"],
     "Istanbul": ["Constantinople"],
     "Srinagar": ["Kashmir"],
+    "Ho Chi Minh City": ["Saigon"],
+    "Beijing": ["Peking"],
 }
 
 # ── Seed cities with pre-known coordinates ─────────────────────────
@@ -115,11 +117,64 @@ CITIES: dict[str, dict] = {
     "Istanbul": {"coords": [28.9784, 41.0082], "region": "Europe", "country": "Turkey"},
     "Cairo": {"coords": [31.2357, 30.0444], "region": "Middle East", "country": "Egypt"},
     "Tokyo": {"coords": [139.6917, 35.6895], "region": "East Asia", "country": "Japan"},
+    "Kyoto": {"coords": [135.7681, 35.0116], "region": "East Asia", "country": "Japan"},
+    "Seoul": {"coords": [126.9780, 37.5665], "region": "East Asia", "country": "South Korea"},
+    "Beijing": {"coords": [116.4074, 39.9042], "region": "East Asia", "country": "China"},
+    "Shanghai": {"coords": [121.4737, 31.2304], "region": "East Asia", "country": "China"},
+    "Hong Kong": {"coords": [114.1694, 22.3193], "region": "East Asia", "country": "China"},
+    "Bangkok": {"coords": [100.5018, 13.7563], "region": "Southeast Asia", "country": "Thailand"},
+    "Singapore": {"coords": [103.8198, 1.3521], "region": "Southeast Asia", "country": "Singapore"},
     "Lagos": {"coords": [3.3792, 6.5244], "region": "Africa", "country": "Nigeria"},
+    "Johannesburg": {"coords": [28.0473, -26.2041], "region": "Africa", "country": "South Africa"},
+    "Accra": {"coords": [-0.1870, 5.6037], "region": "Africa", "country": "Ghana"},
+    "Dar es Salaam": {"coords": [39.2083, -6.7924], "region": "Africa", "country": "Tanzania"},
     "Buenos Aires": {"coords": [-58.3816, -34.6037], "region": "Latin America", "country": "Argentina"},
+    "Mexico City": {"coords": [-99.1332, 19.4326], "region": "Latin America", "country": "Mexico"},
+    "Rio de Janeiro": {"coords": [-43.1729, -22.9068], "region": "Latin America", "country": "Brazil"},
+    "Havana": {"coords": [-82.3666, 23.1136], "region": "Latin America", "country": "Cuba"},
     "Moscow": {"coords": [37.6173, 55.7558], "region": "Europe", "country": "Russia"},
+    "Rome": {"coords": [12.4964, 41.9028], "region": "Europe", "country": "Italy"},
+    "Vienna": {"coords": [16.3738, 48.2082], "region": "Europe", "country": "Austria"},
+    "Amsterdam": {"coords": [4.9041, 52.3676], "region": "Europe", "country": "Netherlands"},
+    "Berlin": {"coords": [13.4050, 52.5200], "region": "Europe", "country": "Germany"},
+    "Prague": {"coords": [14.4378, 50.0755], "region": "Europe", "country": "Czech Republic"},
+    "Barcelona": {"coords": [2.1734, 41.3851], "region": "Europe", "country": "Spain"},
+    "Lisbon": {"coords": [-9.1393, 38.7223], "region": "Europe", "country": "Portugal"},
+    "Edinburgh": {"coords": [-3.1883, 55.9533], "region": "Europe", "country": "UK"},
+    "Manchester": {"coords": [-2.2426, 53.4808], "region": "Europe", "country": "UK"},
+    "Chicago": {"coords": [-87.6298, 41.8781], "region": "North America", "country": "USA"},
+    "Los Angeles": {"coords": [-118.2437, 34.0522], "region": "North America", "country": "USA"},
+    "San Francisco": {"coords": [-122.4194, 37.7749], "region": "North America", "country": "USA"},
+    "Tehran": {"coords": [51.3890, 35.6892], "region": "Middle East", "country": "Iran"},
+    "Baghdad": {"coords": [44.3661, 33.3152], "region": "Middle East", "country": "Iraq"},
+    "Beirut": {"coords": [35.5018, 33.8938], "region": "Middle East", "country": "Lebanon"},
+    "Jerusalem": {"coords": [35.2137, 31.7683], "region": "Middle East", "country": "Israel"},
+    "Alexandria": {"coords": [29.9187, 31.2001], "region": "Middle East", "country": "Egypt"},
     "Nairobi": {"coords": [36.8219, -1.2921], "region": "Africa", "country": "Kenya"},
     "St Petersburg": {"coords": [30.3351, 59.9343], "region": "Europe", "country": "Russia"},
+    # Additional cities to reduce far-from-city false positives
+    "Sydney": {"coords": [151.2093, -33.8688], "region": "Oceania", "country": "Australia"},
+    "Melbourne": {"coords": [144.9631, -37.8136], "region": "Oceania", "country": "Australia"},
+    "Toronto": {"coords": [-79.3832, 43.6532], "region": "North America", "country": "Canada"},
+    "Montreal": {"coords": [-73.5673, 45.5017], "region": "North America", "country": "Canada"},
+    "Stockholm": {"coords": [18.0686, 59.3293], "region": "Europe", "country": "Sweden"},
+    "Copenhagen": {"coords": [12.5683, 55.6761], "region": "Europe", "country": "Denmark"},
+    "Oslo": {"coords": [10.7522, 59.9139], "region": "Europe", "country": "Norway"},
+    "Warsaw": {"coords": [21.0122, 52.2297], "region": "Europe", "country": "Poland"},
+    "Budapest": {"coords": [19.0402, 47.4979], "region": "Europe", "country": "Hungary"},
+    "Athens": {"coords": [23.7275, 37.9838], "region": "Europe", "country": "Greece"},
+    "Madrid": {"coords": [-3.7038, 40.4168], "region": "Europe", "country": "Spain"},
+    "Ho Chi Minh City": {"coords": [106.6297, 10.8231], "region": "Southeast Asia", "country": "Vietnam"},
+    "Hanoi": {"coords": [105.8342, 21.0278], "region": "Southeast Asia", "country": "Vietnam"},
+    "Manila": {"coords": [120.9842, 14.5995], "region": "Southeast Asia", "country": "Philippines"},
+    "Jakarta": {"coords": [106.8456, -6.2088], "region": "Southeast Asia", "country": "Indonesia"},
+    "Addis Ababa": {"coords": [38.7578, 9.0192], "region": "Africa", "country": "Ethiopia"},
+    "Cape Town": {"coords": [18.4241, -33.9249], "region": "Africa", "country": "South Africa"},
+    "Casablanca": {"coords": [-7.5898, 33.5731], "region": "Africa", "country": "Morocco"},
+    "Lima": {"coords": [-77.0428, -12.0464], "region": "Latin America", "country": "Peru"},
+    "Bogota": {"coords": [-74.0721, 4.7110], "region": "Latin America", "country": "Colombia"},
+    "Santiago": {"coords": [-70.6693, -33.4489], "region": "Latin America", "country": "Chile"},
+    "Taipei": {"coords": [121.5654, 25.0330], "region": "East Asia", "country": "Taiwan"},
 }
 
 OUTPUT_DIR = Path(__file__).parent / "generated"
@@ -206,6 +261,75 @@ def _extract_themes(subjects: list[str]) -> list[str]:
             themes.add(theme)
 
     return sorted(themes)
+
+
+_BLOCKED_AUTHOR_TOKENS = {
+    "supersummary",
+    "sparknotes",
+    "cliffsnotes",
+    "bookrags",
+    "grade saver",
+}
+
+_BLOCKED_TITLE_TOKENS = {
+    "study guide",
+    "book notes",
+    "summary and analysis",
+    "lesson plan",
+    "exam prep",
+}
+
+_REFERENCE_SUBJECT_TOKENS = {
+    "guidebooks",
+    "guidebook",
+    "encyclopedias",
+    "encyclopedia",
+    "dictionaries",
+    "dictionary",
+    "bibliography",
+    "textbooks",
+    "manuals",
+    "reference",
+    "history",
+    "historical",
+    "gazetteers",
+}
+
+_FICTION_SUBJECT_TOKENS = {
+    "fiction",
+    "novel",
+    "novels",
+    "short stories",
+    "mystery fiction",
+    "romance fiction",
+    "science fiction",
+    "fantasy fiction",
+    "historical fiction",
+    "thrillers",
+}
+
+
+def _is_likely_fiction_book(book: OpenLibraryBook) -> bool:
+    title = (book.title or "").strip().lower()
+    author_text = " ".join(book.authors or []).lower()
+    subject_text = " ".join(book.subjects or []).lower()
+
+    if not title:
+        return False
+
+    if any(token in title for token in _BLOCKED_TITLE_TOKENS):
+        return False
+
+    if any(token in author_text for token in _BLOCKED_AUTHOR_TOKENS):
+        return False
+
+    has_fiction_signal = any(token in subject_text for token in _FICTION_SUBJECT_TOKENS)
+    has_reference_signal = any(token in subject_text for token in _REFERENCE_SUBJECT_TOKENS)
+
+    if has_reference_signal and not has_fiction_signal:
+        return False
+
+    return True
 
 
 def book_to_literary_place(
@@ -339,6 +463,9 @@ async def run_ingestion(
             if not book.title or book.title.lower() in ("untitled", ""):
                 continue
 
+            if not _is_likely_fiction_book(book):
+                continue
+
             place = book_to_literary_place(book, city, city_info)
             all_places.append(place)
 
@@ -350,6 +477,12 @@ async def main():
     parser = argparse.ArgumentParser(description="Akhand data ingestion pipeline")
     parser.add_argument("--limit", type=int, default=15, help="Books per city")
     parser.add_argument("--south-asia-only", action="store_true", help="Only South Asian cities")
+    parser.add_argument(
+        "--cities-only",
+        type=str,
+        default="",
+        help="Comma-separated city list to ingest (e.g. 'London,Paris,New York')",
+    )
     parser.add_argument("--no-descriptions", action="store_true", help="Skip fetching descriptions")
     parser.add_argument("--output", type=str, default=None, help="Output JSON path")
     args = parser.parse_args()
@@ -357,6 +490,26 @@ async def main():
     cities = CITIES
     if args.south_asia_only:
         cities = {k: v for k, v in CITIES.items() if v["region"] == "South Asia"}
+
+    if args.cities_only.strip():
+        requested = [c.strip() for c in args.cities_only.split(",") if c.strip()]
+        requested_lookup = {c.lower(): c for c in requested}
+        filtered: dict[str, dict] = {}
+
+        for city_name, city_info in CITIES.items():
+            if city_name.lower() in requested_lookup:
+                filtered[city_name] = city_info
+
+        missing = [name for name in requested if name.lower() not in {c.lower() for c in filtered.keys()}]
+        if missing:
+            logger.warning(f"Cities not found in seed list: {missing}")
+
+        if not filtered:
+            logger.error("No valid cities selected with --cities-only")
+            sys.exit(1)
+
+        cities = filtered
+        logger.info(f"Running targeted ingest for {len(cities)} cities: {list(cities.keys())}")
 
     places = await run_ingestion(
         cities=cities,

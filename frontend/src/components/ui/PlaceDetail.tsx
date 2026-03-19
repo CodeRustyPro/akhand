@@ -23,8 +23,12 @@ import {
   type GoogleBookInfo,
   type WikipediaSummary,
 } from '@/lib/external';
+import { fetchPlaceDetail } from '@/lib/api';
 import { computeCityDna } from '@/lib/cityDna';
 import RadarChart from './RadarChart';
+import AuthorTimeline from './AuthorTimeline';
+import CompareCityDna from './CompareCityDna';
+// SimilarBooks component removed — inline similarBooks logic below handles this
 
 interface PlaceDetailProps {
   place: LiteraryPlace;
@@ -44,13 +48,12 @@ function SentimentBar({ polarity }: { polarity: number }) {
       <div className="flex items-center justify-between text-xs">
         <span className="text-akhand-text-muted">Sentiment</span>
         <span
-          className={`font-medium ${
-            polarity > 0.2
-              ? 'text-akhand-positive'
-              : polarity < -0.2
-                ? 'text-akhand-negative'
-                : 'text-akhand-accent'
-          }`}
+          className={`font-medium ${polarity > 0.2
+            ? 'text-akhand-positive'
+            : polarity < -0.2
+              ? 'text-akhand-negative'
+              : 'text-akhand-accent'
+            }`}
         >
           {polarity > 0 ? '+' : ''}
           {polarity.toFixed(1)}
@@ -98,6 +101,24 @@ export default function PlaceDetail({
   const [wikiInfo, setWikiInfo] = useState<WikipediaSummary | null>(null);
   const [gbLoading, setGbLoading] = useState(false);
   const [wikiLoading, setWikiLoading] = useState(false);
+  const [enrichedPlace, setEnrichedPlace] = useState<LiteraryPlace | null>(null);
+  const [detailLoading, setDetailLoading] = useState(false);
+
+  // Use enriched data if available, otherwise the passed place
+  const displayPlace = enrichedPlace || place;
+
+  // Fetch full detail if place came from slim index (no passage/themes)
+  useEffect(() => {
+    setEnrichedPlace(null);
+    const isSlim = !place.passage && place.sentiment.themes.length === 0;
+    if (isSlim) {
+      setDetailLoading(true);
+      fetchPlaceDetail(place.id, allPlaces).then((detail) => {
+        if (detail) setEnrichedPlace(detail);
+        setDetailLoading(false);
+      });
+    }
+  }, [place.id]);
 
   useEffect(() => {
     setGbInfo(null);
@@ -269,11 +290,10 @@ export default function PlaceDetail({
                   {[1, 2, 3, 4, 5].map((s) => (
                     <Star
                       key={s}
-                      className={`w-3 h-3 ${
-                        s <= Math.round(gbInfo.rating!)
-                          ? 'text-yellow-500 fill-yellow-500'
-                          : 'text-akhand-border'
-                      }`}
+                      className={`w-3 h-3 ${s <= Math.round(gbInfo.rating!)
+                        ? 'text-yellow-500 fill-yellow-500'
+                        : 'text-akhand-border'
+                        }`}
                     />
                   ))}
                 </div>
@@ -347,34 +367,46 @@ export default function PlaceDetail({
           </div>
         </div>
 
+        {/* Loading skeleton for detail fetch */}
+        {detailLoading && (
+          <div className="space-y-3 animate-pulse">
+            <div className="h-20 bg-akhand-surface-2 rounded-xl" />
+            <div className="h-4 bg-akhand-surface-2 rounded w-2/3" />
+            <div className="h-4 bg-akhand-surface-2 rounded w-1/2" />
+          </div>
+        )}
+
         {/* Passage (only if non-empty) */}
-        {hasPassage(place) && (
+        {hasPassage(displayPlace) && (
           <div className="bg-akhand-surface rounded-xl p-5 border border-akhand-border/50">
             <p className="italic text-sm text-akhand-literary leading-relaxed">
-              &ldquo;{place.passage}&rdquo;
+              &ldquo;{displayPlace.passage}&rdquo;
             </p>
             <p className="text-[10px] text-akhand-text-muted mt-3 text-right">
-              — {place.bookTitle}
+              — {displayPlace.bookTitle}
             </p>
           </div>
         )}
 
         {/* Sentiment (only if polarity is set to a meaningful value) */}
-        {place.sentiment.polarity !== 0 && (
-          <SentimentBar polarity={place.sentiment.polarity} />
+        {displayPlace.sentiment.polarity !== 0 && (
+          <SentimentBar polarity={displayPlace.sentiment.polarity} />
         )}
 
         {/* Emotions (only if non-empty) */}
-        {hasEmotions(place) && (
-          <div>
+        {hasEmotions(displayPlace) && (
+          <div className={displayPlace.qualityTier === 'silver' ? 'opacity-60' : ''}>
             <div className="flex items-center gap-1.5 mb-2">
               <Heart className="w-3.5 h-3.5 text-akhand-accent" />
               <span className="text-xs font-medium text-akhand-text-secondary">
                 Emotions
               </span>
+              {displayPlace.qualityTier === 'silver' && (
+                <span className="text-[9px] text-akhand-text-muted bg-akhand-surface-2 px-1.5 py-0.5 rounded">silver</span>
+              )}
             </div>
             <div className="flex flex-wrap gap-1.5">
-              {place.sentiment.dominantEmotions.map((emotion) => (
+              {displayPlace.sentiment.dominantEmotions.map((emotion) => (
                 <span
                   key={emotion}
                   className="px-2.5 py-1 bg-akhand-accent-dim text-akhand-accent rounded-full text-[11px] font-medium"
@@ -387,16 +419,19 @@ export default function PlaceDetail({
         )}
 
         {/* Themes (only if non-empty) */}
-        {hasThemes(place) && (
-          <div>
+        {hasThemes(displayPlace) && (
+          <div className={displayPlace.qualityTier === 'silver' ? 'opacity-60' : ''}>
             <div className="flex items-center gap-1.5 mb-2">
               <Tag className="w-3.5 h-3.5 text-akhand-accent" />
               <span className="text-xs font-medium text-akhand-text-secondary">
                 Themes
               </span>
+              {displayPlace.qualityTier === 'silver' && (
+                <span className="text-[9px] text-akhand-text-muted bg-akhand-surface-2 px-1.5 py-0.5 rounded">silver</span>
+              )}
             </div>
             <div className="flex flex-wrap gap-1.5">
-              {place.sentiment.themes.map((theme) => (
+              {displayPlace.sentiment.themes.map((theme) => (
                 <span
                   key={theme}
                   className="px-2.5 py-1 bg-akhand-surface-2 text-akhand-text-secondary rounded-full text-[11px]"
@@ -409,13 +444,13 @@ export default function PlaceDetail({
         )}
 
         {/* Genres (only if non-empty) */}
-        {place.genres.length > 0 && (
+        {displayPlace.genres.length > 0 && (
           <div>
             <span className="text-xs font-medium text-akhand-text-secondary">
               Genres
             </span>
             <div className="flex flex-wrap gap-1.5 mt-2">
-              {place.genres.map((genre) => (
+              {displayPlace.genres.map((genre) => (
                 <button
                   key={genre}
                   onClick={() => onFilterGenre?.(genre)}
@@ -474,6 +509,19 @@ export default function PlaceDetail({
             <RadarChart axes={cityDna.axes} size={240} />
           </div>
         )}
+
+        {/* Author timeline */}
+        <AuthorTimeline
+          author={place.author}
+          allPlaces={allPlaces}
+          onSelectPlace={onSelectRelated}
+        />
+
+        {/* Compare city DNA */}
+        <CompareCityDna
+          currentCity={place.placeName}
+          allPlaces={allPlaces}
+        />
 
         {/* Wikipedia context */}
         {wikiInfo && (

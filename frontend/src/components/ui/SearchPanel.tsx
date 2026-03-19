@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect, useRef } from 'react';
 import {
   Search,
   SlidersHorizontal,
@@ -10,6 +10,7 @@ import {
   ChevronUp,
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { List } from 'react-window';
 import type { LiteraryPlace } from '@/lib/types';
 
 interface SearchPanelProps {
@@ -36,11 +37,10 @@ function FilterChip({
   return (
     <button
       onClick={onClick}
-      className={`px-3 py-1 rounded-full text-xs font-medium transition-all duration-200 whitespace-nowrap ${
-        active
-          ? 'bg-akhand-accent text-akhand-bg'
-          : 'bg-akhand-surface-2 text-akhand-text-secondary hover:bg-akhand-surface-3 hover:text-akhand-text-primary'
-      }`}
+      className={`px-3 py-1 rounded-full text-xs font-medium transition-all duration-200 whitespace-nowrap ${active
+        ? 'bg-akhand-accent text-akhand-bg'
+        : 'bg-akhand-surface-2 text-akhand-text-secondary hover:bg-akhand-surface-3 hover:text-akhand-text-primary'
+        }`}
     >
       {label}
     </button>
@@ -66,6 +66,77 @@ const METROS = new Set([
   'Hyderabad', 'London', 'New York', 'Paris', 'Tokyo',
   'Karachi', 'Lahore', 'Dhaka', 'Moscow',
 ]);
+
+interface SearchRowProps {
+  filteredPlaces: LiteraryPlace[];
+  selectedPlace: LiteraryPlace | null;
+  onSelectPlace: (place: LiteraryPlace) => void;
+}
+
+function SearchResultRow({
+  index,
+  style,
+  filteredPlaces,
+  selectedPlace,
+  onSelectPlace,
+}: {
+  index: number;
+  style: React.CSSProperties;
+} & SearchRowProps) {
+  const place = filteredPlaces[index];
+  if (!place) return null;
+
+  return (
+    <div style={style}>
+      <button
+        onClick={() => onSelectPlace(place)}
+        className={`w-full text-left px-4 py-3 border-b border-akhand-border/30 transition-all duration-200 hover:bg-akhand-surface-2 h-full ${selectedPlace?.id === place.id
+          ? 'bg-akhand-accent-dim border-l-2 border-l-akhand-accent'
+          : ''
+          }`}
+      >
+        <div className="flex items-start gap-3">
+          {place.coverUrl ? (
+            <img
+              src={place.coverUrl}
+              alt=""
+              className="w-10 h-14 rounded object-cover flex-shrink-0 bg-akhand-surface-3"
+              onError={(e) => {
+                (e.target as HTMLImageElement).style.display = 'none';
+              }}
+            />
+          ) : (
+            <div
+              className={`w-2 h-2 rounded-full mt-1.5 flex-shrink-0 ${sentimentDot(
+                place.sentiment.polarity
+              )}`}
+            />
+          )}
+          <div className="flex-1 min-w-0">
+            <h4 className="text-sm font-medium text-akhand-text-primary truncate">
+              {place.bookTitle}
+            </h4>
+            <p className="text-xs text-akhand-text-secondary mt-0.5">
+              {place.author}
+              {place.publishYear ? ` · ${place.publishYear}` : ''}
+            </p>
+            <div className="flex items-center gap-1 mt-1">
+              <MapPin className="w-3 h-3 text-akhand-accent" />
+              <span className="text-xs text-akhand-accent">
+                {place.placeName}
+              </span>
+              {place.language && place.language !== 'English' && (
+                <span className="text-[10px] text-akhand-text-muted ml-1">
+                  · {place.language}
+                </span>
+              )}
+            </div>
+          </div>
+        </div>
+      </button>
+    </div>
+  );
+}
 
 export default function SearchPanel({
   places,
@@ -143,7 +214,7 @@ export default function SearchPanel({
             (p.genres.includes('crime') ||
               p.genres.includes('mystery') ||
               p.genres.includes('thriller') ||
-              p.sentiment.themes.includes('corruption'))
+              p.sentiment.themes.some(t => t.includes('corruption')))
         );
       } else if (specialFilter === '_list:small-towns') {
         result = result.filter(
@@ -210,10 +281,20 @@ export default function SearchPanel({
       });
     }
 
-    onFilteredPlacesChange(result);
+    const tierRank: Record<string, number> = { gold: 0, silver: 1, stub: 2 };
+    result = [...result].sort((a, b) => {
+      const ra = tierRank[a.qualityTier || 'stub'] ?? 3;
+      const rb = tierRank[b.qualityTier || 'stub'] ?? 3;
+      if (ra !== rb) return ra - rb;
+      return (b.publishYear || 0) - (a.publishYear || 0);
+    });
+
     return result;
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [query, selectedRegions, selectedGenres, selectedLanguages, selectedEras, authorFilter, genreFilter, specialFilter, places]);
+
+  useEffect(() => {
+    onFilteredPlacesChange(filteredPlaces);
+  }, [filteredPlaces, onFilteredPlacesChange]);
 
   const toggleFilter = (
     list: string[],
@@ -233,6 +314,20 @@ export default function SearchPanel({
 
   const activeFilterCount =
     selectedRegions.length + selectedGenres.length + selectedLanguages.length + selectedEras.length;
+
+  const listContainerRef = useRef<HTMLDivElement>(null);
+  const [listHeight, setListHeight] = useState(400);
+
+  useEffect(() => {
+    if (!listContainerRef.current) return;
+    const observer = new ResizeObserver((entries) => {
+      for (const entry of entries) {
+        setListHeight(entry.contentRect.height);
+      }
+    });
+    observer.observe(listContainerRef.current);
+    return () => observer.disconnect();
+  }, []);
 
   const clearAll = () => {
     setQuery('');
@@ -268,11 +363,10 @@ export default function SearchPanel({
         <div className="flex items-center justify-between mt-3">
           <button
             onClick={() => setShowFilters(!showFilters)}
-            className={`flex items-center gap-1.5 text-xs font-medium transition-colors ${
-              showFilters || activeFilterCount > 0
-                ? 'text-akhand-accent'
-                : 'text-akhand-text-secondary hover:text-akhand-text-primary'
-            }`}
+            className={`flex items-center gap-1.5 text-xs font-medium transition-colors ${showFilters || activeFilterCount > 0
+              ? 'text-akhand-accent'
+              : 'text-akhand-text-secondary hover:text-akhand-text-primary'
+              }`}
           >
             <SlidersHorizontal className="w-3.5 h-3.5" />
             Filters
@@ -500,70 +594,17 @@ export default function SearchPanel({
         {filteredPlaces.length !== 1 && 's'}
       </div>
 
-      {/* Results list */}
-      <div className="flex-1 overflow-y-auto">
-        {filteredPlaces.map((place) => {
-          const hasPassage =
-            place.passage && place.passage.trim().length > 10;
-
-          return (
-            <button
-              key={place.id}
-              onClick={() => onSelectPlace(place)}
-              className={`w-full text-left p-4 border-b border-akhand-border/30 transition-all duration-200 hover:bg-akhand-surface-2 ${
-                selectedPlace?.id === place.id
-                  ? 'bg-akhand-accent-dim border-l-2 border-l-akhand-accent'
-                  : ''
-              }`}
-            >
-              <div className="flex items-start gap-3">
-                {place.coverUrl ? (
-                  <img
-                    src={place.coverUrl}
-                    alt=""
-                    className="w-10 h-14 rounded object-cover flex-shrink-0 bg-akhand-surface-3"
-                    onError={(e) => {
-                      (e.target as HTMLImageElement).style.display = 'none';
-                    }}
-                  />
-                ) : (
-                  <div
-                    className={`w-2 h-2 rounded-full mt-1.5 flex-shrink-0 ${sentimentDot(
-                      place.sentiment.polarity
-                    )}`}
-                  />
-                )}
-                <div className="flex-1 min-w-0">
-                  <h4 className="text-sm font-medium text-akhand-text-primary truncate">
-                    {place.bookTitle}
-                  </h4>
-                  <p className="text-xs text-akhand-text-secondary mt-0.5">
-                    {place.author}
-                    {place.publishYear ? ` · ${place.publishYear}` : ''}
-                  </p>
-                  <div className="flex items-center gap-1 mt-1">
-                    <MapPin className="w-3 h-3 text-akhand-accent" />
-                    <span className="text-xs text-akhand-accent">
-                      {place.placeName}
-                    </span>
-                    {place.language && place.language !== 'English' && (
-                      <span className="text-[10px] text-akhand-text-muted ml-1">
-                        · {place.language}
-                      </span>
-                    )}
-                  </div>
-                  {hasPassage && (
-                    <p className="text-[11px] text-akhand-text-muted mt-1.5 line-clamp-2 italic leading-relaxed">
-                      &ldquo;{place.passage.slice(0, 100)}
-                      {place.passage.length > 100 ? '...' : ''}
-                      &rdquo;
-                    </p>
-                  )}
-                </div>
-              </div>
-            </button>
-          );
-        })}
+      {/* Virtualized results list */}
+      <div className="flex-1 overflow-hidden" ref={listContainerRef}>
+        <List<SearchRowProps>
+          defaultHeight={listHeight}
+          rowCount={filteredPlaces.length}
+          rowHeight={88}
+          overscanCount={5}
+          style={{ width: '100%' }}
+          rowComponent={SearchResultRow}
+          rowProps={{ filteredPlaces, selectedPlace, onSelectPlace }}
+        />
       </div>
     </div>
   );
