@@ -70,6 +70,7 @@ _allowed_headers = [h.strip() for h in _allowed_headers_env.split(",") if h.stri
 
 _enable_security_headers = os.getenv("AKHAND_ENABLE_SECURITY_HEADERS", "1").strip() not in {"0", "false", "False"}
 _frontend_url = os.getenv("AKHAND_FRONTEND_URL", "https://shahdev.me").strip().rstrip("/")
+_frontend_base_path = os.getenv("AKHAND_FRONTEND_BASE_PATH", "/akhand").strip()
 
 _rate_buckets: dict[str, deque[float]] = defaultdict(deque)
 
@@ -178,7 +179,19 @@ app = FastAPI(
 def _frontend_target(path: str) -> str:
     if not path.startswith("/"):
         path = f"/{path}"
-    return f"{_frontend_url}{path}"
+
+    base = _frontend_base_path or ""
+    if base in {"/", ""}:
+        normalized_base = ""
+    else:
+        normalized_base = f"/{base.strip('/')}"
+
+    # Join frontend URL + basePath + route path without accidental double slashes.
+    if normalized_base and path == "/":
+        route_path = normalized_base
+    else:
+        route_path = f"{normalized_base}{path}"
+    return f"{_frontend_url}{route_path}"
 
 _DEFAULT_CORS_ORIGINS = [
     "http://localhost:3000",
@@ -245,8 +258,18 @@ async def web_research():
     return RedirectResponse(url=_frontend_target("/research"), status_code=307)
 
 
+@app.get("/research/", include_in_schema=False)
+async def web_research_slash():
+    return RedirectResponse(url=_frontend_target("/research"), status_code=307)
+
+
 @app.get("/explore", include_in_schema=False)
 async def web_explore():
+    return RedirectResponse(url=_frontend_target("/explore"), status_code=307)
+
+
+@app.get("/explore/", include_in_schema=False)
+async def web_explore_slash():
     return RedirectResponse(url=_frontend_target("/explore"), status_code=307)
 
 
