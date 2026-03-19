@@ -20,7 +20,7 @@ from datetime import datetime, timezone
 from fastapi import FastAPI, HTTPException, Query, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.middleware.trustedhost import TrustedHostMiddleware
-from fastapi.responses import StreamingResponse
+from fastapi.responses import StreamingResponse, RedirectResponse, HTMLResponse
 from pydantic import BaseModel, Field
 from dotenv import load_dotenv
 from typing import List, Optional
@@ -69,6 +69,7 @@ _allowed_headers_env = os.getenv("AKHAND_CORS_HEADERS", "Content-Type,X-API-Key"
 _allowed_headers = [h.strip() for h in _allowed_headers_env.split(",") if h.strip()] or ["Content-Type", "X-API-Key"]
 
 _enable_security_headers = os.getenv("AKHAND_ENABLE_SECURITY_HEADERS", "1").strip() not in {"0", "false", "False"}
+_frontend_url = os.getenv("AKHAND_FRONTEND_URL", "https://shahdev.me").strip().rstrip("/")
 
 _rate_buckets: dict[str, deque[float]] = defaultdict(deque)
 
@@ -173,6 +174,12 @@ app = FastAPI(
     lifespan=lifespan,
 )
 
+
+def _frontend_target(path: str) -> str:
+    if not path.startswith("/"):
+        path = f"/{path}"
+    return f"{_frontend_url}{path}"
+
 _DEFAULT_CORS_ORIGINS = [
     "http://localhost:3000",
     "http://localhost:3001",
@@ -207,6 +214,45 @@ async def set_security_headers(request: Request, call_next):
         if request.url.scheme == "https":
             response.headers.setdefault("Strict-Transport-Security", "max-age=31536000; includeSubDomains")
     return response
+
+
+@app.get("/", include_in_schema=False)
+async def web_root():
+    if _frontend_url:
+        return RedirectResponse(url=_frontend_target("/"), status_code=307)
+    return HTMLResponse(
+        """
+        <html>
+          <head><title>Akhand API</title></head>
+          <body style='font-family: system-ui; padding: 24px;'>
+            <h1>Akhand API</h1>
+            <p>This deployment is API-only.</p>
+            <p>Use <a href='/docs'>/docs</a> for API docs or configure AKHAND_FRONTEND_URL.</p>
+          </body>
+        </html>
+        """
+    )
+
+
+@app.head("/", include_in_schema=False)
+async def web_root_head():
+    # Keep platform probes healthy while preserving API-only behavior.
+    return HTMLResponse(status_code=200, content="")
+
+
+@app.get("/research", include_in_schema=False)
+async def web_research():
+    return RedirectResponse(url=_frontend_target("/research"), status_code=307)
+
+
+@app.get("/explore", include_in_schema=False)
+async def web_explore():
+    return RedirectResponse(url=_frontend_target("/explore"), status_code=307)
+
+
+@app.get("/stories/{slug:path}", include_in_schema=False)
+async def web_stories(slug: str):
+    return RedirectResponse(url=_frontend_target(f"/stories/{slug}"), status_code=307)
 
 
 # ── Health ─────────────────────────────────────────────────────────
